@@ -1,0 +1,124 @@
+{% extends 'InformesBundle::Agenda/sublayout.html.twig' %}
+{% import 'RebsolHermesBundle:UI/Macros:dependencias.html.twig' as macroDependencias %}
+
+{% block postcss %}
+    {% for assets, version in {
+    'bundles/hermes/acev12/css/jquery-ui-1.10.3.full.min.css':'4.13.0',
+    'bundles/hermes/acev12/css/ui.jqgrid.css':'4.13.0',
+    'css/bootstrap-timepicker.css':'4.13.0',
+    'css/datepicker.css':'4.13.0',
+    'bundles/hermes/acev12/css/uncompressed/jqgrid-informes.css':'4.13.0',
+} %}
+<link href="{{ asset(assets) }}?v={{ version }}" rel="stylesheet" type="text/css">
+{% endfor %}
+{% endblock %}
+
+{% block body %}
+    {% spaceless %}
+        <div class="alert alert-info" style="margin-bottom:0">
+            <strong>Informe de Agendamientos: {{ hermes_iva }}</strong> Realice los filtros correspondientes y presione "Listar"
+            <span style="float:right;" class="btn btn-info btn-mini tooltip-info" data-rel="popover" data-placement="left" title="" data-content="Listado de Pacientes Agendados entre un rango de fechas especifico, indicando sucursal, especialidad, financiador etc..." data-original-title="&lt;i class='icon-ok blue'&gt;&lt;/i&gt; Informe de Agendamientos"><i class="icon-question-sign"></i>Ayuda</span>
+        </div>
+        <div class="well well-small" style="margin-bottom:0">
+            <select  id="sucursal" style="margin-bottom:0">
+                <option value="">Selecc. una sucursal</option>
+                <option value="todas">Todas</option>
+                {% for sucursal in sucursales %}
+                    <option value="{{ sucursal.id }}">{{ sucursal.nombreSucursal }}</option>
+                {% endfor %}
+            </select>
+            <select disabled="" id="especialidad" style="margin-bottom:0">
+            </select>
+            <select  disabled="" id="profesional" style="margin-bottom:0">
+            </select>
+            <div class="input-append" style="margin-bottom:0">
+                <input class="date-picker" id="fdesde" type="text" data-date-format="dd-mm-yyyy">
+                <span class="add-on">
+                    <i class="icon-calendar"></i>
+                </span>
+            </div>
+            <div class="input-append" style="margin-bottom:0">
+                <input class="date-picker" id="fhasta" type="text" data-date-format="dd-mm-yyyy">
+                <span class="add-on">
+                    <i class="icon-calendar"></i>
+                </span>
+            </div>
+            <button id="btnListar" class="btn btn-primary btn-small"><i class="icon-bar-chart"></i> Listar</button>
+        </div>
+        <div class="divinforme"></div>
+    {% endspaceless %}
+{% endblock %}
+
+{% block scripts %}
+    {% for assets in [
+    'bundles/hermes/acev12/js/jqGrid/i18n/grid.locale-es.js',
+    'bundles/hermes/acev12/js/jqGrid/jquery.jqGrid.min.js',
+    'bundles/hermes/acev12/js/ace-extra.min.js',
+    'js/bootstrap-timepicker.min.js',
+    'js/bootstrap-datepicker.min.js',
+    'js/date-time/locales/bootstrap-datepicker.es.js',
+    'js/jquery.maskedinput.min.js',
+    ] %}
+    <script src="{{ asset(assets) }}" type="text/javascript"></script>
+{% endfor %}
+{{ macroDependencias.datetime() }}
+<script type="text/javascript">
+    function listarInforme() {
+        var data = {
+            varSucursal     : $('#sucursal').val(),
+            varEspecialidad : $('#especialidad').val(),
+            varProfesional  : $('#profesional').val(),
+            varDesde        : $('#fdesde').val(),
+            varHasta        : $('#fhasta').val()
+        };
+
+        var ruta = "{{ path('Informes_Agenda_Agendamientos') }}";
+
+        $.ajax({
+            url: ruta,
+            type: 'POST',
+            data: data,
+            success: function (result) {
+                $('.divinforme').html('').html(result);
+            }
+        });
+    }
+
+    $(document).on('ready', function(){
+        $('.ui-jqgrid tr.ui-row-ltr td').css('padding','0');
+        listarInforme();
+        $('#btnListar').on('click',function(){
+            listarInforme();
+        });
+    });
+</script>
+
+<script>
+    {% include 'InformesBundle::Agenda/includeFiltro.html.twig' %}
+    function exportarExcel(e) {
+
+        var rowNumSelect = $("option[value=9999999999999]").closest('select').val();
+
+        $("#informe").jqGrid('setGridParam', { rowNum:9999999999999 }).trigger('reloadGrid');
+
+        var a = document.createElement('a'),
+        data_type = 'data:application/vnd.ms-excel',
+        table_title = $('.ui-jqgrid-title'),
+        newtable  = table_title.html(),
+        table_header = $('.ui-jqgrid-hdiv'),
+        newtable  = newtable + '' + table_header.html(),
+        table_body = $('.ui-jqgrid-bdiv'),
+        newtable  = newtable + '' + table_body.html(),
+        table_div = newtable,
+        table_html  = table_div.replace(/ /g, '%20');
+
+        a.href = data_type + ', ' + table_html;
+        a.download = 'exported_table_.xls';
+        a.click();
+        e.preventDefault();
+        $("#informe").jqGrid('setGridParam', { rowNum:rowNumSelect }).trigger('reloadGrid');
+        $('.ui-jqgrid tr.ui-row-ltr td').css('padding','0');
+    }
+</script>
+{% endblock %}
+

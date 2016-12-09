@@ -1,0 +1,49 @@
+<table id="tbl" class="table table-condensed table-striped table-bordered" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Fecha Emisión</th>
+            <th>Fecha Admisión</th>
+            <th>Rut</th>
+            <th>Nombre</th>
+            <th>Edad</th>
+            <th>Sexo</th>
+            <th>Comuna</th>
+            <th>Prestaciones</th>
+            <th>Tipo</th>
+            <th>Financiador</th>
+            <th>Profesional</th>
+            <th>Usuario</th>
+            <th>Total</th>      
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for presupuesto in arrPresupuestosEmitidos %}
+            <tr>
+                <td>{{ presupuesto.numeroPresupuesto }}</td>
+                <td>{{ presupuesto.fechaCreacion | date("d-m-Y") }}</td>
+                {% if presupuesto.fechaIngreso == null %}
+                    <td>-</td>
+                    {% else %}
+                    <td>{{ presupuesto.fechaIngreso | date("d-m-Y") }}</td>
+                {% endif %}
+                <td>{{ presupuesto.rutPersona }}-{{ presupuesto.digitoVerificador }}</td>
+                <td>{{ obtenerNombrePaciente(presupuesto.nombrePaciente, presupuesto.apPaciente, presupuesto.amPaciente) }}</td>
+                <td>{{ 'now' | date("Y") - presupuesto.fechaNacimiento | date("Y") }}</td>
+                <td>{{ presupuesto.nombreSexo }}</td>
+                <td>{{ presupuesto.nombreComuna }}</td>
+                <td><button onmouseover="verPrestaciones(this)" onmouseout="ocultarPrestaciones()" value="{{ presupuesto.idPresupuesto }}" class="btn-link" data-toggle="popover" title="Prestaciones" data-content="" data-html="true">Tienes {{ presupuesto.prestaciones }} prestación(es)</button></td>
+                <td>{{ presupuesto.nombreTipoCuenta }}</td>
+                {% if presupuesto.nombreConvenio == null %}
+                    <td>{{ presupuesto.nombreFinanciador }}</td>
+                    {% else %}
+                    <td>{{ presupuesto.nombreConvenio }}</td>
+                {% endif %}
+                <td>{{ obtenerNombreProfesional(presupuesto.nombreProfesional, presupuesto.apProfesional, presupuesto.amProfesional) }}</td>
+                <td>{{ obtenerNombreUsuario(presupuesto.nombreUsuario, presupuesto.apUsuario, presupuesto.amUsuario) }}</td>
+                <td style="text-align:right;">{{ presupuesto.totalPrestaciones }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table><!-- table -->

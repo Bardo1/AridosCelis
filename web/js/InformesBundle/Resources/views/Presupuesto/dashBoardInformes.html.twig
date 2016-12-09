@@ -1,0 +1,50 @@
+{% extends 'InformesBundle::layout.html.twig' %}
+
+{% block body %}
+
+    <div id="breadcrumbs" class="navbar-fixed-top">
+    	<ul class="breadcrumb">
+    		<li>
+                <i class="icon-home"></i> <a href="{{ path('Dashboard_home') }}">Home</a>
+                <span class="divider"><i class="icon-angle-right"></i></span>
+            </li>
+            <li>
+                <a href="{{ path('informesInicio') }}">Informes</a>
+                <span class="divider"><i class="icon-angle-right"></i></span>
+            </li>
+            <li>{{ nombreModulo }}</li>
+        </ul>
+    </div><!-- breadcrumbs -->
+
+    <div class="well">
+        <h3 class="grey lighter smaller">
+            Seleccionar un Informe
+        </h3>
+        <hr>
+        <div class="row-fluid">
+        {% if app.user.tienePerfil('INFORMES_PRESUPUESTO_EMITIDOS') %}
+            <div class="span4 well well-small well-moduloRebsol">
+                <a href="{{ path('Informes_Presupuesto_Emitidos') }}">
+                    <h3><i class="icon-list-alt"></i> Presupuestos Emitidos</h3>
+                </a>
+                <span>
+                    Listado de Presupuestos Emitidos entre un rango de fechas especifico,
+                    indicando Fecha emisión, fecha Admisión, Rut, Nombre Paciente, Edad, Sexo, Comuna, Prestaciones, etc...
+                </span>
+            </div>
+         {% endif %}   
+        {% if app.user.tienePerfil('INFORMES_PRESUPUESTO_EMITIDOSRESUMIDOS') %}
+            <div class="span4 well well-small well-moduloRebsol">
+                <a href="{{ path('Informes_Presupuesto_EmitidosResumidos') }}">
+                    <h3><i class="icon-list-alt"></i> Presupuestos Emitidos Resumidos</h3>
+                </a>
+                <span>
+                    Listado de Presupuestos Emitidos Resumidos entre un rango de fechas especifico,
+                    indicando Fecha emisión, fecha Admisión, Rut, Nombre Paciente, etc...
+                </span>
+            </div>
+         {% endif %}   
+        </div><!-- row-fluid -->
+    </div> <!-- well -->
+
+{% endblock %}

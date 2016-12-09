@@ -1,0 +1,32 @@
+<table id="emitidosTable" class="table table-condensed table-striped table-bordered" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>Fecha Cirugia</th>
+            <th>Rut</th>
+            <th>Nombre Paciente</th>
+            <th>Pabellon</th>
+            <th>Tipo de Intervencion</th>
+            <th>Prestaciones</th>
+            <th>Profesional</th>
+            <th>Especialidad</th>
+            <th>Es Reintervencion</th>   
+        </tr>
+    </thead>
+    </thead>
+    <tbody>
+        {% for CirugiaPorProfesional in arrCirugiasRealizadasPorProfesional %}
+        <tr>
+            <th style="display:none;"></th> 
+            <td>{{ CirugiaPorProfesional.fechaCirugia | hermes_date_format }}</td>
+            <td>{{ CirugiaPorProfesional.rut ~ "-" ~ CirugiaPorProfesional.dV | hermes_rut_format }}</td>
+            <td>{{ obtenerNombrePaciente(CirugiaPorProfesional.nombrePaciente,CirugiaPorProfesional.apPaciente,CirugiaPorProfesional.amPaciente) }}</td>
+            <td>{{ CirugiaPorProfesional.nombrePabellon }}</td>          
+            <td><button onmouseover="verPrestaciones(this)" onmouseout="ocultarPrestaciones()" value="{{ CirugiaPorProfesional.idPabSolicitud }}" class="btn-link" data-toggle="popover" title="Prestaciones" data-content="" data-html="true">Tienes {{ CirugiaPorProfesional.prestaciones }} prestación(es)</button></td>
+            <td>{{ CirugiaPorProfesional.tipoIntervencion }}</td>
+            <td>{{ obtenerNombreProfesional(CirugiaPorProfesional.nombreProfesional, CirugiaPorProfesional.apProfesional, CirugiaPorProfesional.amProfesional) }}</td>
+            <td>{{ CirugiaPorProfesional.especialidad }}</td>
+            <td>{{ CirugiaPorProfesional.esReintervencion }}</td>            
+        </tr>
+        {% endfor %}
+    </tbody>
+</table><!-- table -->

@@ -1,0 +1,23 @@
+Poyecto\ProyectoBundle\Entity\DetalleProducto:
+    type: entity
+    table: null
+    repositoryClass: Poyecto\ProyectoBundle\Entity\DetalleProductoRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        cantidad:
+            type: string
+            length: 255
+        detalle:
+            type: string
+            length: 255
+        valorunitario:
+            type: string
+            length: 255
+        valortotal:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

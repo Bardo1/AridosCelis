@@ -1,0 +1,19 @@
+Informes_FichaClinica_InterconsultasRealizadas_inicio:
+ pattern:  /InterconsultasRealizada/Inicio
+ defaults: { _controller: InformesBundle:FichaClinica\InterconsultasRealizadas:index }
+
+Informes_FichaClinica_InterconsultasRealizadas:
+ pattern: /InterconsultasRealizada/Resultado
+ defaults: { _controller: InformesBundle:FichaClinica\InterconsultasRealizadas:resultado }
+
+Informes_FichaClinica_Produccion_inicio:
+ pattern:  /Produccion_FichaClinica/Inicio
+ defaults: { _controller: InformesBundle:FichaClinica\Produccion:index }
+
+Informes_FichaClinica_Produccion_resultado:
+ pattern: /Produccion_FichaClinica/Resultado
+ defaults: { _controller: InformesBundle:FichaClinica\Produccion:resultado }
+
+Informes_FichaClinica_Produccion_Imprimir:
+ pattern: /imprimirInformeProduccion
+ defaults: { _controller: InformesBundle:FichaClinica\Produccion:imprimirInformeProduccion }

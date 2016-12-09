@@ -1,0 +1,67 @@
+$('[data-rel=popover]').popover({html:true});
+$('#sucursal').on('change',function(){
+    if ($(this).val() == '') {
+        $('#especialidad').html("");
+        $('#especialidad').attr('disabled',true);
+        $('#profesional').html("");
+        $('#profesional').attr('disabled',true);
+    } else {
+        cargarEspecialidades(this);
+    };
+});
+$('#especialidad').on('change',function(){
+    if ($(this).val() == '') {
+        $('#profesional').html("");
+        $('#profesional').attr('disabled',true);
+    } else {
+        cargarProfesionales(this);
+    };
+});
+
+//cargar Select con las especialidades por Sucursal
+function cargarEspecialidades(obj){
+    var ruta = '{{path('informesEspecialidadesPorSucursal')}}';
+    $.post(ruta, {idSucursal:$(obj).val()}, function(resultado){
+        result = $.parseJSON(resultado);
+        var options = '<option value=""> Selecc. una especialidad </option>';
+        options+='<option value="todas"> Todas</option>';
+        for(var i=0;i<result.length;i++)
+        {
+            options += "<option value="+result[i].id+">"+result[i].nombre+"</option>";
+        };
+        $('#profesional').html("");
+        $('#profesional').attr('disabled',true);
+        $('#especialidad').html(options);
+        $('#especialidad').show();
+        $('#especialidad').attr('disabled',false);
+    }).error(function(xhr, textStatus, errorThrow){
+        bootbox.dialog(xhr.responseText,[{
+            "label" : "<i class='icon-check-sign'></i> Aceptar",
+            "class" : "btn-info btn-mini",
+            "callback": function(){
+            }
+        }]);
+    });
+}
+function cargarProfesionales(obj){
+    var ruta = '{{path('informesProfesionalesPorSucursalYEspecialidad')}}';
+    $.post(ruta, {idEspecialidad:$(obj).val(), idSucursal:$('#sucursal').val()}, function(resultado){
+        result = $.parseJSON(resultado);
+        var options = '<option value=""> Selecc. un profesional </option>';
+        options+='<option value="todas"> Todos</option>';
+        for(var i=0;i<result.length;i++)
+        {
+            options += "<option value="+result[i].id+">"+result[i].nombre+"</option>";
+        };
+        $('#profesional').html(options);
+        $('#profesional').show();
+        $('#profesional').attr('disabled',false);
+    }).error(function(xhr, textStatus, errorThrow){
+        bootbox.dialog(xhr.responseText,[{
+            "label" : "<i class='icon-check-sign'></i> Aceptar",
+            "class" : "btn-info btn-mini",
+            "callback": function(){
+            }
+        }]);
+    });
+}

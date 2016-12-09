@@ -1,0 +1,52 @@
+<table id="tblPacientesAdmitidos" class="table table-condensed table-striped table-bordered" cellspacing="0" width="100%">
+    <thead>
+        <tr> 
+            <th style="display:none;"></th> 
+            <th>N° Admisión</th> 
+            <th>Fecha Admisión</th> 
+            <th>Hora Adm</th> 
+            <th>Rut </th> 
+            <th>Nombre Paciente</th> 
+            <th>Tipo Cuenta</th> 
+            <th>Financiador</th> 
+            <th>Convenio</th> 
+            <th>Plan</th>  
+            <th>Profesional</th> 
+            <th>Especialidad</th> 
+            <th>Origen</th> 
+            <th>Servicio</th>  
+            <th>N° Presupuesto</th>
+            <th>Usuario Admisión</th> 
+            <th>Alta (si/no) </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for PacienteAdmitido in arrPacientesAdmitidos %}
+        <tr>
+            <th style="display:none;"></th> 
+                <td>{{ PacienteAdmitido.numeroAdmision  }}</td>
+                <td>{{ PacienteAdmitido.fechaAdmision | hermes_date_format }}</td>
+                <th>Hora Adm</th> 
+                <td>{{ PacienteAdmitido.rut ~ "-" ~ PacienteAdmitido.dV | hermes_rut_format }}</td>
+                <td>{{ obtenerNombrePaciente(PacienteAdmitido.nombrePaciente,PacienteAdmitido.apPaciente,PacienteAdmitido.amPaciente)}}</td>
+                <td>{{ PacienteAdmitido.nombreTipoCuenta }}</td> 
+                <th>Financiador</th> 
+                <td>{% if PacienteAdmitido.nombreConvenio is not empty %}
+                {{ PacienteAdmitido.nombreConvenio}}
+                {% else %}
+                {{ PacienteAdmitido.nombreFinanciador}}
+                {% endif %} 
+                </td> 
+                <td>{{ PacienteAdmitido.nombrePlanq}} {{ PacienteAdmitido.nombrePlanr}}</td>
+                <td>{{ obtenerNombreProfesional (PacienteAdmitido.nombreProfesional, PacienteAdmitido.apProfesional, PacienteAdmitido.amProfesional) }} </td> 
+                <td>
+                <td>{{ PacienteAdmitido.especialidad }}</td> 
+                <th> Origen</th> 
+                <th> Servicio</th> 
+                <td>{{ PacienteAdmitido.numeroPresupuesto }}</td>
+                <td>{{ obtenerNombreUsuario(PacienteAdmitido.nombreUsuario,PacienteAdmitido.apUsuario,PacienteAdmitido.amUsuario) }}</td> 
+                <th>Alta (si/no) </th>   
+        </tr>
+        {% endfor %}        
+    </tbody>
+</table><!-- table -->

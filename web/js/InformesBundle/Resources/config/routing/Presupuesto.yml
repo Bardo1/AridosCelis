@@ -1,0 +1,24 @@
+Informes_Presupuesto_Emitidos:
+ pattern:  /Emitidos
+ defaults: { _controller: InformesBundle:Presupuesto\InformesPresupuestos:verEmitidos }
+
+Informes_Presupuesto_EmitidosResumidos:
+ pattern: /EmitidosResumidos
+ defaults: { _controller: InformesBundle:Presupuesto\InformesPresupuestos:verEmitidosResumidos }
+
+Informes_Presupuesto_UsuariosPorSucursal:
+ pattern: /UsuariosPorSucursal
+ defaults: { _controller: InformesBundle:Presupuesto\InformesPresupuestos:obtenerUsuariosPorSucursal }
+
+Informes_Presupuesto_FiltrarEmitidos:
+ pattern: /FiltrarEmitidos
+ defaults: { _controller: InformesBundle:Presupuesto\InformesPresupuestos:filtrarEmitidos }
+
+Informes_Presupuesto_FiltrarEmitidosResumidos:
+ pattern: /FiltrarEmitidosResumidos
+ defaults: { _controller: InformesBundle:Presupuesto\InformesPresupuestos:filtrarEmitidosResumidos }
+
+Informes_Presupuesto_ObtenerPrestacionesPorPresupuesto:
+ pattern: /ObtenerPrestacionesPorPresupuesto
+ defaults: { _controller: InformesBundle:Presupuesto\InformesPresupuestos:obtenerPrestacionesPorPresupuesto }
+

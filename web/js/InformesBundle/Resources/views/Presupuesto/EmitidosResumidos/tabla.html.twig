@@ -1,0 +1,21 @@
+<table id="tbl" class="table table-condensed table-striped table-bordered" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>Usuario</th>
+            <th>Emitidos</th>
+            <th>Admitidos</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for presupuesto in arrPresupuestosEmitidosResumidos %}
+            <tr>
+                <td>{{ obtenerNombreUsuario(presupuesto.nombreUsuario, presupuesto.apUsuario, presupuesto.amUsuario) }}</td>
+                <td>{{ presupuesto.totalPresupuestos - presupuesto.cantidadAdmitidos }}</td>
+                <td>{{ presupuesto.cantidadAdmitidos }}</td>
+                <td>{{ presupuesto.totalPresupuestos }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table><!-- table -->

@@ -1,0 +1,55 @@
+Admision_Garantias_Inicio:
+ pattern:  /Garantias
+ defaults: { _controller: InformesBundle:Admision\Garantias:index }
+
+Admision_Garantias_Ver:
+ pattern:  /Ver
+ defaults: { _controller: InformesBundle:Admision\Garantias:ver }
+
+Admision_Garantias_Filtrar:
+ pattern:  /Filtrar
+ defaults: { _controller: InformesBundle:Admision\Garantias:filtrar }
+
+Admision_PacientesAdmitidos_Inicio:
+ pattern:  /PacientesAdmitidos
+ defaults: { _controller: InformesBundle:Admision\InformesPacientesAdmitidos:index }
+
+Admision_PacientesAdmitidos_Ver:
+ pattern:  /VerPacientesAdmitidos
+ defaults: { _controller: InformesBundle:Admision\InformesPacientesAdmitidos:verPacientesAdmitidos }
+
+Informes_Admision_PacientesAdmitidos:
+ pattern:  /PacientesAdmitidos
+ defaults: { _controller: InformesBundle:Admision\InformesPacientesAdmitidos:verPacientesAdmitidos }
+
+Informes_Admision_EmitidosResumidos:
+ pattern: /EmitidosResumidos
+ defaults: { _controller: InformesBundle:Admision\InformesPacientesAdmitidos:verEmitidosResumidos }
+
+Informes_Admision_UsuariosPorSucursal:
+ pattern: /UsuariosPorSucursal
+ defaults: { _controller: InformesBundle:Admision\InformesPacientesAdmitidos:obtenerUsuariosPorSucursal }
+
+Informes_Admision_FiltrarEmitidos:
+ pattern: /FiltrarEmitidos
+ defaults: { _controller: InformesBundle:Admision\InformesPacientesAdmitidos:filtrarEmitidos }
+
+Informes_Admision_ObtenerPrestacionesPorSolicitudesGeneradas:
+ pattern: /ObtenerPrestacionesPorSolicitudesGeneradas
+ defaults: { _controller: InformesBundle:Admision\InformesPacientesAdmitidos:obtenerPrestacionesPorSolicitudesGeneradas }
+
+#=======================================#
+# INFORMES PACIENTES ADMISIONES ANULADAS#
+#=======================================#
+
+Admision_PacientesAdmisionesAnuladas_Inicio:
+ pattern:  /AdmisionesAnuladas 
+ defaults: { _controller: InformesBundle:Admision\InformesPacientesAdmisionesAnuladas:index }
+
+Admision_PacientesAdmisionesAnuladas_Ver:
+ pattern:  /VerAdmisionesAnuladas
+ defaults: { _controller: InformesBundle:Admision\InformesPacientesAdmisionesAnuladas:ver }
+
+Admision_PacientesAdmisionesAnuladas_Filtrar:
+ pattern:  /FiltrarAdmisionesAnuladas
+ defaults: { _controller: InformesBundle:Admision\InformesPacientesAdmisionesAnuladas:filtrar }

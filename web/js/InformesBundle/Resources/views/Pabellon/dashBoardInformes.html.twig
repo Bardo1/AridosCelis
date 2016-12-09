@@ -1,0 +1,68 @@
+{% extends 'InformesBundle::layout.html.twig' %}
+
+{% block body %}
+
+    <div id="breadcrumbs" class="navbar-fixed-top">
+    	<ul class="breadcrumb">
+    		<li>
+                <i class="icon-home"></i> <a href="{{ path('Dashboard_home') }}">Home</a>
+                <span class="divider"><i class="icon-angle-right"></i></span>
+            </li>
+            <li>
+                <a href="{{ path('informesInicio') }}">Informes</a>
+                <span class="divider"><i class="icon-angle-right"></i></span>
+            </li>
+            <li>
+                {{ nombreModulo }}
+            </li>
+        </ul>
+    </div><!-- breadcrumbs -->
+
+    <div class="well">
+        <h3 class="grey lighter smaller">
+            Seleccionar un Informe
+        </h3>
+        <hr>
+        <div class="row-fluid">
+        {% if app.user.tienePerfil('INFORMES_PABELLON_SOLICITUDESGENERADAS') %}
+            <div class="span4 well well-small well-moduloRebsol">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <a href="{{ path('Pabellon_SolicitudesGeneradas_Inicio') }}">
+                            <h3><i class="icon-list-alt"></i> Solicitudes Generadas </h3>
+                        </a>
+                        <span>
+                            Listado de Solicitudes Generadas
+                        </span>
+                    </div>
+                </div>
+            </div>
+         {% endif %}
+            <div class="span4 well well-small well-moduloRebsol">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <a href="{{ path('Informe_Pabellon_Cirugias_Por_Profesional') }}">
+                          <h3><i class="icon-stethoscope"></i> Cirugías Realizadas Por Profesional </h3>
+                        </a>
+                        <span>
+                            Listado de Cirugías Realizadas Por Profesional
+                        </span>
+                    </div>
+                </div>
+            </div> 
+			<div class="span4 well well-small well-moduloRebsol">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <a href="{{ path('Informe_Pabellon_Cirugias_Por_Especialidad') }}">
+                          <h3><i class="icon-stethoscope"></i> Cirugías Realizadas Por Especialidad </h3>
+                        </a>
+                        <span>
+                            Listado de Cirugías Realizadas Por Especialidad
+                        </span>
+                    </div>
+                </div>
+            </div>      			
+        </div>       
+    </div> <!-- well -->
+
+{% endblock %}

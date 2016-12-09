@@ -1,0 +1,34 @@
+Poyecto\ProyectoBundle\Entity\notaVenta:
+    type: entity
+    table: null
+    repositoryClass: Poyecto\ProyectoBundle\Entity\notaVentaRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        fecha:
+            type: date
+        cliente:
+            type: string
+            length: 255
+        direccion:
+            type: string
+            length: 255
+        comuna:
+            type: string
+            length: 255
+        fono:
+            type: string
+            length: 255
+        vendedor:
+            type: string
+            length: 255
+        horaini:
+            type: string
+            length: 255
+        horater:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

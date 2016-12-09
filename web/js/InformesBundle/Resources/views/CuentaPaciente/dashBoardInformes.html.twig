@@ -1,0 +1,38 @@
+{% extends 'InformesBundle::layout.html.twig' %}
+
+{% block body %}
+
+    <div id="breadcrumbs" class="navbar-fixed-top">
+    	<ul class="breadcrumb">
+    		<li>
+                <i class="icon-home"></i> <a href="{{ path('Dashboard_home') }}">Home</a>
+                <span class="divider"><i class="icon-angle-right"></i></span>
+            </li>
+            <li>
+                <a href="{{ path('informesInicio') }}">Informes</a>
+                <span class="divider"><i class="icon-angle-right"></i></span>
+            </li>
+            <li>{{ nombreModulo }}</li>
+        </ul>
+    </div><!-- breadcrumbs -->
+
+    <div class="well">
+        <h3 class="grey lighter smaller">
+            Seleccionar Informe
+        </h3>
+        <hr>
+        <div class="row-fluid">
+
+        {% if app.user.tienePerfil('INFORMES_ADMISION_GARANTIAS') %}
+            <div class="span4 well well-small well-moduloRebsol">
+                <a href="{{ path('CuentaPaciente_CuentasPendientesDeCerrar_Inicio') }}">
+                    <h3><i class="icon-list-alt"></i> Cuentas Pendientes De Cerrar </h3>
+                </a>
+                <span> Listado de Cuentas Pendientes De Cerrar </span>
+            </div>
+        {% endif %}
+
+        </div><!-- row-fluid -->
+    </div> <!-- well -->
+
+{% endblock %}

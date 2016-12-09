@@ -1,0 +1,409 @@
+{% if app.session.get('user') is null %}
+                <div class="intro-heading"><font size="8" color="black">Debe iniciar sesión</font></div>                        
+{% else %}
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="author" content="Walter Muñoz">
+    <meta name="description" content="Desarrollo de Sistemas, sitios web, consultorias, Tecnologias, php, java, Silex, Symfony, bootstrap, ingenieria de software">
+    <title>Aridos Celis</title>
+    <!-- alertify documentos -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ app.request.basepath }}/cotiDocs/vendor/css/sweetalert.css">
+    <link rel="stylesheet" href="{{ app.request.basepath }}/cotiDocs/vendor/css/uikit.min.css">
+    <!-- <link rel="stylesheet" href="vendor/css/dataTables.uikit.min.css"> -->
+    <!-- Bootstrap Core CSS -->
+    <link href="{{ app.request.basepath }}/css/bootstrap.min.css" rel="stylesheet">        
+    <link href="{{ app.request.basepath }}/css/agency2.css" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Kaushan+Script" rel='stylesheet' type='text/css'>
+    <link href="http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel='stylesheet' type='text/css'>
+    <link href="http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet" type='text/css'>
+    <link href="http://fonts.googleapis.com/css?family=Akronim" rel="stylesheet" type="text/css">
+    <style type="text/css">
+        body
+        {
+            background-repeat: no-repeat;
+            background-attachment: fixed
+        }
+    </style>
+</head>
+ <!-- con 7,6 -->
+ <!-- Header -->
+ <header  style="background-image:url('{{ asset('/AridosCelis/web/imagenes/grava.jpg') }}')">
+        <div class="container" align="left">
+            <div class="intro-text">
+                <div class="intro-heading"><font color="yellow">Cotizaciones</font></div>
+                <div class="intro-lead-in"><font color="yellow">Selección de opciones</font></div>
+                <div class="dropdown">
+                <button class="page-scroll btn btn-xl dropdown-toggle" type="button" data-toggle="dropdown">Facturas
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                <li><a href="{{ path('rutaFacturasCompras') }}">Facturas de compra</a></li>
+                <li><a href="{{ path('rutaFacturasVentas') }}">Facturas de venta</a></li>
+                </ul>
+                </div>
+                <br>
+                <a href="{{ path('rutaCotizaciones') }}" class="page-scroll btn btn-xl">Cotizaciones</a>
+                <br>
+                <br>
+                 <div class="dropdown">
+                <button class="page-scroll btn btn-xl dropdown-toggle" type="button" data-toggle="dropdown">Stock
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                <li><a href="{{ path('rutaStockIngresar') }}">Ingresar Stock</a></li>
+                <li><a href="{{ path('rutaStockVer') }}">Ver Stock</a></li>
+                </ul>
+                </div>
+                <br>
+                <br>
+            </div>
+        </div>
+</header> 
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<body>  
+ <div>
+<div>
+CRISTIAN ANDRES CELIS SANDOVAL
+<br>
+Transporte y Venta de Materiales de Construcción
+<hr>
+<div align="right">{{ fechaEmision }}</div>
+<br>
+Señores:
+<br>
+<div class="form-group-sm col-lg-10">
+  <input name="seniores1" type="text" class="form-control" id="valorTotal" placeholder=""   style="width:300px;" />
+</div>
+<br>
+<br>
+Sr./a
+<br>
+<div class="form-group-sm col-lg-10">
+   <input name="seniores2" type="text" class="form-control" id="valorTotal" placeholder="" style="width:300px;" />
+</div>
+<br>
+<br>
+<div align="center">A continuación el detalle del producto solicitado</div>
+</div>
+</div>
+<br>
+
+<h1 class="text-center text-uppercase text-primary small"> Registro de Productos </h1>
+<table id="table_report" class="table table-bordered table-condensed table-hover">
+    <thead>
+          <tr>        
+              <th>Cantidad</th>
+              <th>Detalle</th>
+              <th>Valor Unitario</th>
+              <th>Valor Total</th>
+          </tr>
+    </thead>
+    <tbody>
+        <tr>     
+       <td>
+          <div class="form-group-sm col-lg-10">
+            <input name="cantidad" type="text" class="form-control" id="cantidad" placeholder="ingrese cantidad" />
+          </div>
+       </td>
+      <td>
+         <div class="form-group-sm col-lg-10">
+            <input name="detalle" type="text" class="form-control" id="detalle" placeholder="ingrese detalle" />
+          </div>
+      </td>
+        <td>
+         <div class="form-group-sm col-lg-10">
+            <input name="valorunitario" type="number" class="form-control" id="valorUnitario" placeholder="Ingrese valor unitario" />
+          </div>
+      </td>
+        <td>
+         <div class="form-group-sm col-lg-10">
+            <input name="valortotal" type="number" class="form-control" id="valorTotal" placeholder="ingrese valor total" />
+          </div>
+      </td>
+     </tr> 
+    </tbody>
+</table>
+
+ 
+<br>
+<br>
+<br>
+<div class="row">
+ <div class="col-xs-6" >
+ <div style="width:500px; height:150px;">
+<ul>
+<li>Los valores cotizados son más IVA.</li>
+<li>Plazo de entrega a la brevedad posible.</li>
+<li>Pago a 60 dias desde la factuzación.</li>
+</ul>
+<br>
+<p>Esperando una buena acogida, Saluda Atentamente a UD.</p>
+<br>
+<p>CRISTIAN CELIS SANDOVAL. </p>
+  </div>
+  </div>
+  <div class="col-xs-6" >
+  <div style="width:500px; height:150px;" align="center">
+  <table >
+  por aca va el mambo del conteo
+  <br>
+  </table>
+  </div>
+  </div>
+</div>
+<br>
+<br>
+<br>
+<div>
+<div>
+<hr>
+Av. Americo Vespucio Norte Parcela 51, Maipú, Santiago/ Fono: (569): 9030 8359
+<br>
+caceliss@hotmail.com
+<br>
+    <div class="container-fluid">
+        <hr>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6">
+                    <form id="form-registro-estudiante">
+
+<table id="table_report" class="table table-bordered table-condensed table-hover">
+    <thead>
+          <tr>        
+              <th>Cantidad</th>
+              <th>Detalle</th>
+              <th>Valor Unitario</th>
+              <th>Valor Total</th>
+          </tr>
+    </thead>
+    <tbody>
+        <tr>     
+       <td>
+          <div class="form-group-sm col-lg-10">
+            <input name="cantidad" type="text" class="form-control" id="cantidad" placeholder="ingrese cantidad" />
+          </div>
+       </td>
+      <td>
+         <div class="form-group-sm col-lg-10">
+            <input name="detalle" type="text" class="form-control" id="detalle" placeholder="ingrese detalle" />
+          </div>
+      </td>
+        <td>
+         <div class="form-group-sm col-lg-10">
+            <input name="valorunitario" type="number" class="form-control" id="valorUnitario" placeholder="Ingrese valor unitario" />
+          </div>
+      </td>
+        <td>
+         <div class="form-group-sm col-lg-10">
+            <input name="valortotal" type="number" class="form-control" id="valorTotal" placeholder="ingrese valor total" />
+          </div>
+      </td>
+     </tr> 
+    </tbody>
+</table>
+
+
+
+                        <table class="table table-bordered table-striped table-hover uk-table uk-table-hover uk-table-striped">
+                            <caption> Registro de estudiante </caption>
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <small> Código: </small>
+                                    </th>
+                                    <th>
+                                        <div class="row">
+                                            <div class="form-group-sm col-lg-10">
+                                                <input name="codigo" type="text" class="form-control" id="codigo-estudiante" placeholder="ingrese un código" />
+                                            </div>
+                                        </div>
+                                        <div id="mensage-1" class="text-danger hide" role="alert">
+                                            <small>Este campo no puede estar en blanco</small>
+                                        </div>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <small> Nombre: </small>
+                                    </th>
+                                    <th>
+                                        <div class="row">
+                                            <div class="form-group-sm col-lg-10">
+                                                <input name="nombre" type="text" class="form-control" id="nombre-estuadiante" placeholder="ingrese un nombre" />
+                                            </div>
+                                        </div>
+                                        <div id="mensage-2" class="text-danger hide" role="alert">
+                                            <small>Este campo no puede estar en blanco</small>
+                                        </div>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <small> Notasssssssssssssss </small>
+                                    </th>
+                                    <th>
+                                        <div id="div-contar" class="row">
+                                            <div class="input input-0 form-group-sm col-lg-10" data-prototype="<input name='nota-__name__' type='number' class='form-control' id='nota-estudiante-__name__' placeholder='Ingrese la nota __name__' />">
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <button id="btn-agregar-nuevo-input" class="btn  btn-default btn-xs small">
+                                                <span class="glyphicon glyphicon-plus-sign text-success" aria-hidden="true"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+                </form><!-- FIN REGISTRO DE ESTUADIANTE -->
+            </div>
+            <div class="col-lg-6">
+                <table id="data-table-lista-estudiantes" class="table table-bordered table-striped table-hover uk-table uk-table-hover uk-table-striped">
+                    <caption> Acciones de botones </caption>
+                    <thead>
+                        <tr>
+                            <th>
+                                <small> Registrar estudiante </small>
+                            </th>
+                            <th>
+                                <button id="btn-registrar-estudiante" class="btn  btn-success btn-xs small">
+                                    <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> Guardar
+                                </button>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <small> Mostrar promedios </small>
+                            </th>
+                            <th>
+                                <button id="btn-mostrar-nota-promedio" class="btn  btn-warning btn-xs small">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Ver
+                                </button>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <small> Mostrar nota mayor </small>
+                            </th>
+                            <th>
+                                <button id="btn-mostrar-nota-mayor" class="btn  btn-default btn-xs small">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Ver
+                                </button>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <small> Mostrar nota menor </small>
+                            </th>
+                            <th>
+                                <button id="btn-mostrar-nota-menor" class="btn  btn-primary btn-xs small">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Ver
+                                </button>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <small> Calcular sumatoria de todos los producto </small>
+                            </th>
+                            <th>
+                                <button id="btn-calcular-Total-Productos" class="btn  btn-primary btn-xs small">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Ver
+                                </button>
+                            </th>
+                        </tr>
+                           <tr>
+                            <th>
+                                <small> Registrar un producto </small>
+                            </th>
+                            <th>
+                                <button id="btn-registrar-producto" class="btn  btn-primary btn-xs small">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Ver
+                                </button>
+                            </th>
+                        </tr>    
+                    </thead>
+                </table> <!-- FIN LISTADO DE ESTUDIANTES -->
+            </div>
+            <hr>
+            <div class="col-lg-12">
+                <table id="data-table-lista-estudiantes" class="table table-bordered table-striped table-responsive table-hover uk-table uk-table-hover uk-table-striped">
+                    <caption> Listado de Estudiantes </caption>
+                    <thead>
+                        <tr id="insertar-th"> </tr>
+                    </thead>
+                    <tbody id="insertar-datos-estudiantes"> </tbody>
+                </table> <!-- FIN LISTADO DE ESTUDIANTES -->
+            </div>
+        </div>
+    </div>
+</body>
+   <footer >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright &copy; Aridos Celis 2016</span>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        <li><a href="#"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+     <!-- Go to www.addthis.com/dashboard to customize your tools -->
+     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+     <!-- jQuery -->
+     <script src="{{ app.request.basepath }}/js/jquery-1.12.0.js"></script>
+     <script src="{{ app.request.basepath }}/js/jquery-1.12.0.min.js"></script>
+     <!-- Bootstrap Core JavaScript -->
+     <script src="{{ app.request.basepath }}/js/bootstrap.min.js"></script>
+     <!-- Plugin JavaScript -->
+     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+     <!-- Custom Theme JavaScript -->
+     <script src="{{ app.request.basepath }}/js/agency.js"></script>
+     <!-- deeeeaca -->
+     <script src="https://code.jquery.com/jquery-2.2.4.js"   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="   crossorigin="anonymous">
+     </script>
+     <script>window.jQuery || document.write('<script src="{{ app.request.basepath }}/cotiDocs/vendor/js/jquery-2.2.4.js"><\/script>')
+     </script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous">
+     </script>
+     <script src="{{ app.request.basepath }}/cotiDocs/vendor/js/sweetalert.min.js"></script>
+     <script src="{{ app.request.basepath }}/cotiDocs/assets/js/index.default.load.js"> </script>
+     <script>
+     (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+        function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+     e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+     e.src='https://www.google-analytics.com/analytics.js';
+     r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+     ga('create','UA-XXXXX-X');ga('send','pageview');
+     </script>
+
+     <script>
+/*Funcion de Capturar, Almacenar datos y Limpiar campos*/
+$(document).ready(function(){  
+
+});
+
+  </script>
+</html>
+
+  {% endif %}

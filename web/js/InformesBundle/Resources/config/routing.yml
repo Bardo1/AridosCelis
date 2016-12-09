@@ -1,0 +1,55 @@
+informesInicio:
+    pattern:  /Inicio
+    defaults: { _controller: InformesBundle:Default:index }
+
+informesEspecialidadesPorSucursal:
+    pattern:  /especialidadesPorSucursal
+    defaults: { _controller: InformesBundle:Default:especialidadesPorSucursal }
+
+informesProfesionalesPorSucursalYEspecialidad:
+    pattern:  /profesionalesPorSucursalYEspecialidad
+    defaults: { _controller: InformesBundle:Default:profesionalesPorSucursalYEspecialidad }
+
+informesPorModulo:
+    pattern:  /{strNombreModulo}
+    defaults: { _controller: InformesBundle:Default:informesPorModulo }
+
+informesPorIdModulo:
+    pattern:  /helper/{iIdModulo}/
+    defaults: { _controller: InformesBundle:Default:helperInformesPorModulo }
+
+informesAgendaRoutes:
+    resource: "@InformesBundle/Resources/config/routing/Agenda.yml"
+    prefix:   /Agenda
+
+informesFichaClinicaRoutes:
+    resource: "@InformesBundle/Resources/config/routing/FichaClinica.yml"
+    prefix:   /FichaClinica
+
+informesPresupuestoRoutes:
+    resource: "@InformesBundle/Resources/config/routing/Presupuesto.yml"
+    prefix:   /Presupuesto
+
+informesAdmisionRoutes:
+    resource: "@InformesBundle/Resources/config/routing/Admision.yml"
+    prefix:   /Admision
+
+informesPabellonRoutes:
+    resource: "@InformesBundle/Resources/config/routing/Pabellon.yml"
+    prefix:   /Pabellon
+
+informesGestionStockRoutes:
+    resource: "@InformesBundle/Resources/config/routing/GestionStock.yml"
+    prefix:   /GestionStock
+
+informesEnfermeriaRoutes:
+    resource: "@InformesBundle/Resources/config/routing/Enfermeria.yml"
+    prefix:   /Enfermeria
+
+informesApoyoClinicoRoutes:
+    resource: "@InformesBundle/Resources/config/routing/ApoyoClinico.yml"
+    prefix:   /ApoyoClinico
+
+informesCuentaPacienteRoutes:
+    resource: "@InformesBundle/Resources/config/routing/CuentaPaciente.yml"
+    prefix:   /CuentaPaciente

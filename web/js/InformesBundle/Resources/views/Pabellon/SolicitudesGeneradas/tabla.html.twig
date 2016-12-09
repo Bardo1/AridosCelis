@@ -1,0 +1,38 @@
+<table id="tbl" class="table table-condensed table-striped table-bordered" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th style="display:none;"></th> 
+            <th>Fecha de Generación</th>
+            <th>Rut</th>
+            <th>Nombre Paciente</th>
+            <th>Edad</th>
+            <th>Sexo</th>
+            <th>Comuna</th>
+            <th>Prestaciones</th>
+            <th>Tipo Intervención</th>
+            <th>Profesional</th>
+            <th>Especialidad</th>
+            <th>Usuario</th>
+            <th>N° de admision</th>      
+        </tr>
+    </thead>
+    <tbody>
+        {% for SolicitudGenerada in arrSolicitudesGeneradasEmitidas %}
+        <tr>
+            <th style="display:none;"></th> 
+            <td>{{ SolicitudGenerada.fechaGeneracion | hermes_date_format }}</td>
+            <td>{{ SolicitudGenerada.rut ~ "-" ~ SolicitudGenerada.dV | hermes_rut_format }}</td>
+            <td>{{ obtenerNombrePaciente(SolicitudGenerada.nombrePaciente,SolicitudGenerada.apPaciente,SolicitudGenerada.amPaciente) }}</td>
+            <td>{{ SolicitudGenerada.edad | hermes_obtener_edad }}</td> 
+            <td>{{ SolicitudGenerada.sexo }}</td>
+            <td>{{ SolicitudGenerada.comuna }}</td>            
+            <td><button onmouseover="verPrestaciones(this)" onmouseout="ocultarPrestaciones()" value="{{ SolicitudGenerada.idPabSolicitud }}" class="btn-link" data-toggle="popover" title="Prestaciones" data-content="" data-html="true">Tienes {{ SolicitudGenerada.prestaciones }} prestación(es)</button></td>
+            <td>{{ SolicitudGenerada.tipoIntervencion }}</td>
+            <td>{{ obtenerNombreProfesional(SolicitudGenerada.nombreProfesional, SolicitudGenerada.apProfesional, SolicitudGenerada.amProfesional) }}</td>
+            <td>{{ SolicitudGenerada.especialidad }}</td>
+            <td>{{ obtenerNombreUsuario(SolicitudGenerada.nombreUsuario, SolicitudGenerada.apUsuario, SolicitudGenerada.amUsuario) }}</td>
+            <td>{{ SolicitudGenerada.numerodeadmision }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table><!-- table -->

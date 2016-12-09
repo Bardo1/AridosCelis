@@ -1,0 +1,319 @@
+{% if app.session.get('user') is null %}
+                <div class="intro-heading"><font size="8" color="black">Debe iniciar sesión</font></div>                        
+{% else %}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Latest compiled and minified CSS -->
+	<!-- jQuery -->
+
+  <script src="{{ asset('http://www.bardo1.com/web1/cotiDocs/assets/js/jquery-1.12.0.js') }}" type="text/javascript"></script>
+   <script src="http://www.bardo1.com/web1/cotiDocs/assets/js/jquery-1.12.0.min.js"></script>
+	<script src="http://www.bardo1.com/web1/cotiDocs/assets/js/index1.default.load.js"> </script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link rel="stylesheet" href="http://www.bardo1.com/web1/cotiDocs/vendor/css/sweetalert.css">
+	<link rel="stylesheet" href="http://www.bardo1.com/web1/cotiDocs/vendor/css/uikit.min.css">
+	<!-- <link rel="stylesheet" href="vendor/css/dataTables.uikit.min.css"> -->
+	<link rel="stylesheet" href="http://www.bardo1.com/web1/cotiDocs/assets/css/index.default.css">
+
+	<script src="https://code.jquery.com/jquery-2.2.4.js"   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="   crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="http://www.bardo1.com/web1/cotiDocs/vendor/js/jquery-2.2.4.js"><\/script>')</script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<!-- <script src="vendor/js/jquery.dataTables.min.js"></script> -->
+<!-- <script src="vendor/js/dataTables.uikit.min.js"></script> -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<!-- <script src="vendor/js/jquery.dataTables.min.js"></script> -->
+<!-- <script src="vendor/js/dataTables.uikit.min.js"></script> -->
+<script src="http://www.bardo1.com/web1/cotiDocs/vendor/js/sweetalert.min.js"></script>
+   
+<!-- <script src="index.default.load.js"> </script> -->
+
+</head>
+<body>
+	
+<img src="{{ app.request.basepath }}/imagenes/logo.png" style="text-align: center;" width="450" height="150" />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="btn btn-primary"><a href="{{ path('reportes') }}"><font color="white">Volver</font></a></button>
+<div class="row">
+ <div class="col-xs-6" >
+<div style="width:500px; height:150px;">
+	<table >
+	CRISTIAN ANDRES CELIS SANDOVAL
+	<br>
+	COMPRA Y VENTA DE ARIDOS 
+	<br>
+	ARRIENDO DE MAQUINARIAS
+	<br>
+	RUT: 15.398.529-4
+	<br>
+	AV. AMERICO VESPUCIO NORTE
+	<br>
+	PARCELA N° 51 - MAIPÚ
+	<br>
+	CEL: 9 9030 8359
+	<br>
+	contacto@aridoscelis.cl // www.aridoscelis.cl
+	<br>
+	<br>
+	<br>
+	<br>
+	</table>
+		<br>
+		<br>
+		<br>
+		<br>
+		</div>
+		<br>
+		</div>
+ <div class="col-xs-6" >
+<div style="width:500px; height:150px;" align="center">
+<table >
+NOTA DE TRABAJO DIARIO 
+<br>
+<div align="center">N°{{ notaVenta.id }}</div>
+<br>
+</table>
+<br>
+</div>
+<br>
+	</div>
+</div>
+<br>
+<br>
+
+ <div>
+<div>
+
+<form >
+<div>
+<div class="form-inline">
+   <div class="form-group">
+			 <label for="fechaMax">Fecha &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ notaVenta.fecha | date("d/m/Y") }}</label>
+    </div>
+</div>
+</div>
+<br>
+<br>
+<div class="form-inline">
+	 <div class="form-group">
+			<label for="cliente">Cliente: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ notaVenta.cliente }}
+</div>
+<br>
+<div class="form-inline">
+		<div class="form-group">
+			<label for="direccion">Direccion:&nbsp;&nbsp;&nbsp;{{ notaVenta.direccion }}</label>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</div>
+		 <div class="form-group">
+				<div></div>
+		</div>
+		<div class="form-group">
+			<label for="comuna">Comuna:&nbsp;&nbsp;&nbsp;{{ notaVenta.comuna }}</label>
+		</div>
+</div>
+<br>
+<div class="form-inline">
+		<div class="form-group">
+			<label for="fono">Fono: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ notaVenta.fono }}</label>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</div>
+		<div class="form-group">
+				<div></div>
+		</div>
+		<div class="form-group">
+			<label for="vendedor">Vendedor:&nbsp;{{ notaVenta.vendedor }}</label>
+		</div>
+</div>
+<br>
+</div>
+<hr>
+
+<div class="container">
+<div class="form-inline">
+
+		<div class="form-group">
+		<label for="horamaquinaria">Hora Maquinaria &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+		</div>
+		<div class="form-group">
+			<label for="horainicio">Hora inicio:</label>
+			<label for="horainicio">Hrs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ notaVenta.horaini }}</label>
+		</div>
+		<div class="form-group">
+			<label for="horatermino">Hora termino:{{ notaVenta.horater }}</label>
+			<label for="horatermino">Hrs</label>
+		</div>
+
+</div>
+<br>
+<div class="form-inline">
+	 <div class="form-group">
+			<label for="totalhoras">Total horas:{{ notaVenta.totalhoras }} </label>  
+	 </div>
+</div>
+</div>
+</div>
+<br>
+</form>
+<br>
+<br>
+<div align="center">A continuación el detalle del producto solicitado</div>
+</div>
+</div>
+<h1 class="text-center text-uppercase text-primary small"> Registro de Productos </h1> 
+
+
+
+
+
+<form id="form-registro-estudiante">
+      <table id="prueba" class="" class="table table-bordered table-condensed table-hover" hidden>
+          <thead>
+             <tr>        
+               <th>Cantidad</th>
+               <th>Detalle</th>
+               <th>Valor Unitario</th>
+               <th>Valor Total</th>
+            </tr>
+          </thead>
+          <tbody hidden>
+          <tr>     
+           <td>
+             <div class="form-group-sm col-lg-10" >
+              <input name="cantidad" type="text" class="form-control" id="cantidad" placeholder="ingrese cantidad" />
+             </div>
+             <div id="mensage-3" class="text-danger hide" role="alert">
+		      <small>Este campo no puede estar en blanco</small>
+		     </div>
+           </td>
+          <td>
+         <div class="form-group-sm col-lg-10">
+            <input name="detalle" type="text" class="form-control" id="detalle" placeholder="ingrese detalle" />
+          </div>
+          <div id="mensage-4" class="text-danger hide" role="alert">
+			<small>Este campo no puede estar en blanco</small>
+		  </div>
+      </td>
+      <td>
+          <div class="form-group-sm col-lg-10">
+            <input name="valorunitario" type="number" class="form-control" id="valorunitario" placeholder="Ingrese valor unitario" />
+          </div>
+          <div id="mensage-5" class="text-danger hide" role="alert">
+				<small>Este campo no puede estar en blanco</small>
+		  </div>
+      </td>
+      <td>
+          <div class="form-group-sm col-lg-10">
+            <input name="valortotal" type="number" class="form-control" id="valortotal" placeholder="ingrese valor total" />
+          </div>
+          <div id="mensage-6" class="text-danger hide" role="alert">
+				<small>Este campo no puede estar en blanco</small>
+		  </div>
+      </td>
+    </tr> 
+    </tbody>
+		<div class="container-fluid" >
+			<div class="row">
+				<div class="col-lg-6">
+					<form id="form-registro-estudiante">
+					  <table class="table table-bordered table-striped table-hover uk-table uk-table-hover uk-table-striped">		
+					  </table>
+				    </form><!-- FIN REGISTRO DE ESTUADIANTE -->
+				</div>
+			</div>
+			<div class="col-lg-6" hidden>
+			
+			</div>
+
+			</div>
+			<div class="col-lg-12">
+			<table id="data-table-lista-estudiantes" class="table table-bordered table-striped table-responsive table-hover uk-table uk-table-hover uk-table-striped">
+					<caption> Listado de Productos </caption>
+					<thead>
+						<tr id="insertar-th"><th class="text-muted small">Cantidad</th>
+			            <th class="text-muted small"> Detalle </th>
+			            <th class="text-muted small"> Valor unitario </th>
+			            <th class="text-muted small"> Valor total </th></tr>
+					</thead>
+					<tbody id="insertar-datos-estudiantes">
+                    {% for DetalleProducto in DetalleProducto %}
+					<tr>
+					<td> {{ DetalleProducto.cantidad }} </td>
+					<td> {{ DetalleProducto.detalle }} </td>
+					<td> {{ DetalleProducto.valorunitario }} </td>
+					<td> {{ DetalleProducto.valortotal }}</td>
+					</tr>
+                    {% endfor %}
+					</tbody>
+				</table>
+			
+			</div>
+
+		</div>
+<br>
+<br>
+<br>
+<div class="row">
+ <div class="col-xs-6" >
+ <div style="width:500px; height:150px;">
+<ul>
+<li>Los valores cotizados son más IVA.</li>
+<li>Plazo de entrega a la brevedad posible.</li>
+<li>Pago a 60 dias desde la factuzación.</li>
+</ul>
+<br>
+<p>Esperando una buena acogida, Saluda Atentamente a UD.</p>
+<br>
+<p>CRISTIAN CELIS SANDOVAL. </p>
+  </div>
+  </div>
+   <div class="col-xs-6" >
+       <div style="width:500px; height:150px;" align="center">
+         <div class="col-lg-12" >
+			<table id="data-table-lista-estudiantes" class="table table-bordered table-striped table-responsive table-hover uk-table uk-table-hover uk-table-striped">
+			<caption> Valores </caption>
+			<thead>
+			<tr id="insertar-th1"><th class="text-center text-muted small">Total</th>
+			<th class="text-center text-muted small">Iva </th>
+			<th class="text-center text-muted small">Total + iva</th></tr>
+			</thead>
+			<tbody id="insertar-datos-productoconteo"><tr><td class="text-center text-muted small">{{ total }}</td>
+		    <td class="text-center text-muted small">{{ iva }}</td>
+			<td class="text-center text-muted small">{{ totaliva }}</td>
+			</tr>
+			</tbody>
+			</table>
+         </div>
+       </div>
+    </div>
+   </div>
+<br>
+<br>
+<br>
+<div>
+<div>
+<hr>
+Av. Americo Vespucio Norte Parcela 51, Maipú, Santiago/ Fono: (569): 9030 8359
+<br>
+caceliss@hotmail.com
+<br>
+     <!-- jQuery -->
+
+
+
+
+</body>
+
+</html>
+
+{% endif %}

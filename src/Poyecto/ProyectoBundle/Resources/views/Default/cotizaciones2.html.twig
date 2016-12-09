@@ -1,0 +1,493 @@
+{% if app.session.get('user') is null %}
+<div class="intro-heading"><font size="8" color="black">Debe iniciar sesión</font></div>    
+{% else %}
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Latest compiled and minified CSS -->
+    <script src="http://www.bardo1.com/web1/cotiDocs/assets/js/jquery-1.12.0.js"></script>
+    <script src="http://www.bardo1.com/web1/cotiDocs/assets/js/jquery-1.12.0.min.js"></script>
+    <script src="{{ app.request.basepath }}/cotiDocs/assets/js/index1.default.load.js"> </script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link rel="stylesheet" href="http://www.bardo1.com/web1/cotiDocs/vendor/css/sweetalert.css">
+	<link rel="stylesheet" href="http://www.bardo1.com/web1/cotiDocs/vendor/css/uikit.min.css">
+	<!-- <link rel="stylesheet" href="vendor/css/dataTables.uikit.min.css"> -->
+	<link rel="stylesheet" href="http://www.bardo1.com/web1/cotiDocs/assets/css/index.default.css">
+	<style>
+	</style>
+</head>
+<body>
+	<div class="container-fluid">
+	<img src="{{ app.request.basepath }}/imagenes/logo.png" style="text-align: center;" width="450" height="150" />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    <button class="btn btn-primary"><a href="{{ path('poyecto_proyecto_homepage') }}"><font color="white">Volver</font></a></button>
+
+
+
+  <!--   <form  id="formruta" name="formruta" action="{{ path('poyecto_proyecto_homepage') }}" method="post">
+        <button type="submit" name="volver" id="volver" value="volver" class="btn btn-primary">Volver</button>
+    </form> -->
+    
+    </div>
+<br>
+<div>
+<div>
+CRISTIAN ANDRES CELIS SANDOVAL
+<br>
+Transporte y Venta de Materiales de Construcción
+<hr>
+<div align="right">{{ fechaEmision }}</div>
+<br>
+Señores:
+<br>
+<div class="form-group-sm col-lg-10">
+  <input name="seniores1" type="text" class="form-control" id="seniores1" placeholder=""   style="width:300px;" />
+</div>
+<br>
+<br>
+Sr./a
+<br>
+<div class="form-group-sm col-lg-10">
+   <input name="seniores2" type="text" class="form-control" id="seniores2" placeholder="" style="width:300px;" />
+</div>
+<br>
+<br>
+<div align="center">A continuación el detalle del producto solicitado</div>
+</div>
+</div>
+<h1 class="text-center text-uppercase text-primary small"> Registro de Productos </h1> 
+    <div class="container-fluid">
+        <hr>
+        <div class="container-fluid">
+            <div class="row">
+                <div >
+                    <form id="form-registro-estudiante">
+<table id="prueba" class="" class="table table-bordered table-condensed table-hover">
+    <thead>
+          <tr>        
+              <th>Cantidad</th>
+              <th>Detalle</th>
+              <th>Valor Unitario</th>
+          </tr>
+    </thead>
+    <tbody>
+    <tr>     
+      <td>
+          <div class="form-group-sm col-lg-10">
+            <input name="cantidad" type="number" class="form-control" id="cantidad" placeholder="ingrese cantidad" />
+          </div>
+          <div id="mensage-3" class="text-danger hide" role="alert">
+			<small>Este campo no puede estar en blanco</small>
+		  </div>
+      </td>
+      <td>
+         <div class="form-group-sm col-lg-10">
+                <div class="col-md-2">
+                <select class="form-control selectpro" id="detalle" name="detalle" class="detalle" data-style="btn-success" style="width:300px; text-align: center;">
+                <option value="Arena gruesa">Arena gruesa </option>
+                <option value="Arena fina" >Arena fina </option>
+                <option value="Arena rubia">Arena rubia </option>
+                <option value="Gravilla chancada">Gravilla chancada </option>
+                <option value="Gravilla rodada">Gravilla rodada </option>
+                <option value="Ripio chancado">Ripio chancado </option>
+                <option value="Ripio rodado">Ripio rodado </option>
+                <option value="Estabilizado base">Estabilizado base </option>
+                <option value="Estabilizado integral">Estabilizado integral </option>
+                <option value="Bolón">Bolón </option>
+                <option value="Tierra vegetal areneada">Tierra vegetal areneada </option>
+                <option value="Tierra vegetal sin arnear">Tierra vegetal sin arnear </option>
+                <option value="Maicillo blanco">Maicillo blanco </option>
+                <option value="Maicillo amarillo">Maicillo amarillo </option>
+                <option value="Ladrillos">Ladrillos </option>
+                <option value="Pilares">Pilares </option>
+                <option value="Cadenas">Cadenas </option>
+                <option value="Cemento">Cemento </option>
+                <option value="Pastelones">Pastelones </option>
+                <option value="Pomasita ">Pomasita </option>
+                <option value="Retiro de escombros">Retiro de escombros </option>
+                <option value="Arriendo de maquinaria">Arriendo de maquinaria </option>
+                </select>
+                </div>
+      </td>
+      <td>
+          <div class="form-group-sm col-lg-10">
+            <input name="valorunitario" type="number" class="form-control" id="valorunitario" placeholder="Ingrese valor unitario" />
+          </div>
+          <div id="mensage-5" class="text-danger hide" role="alert">
+				<small>Este campo no puede estar en blanco</small>
+		  </div>
+      </td>
+    </tr> 
+    </tbody>
+		<div class="container-fluid" >
+			<div class="row">
+				<div class="col-lg-6">
+					<form id="form-registro-estudiante">
+					  <table class="table table-bordered table-striped table-hover uk-table uk-table-hover uk-table-striped">		
+					  </table>
+				    </form><!-- FIN REGISTRO DE ESTUADIANTE -->
+				</div>
+			</div>
+
+			<div class="col-lg-6">
+				<table id="data-table-lista-estudiantes" class="table table-bordered table-striped table-hover uk-table uk-table-hover uk-table-striped" align="right">
+					<caption> Acciones de botones </caption>
+					<thead>
+						<tr>
+							<th>
+								<small> Registrar Producto </small>
+							</th>
+							<th>
+								<button id="btn-registrar-estudiante" class="btn  btn-success btn-xs small">
+									<span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> Guardar
+								</button>
+							</th>
+						</tr>
+						<tr>
+							<th>
+								<small> Mostrar Total a pagar </small>
+							</th>
+							<th>
+								<button id="btn-mostrar-total-pago" class="btn  btn-warning btn-xs small">
+									<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Ver
+								</button>
+							</th>
+						</tr>
+						<tr>
+							<th>
+								<small> Remover lista de productos </small>
+							</th>
+							<th>
+								<button id="btn-remover-lista" class="btn  btn-danger btn-xs small">
+									<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Ver
+								</button>
+							</th>
+						</tr>
+					</thead>
+				</table> <!-- FIN LISTADO DE ESTUDIANTES -->
+			</div>
+			</div>
+			<hr>
+			<div class="col-lg-12">
+				<table id="data-table-lista-estudiantes" class="table table-bordered table-striped table-responsive table-hover uk-table uk-table-hover uk-table-striped">
+					<caption> Listado de Productos </caption>
+					<thead>
+						<tr id="insertar-th"> </tr>
+					</thead>
+					<tbody id="insertar-datos-estudiantes"> </tbody>
+				</table> <!-- FIN LISTADO DE ESTUDIANTES -->
+			</div>
+		</div>
+
+	</div>
+</div>
+</div>
+<br>
+<br>
+<br>
+<div class="row">
+ <div class="col-xs-6" >
+ <div style="width:500px; height:150px;">
+<ul>
+<li>Los valores cotizados son más IVA.</li>
+<li>Plazo de entrega a la brevedad posible.</li>
+<li>Pago a 60 dias desde la factuzación.</li>
+</ul>
+<br>
+<p>Esperando una buena acogida, Saluda Atentamente a UD.</p>
+<br>
+<p>CRISTIAN CELIS SANDOVAL. </p>
+  </div>
+  </div>
+  <div class="col-xs-6" >
+  <div style="width:500px; height:150px;" align="center">
+  <table >
+ 
+  <div class="col-lg-12">
+				<table id="data-table-lista-estudiantes" class="table table-bordered table-striped table-responsive table-hover uk-table uk-table-hover uk-table-striped">
+					<caption> Listado de Productos </caption>
+					<thead>
+						<tr id="insertar-th1"> </tr>
+					</thead>
+					<tbody id="insertar-datos-productoconteo"> </tbody>
+				</table> <!-- FIN LISTADO DE ESTUDIANTES -->
+ </div>
+
+
+   <!-- <form class="form" method ="POST" enctype="multipart/form-data" action="{{ path('rutaimprimir') }}" >
+      <div>
+	  <input type ="text" name="seniores11" class="seniores11" id="seniores11" hidden>
+	  <input type ="text" name="seniores22" class="seniores22" id="seniores22" hidden>
+
+      <button id="desplegarpdf" class="btn  btn-primary btn-xs small" onclick="llamararreglo1()">
+	  <span class="glyphicon glyphicon-file" ></span> Generar PDF
+      </button>   
+      <input type="submit" value="Enviar">submit
+      </div>
+   </form> 
+
+      <div>
+	  <button id="exito" name="exito" class="btn  btn-primary btn-xs small"  >
+	  <span class="glyphicon glyphicon-file" ></span> Generar PDF
+	  </button>   
+	  </div>
+
+      <input type ="array" name="prueba1" id="prueba1" class="prueba1" hidden>
+	  <input type ="array" name="prueba2" id="prueba2" class="prueba2" hidden>
+	  <button id="exito1" name="exito1" class="btn  btn-primary btn-xs small" onclick="llamararreglo1()"  >
+	  <span class="glyphicon glyphicon-file" ></span> por aca se va el mambo
+	  </button>    -->
+
+<script type="text/javascript">
+window.onload = function () {
+
+document.formularioContacto.addEventListener('submit', validarFormulario);
+}
+ 
+function validarFormulario(evObject) {
+	llamararreglo1();
+evObject.preventDefault();
+var todoCorrecto = true;
+var formulario = document.formularioContacto;
+for (var i=0; i<formulario.length; i++) {
+                if(formulario[i].type =='text') {
+                               if (formulario[i].value == null || formulario[i].value.length == 0 || /^\s*$/.test(formulario[i].value)){
+                               alert (formulario[i].name+ ' no puede estar vacío o contener sólo espacios en blanco');
+                               todoCorrecto=false;
+                               }
+                }
+                }
+if (todoCorrecto ==true) {formulario.submit();}
+}
+</script>
+
+</head>
+<body>
+<!-- Formulario de contacto -->
+
+<form name ="formularioContacto" class="formularioTipo1" method="POST" action="{{ path('rutaimprimir') }}">
+  <input type ="text" name="seniores11" class="seniores11" id="seniores11" hidden>
+  <input type ="text" name="seniores22" class="seniores22" id="seniores22" hidden>
+  <input type ="array" name="prueba11" id="prueba11" class="prueba11" hidden>
+  <input type ="array" name="prueba22" id="prueba22" class="prueba22" hidden>
+<label>
+  <button id="exito" name="exito" class="btn  btn-primary btn-xs small" type="submit" value="Generar PDF" >
+	  <span class="glyphicon glyphicon-file" ></span> Generar PDF
+	  </button>   
+</label>
+</form>
+</body>
+</html>
+ <br>
+ </table>
+ </div>
+ </div>
+</div>
+<br>
+<br>
+<br>
+<div>
+<div>
+<hr>
+Av. Americo Vespucio Norte Parcela 51, Maipú, Santiago/ Fono: (569): 9030 8359
+<br>
+caceliss@hotmail.com
+<br>
+
+
+<script src="https://code.jquery.com/jquery-2.2.4.js"   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="   crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="http://www.bardo1.com/web1/cotiDocs/vendor/js/jquery-2.2.4.js"><\/script>')</script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<!-- <script src="vendor/js/jquery.dataTables.min.js"></script> -->
+<!-- <script src="vendor/js/dataTables.uikit.min.js"></script> -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<!-- <script src="vendor/js/jquery.dataTables.min.js"></script> -->
+<!-- <script src="vendor/js/dataTables.uikit.min.js"></script> -->
+<script src="http://www.bardo1.com/web1/cotiDocs/vendor/js/sweetalert.min.js"></script>
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<script>
+	(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+		function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+	e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+	e.src='https://www.google-analytics.com/analytics.js';
+	r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+	ga('create','UA-XXXXX-X');ga('send','pageview');
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+     localStorage.removeItem('data.estudiante.session');
+     if(localStorage.removeItem('data.estudiante.session')==null){
+
+     }else{
+
+     }
+    });
+</script>
+
+
+ <script type="text/javascript">
+ 		function llamararreglo1 () { // genera listado de estudiantes
+
+			var JsonParseParametrosDatos = JSON.parse(localStorage.getItem('data.estudiante.session')),
+
+			arregloDetalle = new Array("4","4");
+		    var cont=0;
+			if (JsonParseParametrosDatos !== null) {
+
+				$.each(JsonParseParametrosDatos.datosEstudiante, function(key, field) {
+
+					arregloDetalle[cont++] =  field.cantidad;
+					arregloDetalle[cont++] =  field.detalle; 
+					arregloDetalle[cont++] =  field.valorUnitario; 
+					arregloDetalle[cont++] =  field.valorTotal;
+
+				});
+
+		      var s = document.getElementById('prueba11');
+              s.value = arregloDetalle;
+              ///document.getElementById('prueba1').innerHTML = arregloDetalle;
+              console.log("por aca si pasó");
+			} 
+
+            var JsonParseParametrosDatos = JSON.parse(localStorage.getItem('data.estudiante.session'));
+		    var suma=0;
+		    var arreglo = new Array();
+
+			if (JsonParseParametrosDatos !== null) {
+
+				$.each(JsonParseParametrosDatos.datosEstudiante, function(key, field) {
+                    suma=suma+ field.valorTotal;		
+				});
+
+                var total=suma;
+                var iva=(suma*0.19);
+                var totaliva=total+iva;
+
+     		    arreglo[0] = total
+     		    arreglo[1] = iva
+			    arreglo[2] = totaliva
+                
+                var s1 = document.getElementById('prueba22');
+                s1.value = arreglo;
+			  //  document.getElementById('prueba2').innerHTML = arreglo;
+              console.log("por aca si paso uno dos tres");
+            
+              $('.seniores11').text($('#seniores1').val());
+              $('.seniores22').text($('#seniores2').val());
+              $('.seniores11').val($('#seniores1').val());
+              $('.seniores22').val($('#seniores2').val());
+			    return;
+
+			}
+
+		}
+ </script>
+
+<script>
+
+	$("#exito").click(function(){
+
+			console.log("se viene el mambo");
+			var seniores1      = $('#seniores1').val();
+			var seniores2      = $('#seniores2').val();
+			var arregloDetalle = llamararreglo();
+			var arregloTotales = llamararregloTotales();
+
+            console.log(arregloTotales);
+			if(arregloDetalle!=null && arregloTotales!=null ){     
+							var data = {				 
+			                 seniores1:seniores1,
+			                 seniores1:seniores1,
+			                 arregloDetalle:arregloDetalle,
+			                 arregloTotales:arregloTotales
+											 };
+											 $.ajax({
+											 type: 'POST',
+											 url: "{{ path('rutaimprimir') }}",
+											 data:data,
+											 success: function(resultado){
+											 console.log(resultado);
+											 }
+
+											 });           
+				}else{
+				console.log("paso y no paso na22222");
+				$('.alertMensajePeriodoNoValido').show();
+				$('.alertMensajePeriodoNoValidoText').html("Debe seleccionar!");
+				console.log("paso y no paso na33333");
+			 }
+  });
+
+
+		function llamararreglo () { // genera listado de estudiantes
+
+			var JsonParseParametrosDatos = JSON.parse(localStorage.getItem('data.estudiante.session')),
+
+			arregloDetalle = new Array("4","4");
+		  var cont=0;
+			if (JsonParseParametrosDatos !== null) {
+
+				$.each(JsonParseParametrosDatos.datosEstudiante, function(key, field) {
+
+					arregloDetalle[cont++] =  field.cantidad;
+					arregloDetalle[cont++] =  field.detalle; 
+					arregloDetalle[cont++] =  field.valorUnitario; 
+					arregloDetalle[cont++] =  field.valorTotal;
+
+				});
+
+              return arregloDetalle;
+			} else {
+			  return null;
+			}
+
+		}
+
+	
+
+
+
+	    function llamararregloTotales () {
+        
+			var JsonParseParametrosDatos = JSON.parse(localStorage.getItem('data.estudiante.session'));
+				
+		    var suma=0;
+		    var arreglo = new Array();
+			if (JsonParseParametrosDatos !== null) {
+
+				$.each(JsonParseParametrosDatos.datosEstudiante, function(key, field) {
+                    suma=suma+ field.valorTotal;		
+				});
+
+                var total=suma;
+                var iva=(suma*0.19);
+                var totaliva=total+iva;
+
+     		    arreglo[0] = total
+     		    arreglo[1] = iva
+			    arreglo[2] = totaliva
+			    return arreglo;
+
+			}else{
+
+				return null;
+			}
+            
+            
+
+		}
+
+</script>
+</body>
+</html>
+
+  {% endif %}

@@ -1,0 +1,443 @@
+{% extends 'InformesBundle::Agenda/sublayout.html.twig' %}
+{% block body %}
+<div id="breadcrumbs" class="navbar-fixed-top">
+	<ul class="breadcrumb">
+		<li>
+            <i class="icon-home"></i> <a href="{{ path('Dashboard_home') }}">Home</a>
+            <span class="divider"><i class="icon-angle-right"></i></span>
+        </li>
+        <li>
+            <a href="{{ path('informesInicio') }}">Informes</a>
+            <span class="divider"><i class="icon-angle-right"></i></span>
+        </li>
+        <li>
+            {{ nombreModulo }}
+        </li>
+    </ul>
+</div>
+{# Informes default #}
+{% if estadoApi == "core" %}
+<div class="well">
+    <h3 class="grey lighter smaller">
+        Seleccionar un Informe
+    </h3>
+    <hr>
+    <div class="row-fluid">
+        {% if app.user.tienePerfil('INFORMES_AGENDA_PACIENTES_AGENDADOS') %}
+            <div class="span4 well well-small well-moduloRebsol">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <a href="{{ path('Informes_Agenda_Agendamientos_inicio') }}">
+                            <h3><i class="icon-calendar"></i> Pacientes Agendados</h3>
+                        </a>
+                        <span>
+                            Listado de Pacientes Agendados entre un rango de fechas especifico,
+                            indicando sucursal, especialidad, financiador etc...
+                        </span>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% if app.user.tienePerfil('INFORMES_AGENDA_TRAZABILIDAD_RESERVA') %}
+            <div class="span4 well well-small well-moduloRebsol">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <a href="{{ path('Informes_Agenda_InformeTrazabilidad_inicio') }}">
+                            <h3><i class="icon-archive"></i> Trazabilidad de la Reserva</h3>
+                        </a>
+                        <span>Listado de Agendamientos por profesional, indicando la traza entre cada uno de los estados. </span>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% if app.user.tienePerfil('INFORMES_AGENDA_AGENDAMIENTOS_SIN_RUT') %}
+            <div class="span4 well well-small well-moduloRebsol ">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <a href="{{ path('Informes_Agenda_AgendamientoSinRut_inicio') }}">
+                            <h3><i class="icon-bar-chart"></i> Agendamientos sin RUT</h3>
+                        </a>
+                        <span>Listado de profesionales indicando la cantidad de Agendamientos que realizan sin RUT</span>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    <hr>
+    <div class="row-fluid">
+        {% if app.user.tienePerfil('INFORMES_AGENDA_ESTADO_BLOQUES') %}
+            <div class="span4 well well-small well-moduloRebsol">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <a href="{{ path('Informes_Agenda_EstadoBloques_inicio') }}">
+                            <h3><i class="icon-th"></i> Estado de Bloques</h3>
+                        </a>
+                        <span>Listado de Bloques por profesional indicando el Total, N° Agendados, Recepcionados, Pagados, Libres y Sobrecupos.</span>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% if app.user.tienePerfil('INFORMES_AGENDA_ATRASOS_DE_MEDICOS') %}
+            <div class="span4 well well-small well-moduloRebsol">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <a href="{{ path('Informes_Agenda_AtrasosMedicos_inicio')}}">
+                            <h3><i class="icon-time"></i> Atrasos de Médicos</h3>
+                        </a>
+                        <span>Presenta de forma agrupada por médico la hora en la que ingresa el médico al sistema versus la hora que debe atender al primer paciente</span>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% if app.user.tienePerfil('INFORMES_AGENDA_INFORME_PRODUCCION_GENERAL') %}
+            <div class="span4 well well-small well-moduloRebsol">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <a href="{{ path('Informes_Agenda_Produccion_inicio')}}">
+                            <h3><i class="icon-hospital"></i> Informe de Producción General</h3>
+                        </a>
+                        <span>Este informe nos muestra por uno o varios profesionales la cantidad de consultas realizadas y pagadas en un periodo de tiempo.</span>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    <hr>
+    <div class="row-fluid">
+        {% if app.user.tienePerfil('INFORMES_AGENDA_ESTADISTICA_POR_PROFESIONAL_POR_FINANCIADOR') %}
+            <div class="span4 well well-small well-moduloRebsol">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <a href="{{ path('Informes_Agenda_EstadisticasMedicoFinanciador_inicio') }}">
+                            <h3><i class="icon-user-md"></i> Estadística Por Profesional y por Financiador</h3>
+                        </a>
+                        <span>Informe resumido que muestra la cantidad de pacientes atendidos entre un profesional y un financiador.</span>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% if app.user.tienePerfil('INFORMES_AGENDA_ESTADISTICA_POR_FINANCIADOR') %}
+            <div class="span4 well well-small well-moduloRebsol">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <a href="{{ path('Informes_Agenda_EstadisticasFinanciador_inicio')}}">
+                            <h3><i class="icon-credit-card"></i> Estadística Por Financiador</h3>
+                        </a>
+                        <span>Informe que muestra la cantidad de pacientes atendidos por financiador.</span>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% if app.user.tienePerfil('INFORMES_AGENDA_ESTADISTICA_POR_MEDICO') %}
+            <div class="span4 well well-small well-moduloRebsol">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <a href="{{ path('Informes_Agenda_EstadisticaMedico_inicio')}}">
+                            <h3><i class="icon-user-md"></i> Estadística por Médico</h3>
+                        </a>
+                        <span>Informe que muestra la cantidad de paciente atendidos por un profesional en un periodo de tiempo.</span>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    <hr>
+    <div class="row-fluid">
+        {% if app.user.tienePerfil('INFORMES_AGENDA_ESTADISTICA_POR_COMUNA') %}
+            <div class="span4 well well-small well-moduloRebsol">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <a href="{{ path('Informes_Agenda_EstadisticaComuna_inicio') }}">
+                            <h3><i class="icon-ambulance"></i> Estadística por Comuna</h3>
+                        </a>
+                        <span>Informe que muestra la cantidad de pacientes atendidos por comuna.</span>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% if app.user.tienePerfil('INFORMES_AGENDA_ESTADISTICA_POR_ESPECIALIDAD') %}
+            <div class="span4 well well-small well-moduloRebsol">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <a href="{{ path('Informes_Agenda_EstadisticaEspecialidad_inicio')}}">
+                            <h3><i class="icon-stethoscope"></i> Estadística por Especialidad</h3>
+                        </a>
+                        <span>Informe que muestra la cantidad de pacientes atendidos por especialidad.</span>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% if app.user.tienePerfil('INFORMES_AGENDA_PACIENTES_AGENDADOS_RECEPCIONADOS_POR_EJECUTIVO') %}
+            <div class="span4 well well-small well-moduloRebsol">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <a href="{{ path('Informes_Agenda_AgendadosRecepcionados_inicio')}}">
+                            <h3><i class="icon-stethoscope"></i> Pacientes Agendados y Recepcionados por ejecutivo </h3>
+                        </a>
+                        <span>Muestra un Resumen de los pacientes agendados</span>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    <hr>
+    <div class="row-fluid">
+        {% if app.user.tienePerfil('INFORMES_AGENDA_LISTADO_PACIENTES_AGENDADOS') %}
+            <div class="span4 well well-small well-moduloRebsol">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <a href="{{ path('Informes_Agenda_PacientesAgendendados_inicio')}}">
+                            <h3><i class="icon-stethoscope"></i> Listado Pacientes Agendados </h3>
+                        </a>
+                        <span>Muestra un listado de los pacientes Agendados en un rango de fechas</span>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% if app.user.tienePerfil('INFORMES_AGENDA_LISTADO_PACIENTES_NO_RECEPCIONADOS') %}
+            <div class="span4 well well-small well-moduloRebsol">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <a href="{{ path('Informes_Agenda_PacientesNoRecepcionados_inicio')}}">
+                            <h3><i class="icon-stethoscope"></i> Listado Pacientes no Recepcionados </h3>
+                        </a>
+                        <span>Muestra un listado de los pacientes Agendados en un rango de fechas</span>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% if app.user.tienePerfil('INFORMES_AGENDA_LISTADO_PACIENTES_CONFIRMADOS') %}
+            <div class="span4 well well-small well-moduloRebsol">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <a href="{{ path('Informes_Agenda_PacientesConfirmados_inicio')}}">
+                            <h3><i class="icon-stethoscope"></i> Listado Pacientes Confirmados </h3>
+                        </a>
+                        <span>Muestra un Resumen de los pacientes Confirmados</span>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    <hr>
+    <div class="row-fluid">
+        {% if app.user.tienePerfil('INFORMES_AGENDA_PACIENTES_CONFIRMADOS_POR_EJECUTIVO') %}
+            <div class="span4 well well-small well-moduloRebsol">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <a href="{{ path('Informes_Agenda_PacientesConfirmadosPorEjecutivo_inicio')}}">
+                            <h3><i class="icon-stethoscope"></i> Pacientes Confirmados por ejecutivo</h3>
+                        </a>
+                        <span>Muestra un Resumen de los pacientes Confirmados por ejecutivos</span>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% if app.user.tienePerfil('INFORMES_AGENDA_PACIENTES_AGENDADOS_POR_PISO') %}
+            <div class="span4 well well-small well-moduloRebsol">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <a href="{{ path('Informes_Agenda_PacientesAgendadosPorPiso_inicio')}}">
+                            <h3><i class="icon-stethoscope"></i> Pacientes Agendados por Piso</h3>
+                        </a>
+                        <span>Muestra un Resumen de los pacientes agendados por piso.</span>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% if app.user.tienePerfil('INFORMES_AGENDA_AGENDAMIENTOS_ANULADOS') %}
+            <div class="span4 well well-small well-moduloRebsol">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <a href="{{ path('Informes_Agenda_Anulaciones_inicio')}}">
+                            <h3><i class="icon-stethoscope"></i> Agendamientos Anulados </h3>
+                        </a>
+                        <span>Muestra un Resumen de los Agendamientos Anulados.</span>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    <hr>
+    <div class="row-fluid">
+        {% if app.user.tienePerfil('INFORMES_AGENDA_INFORMEARCHIVO') %}
+            <div class="span4 well well-small well-moduloRebsol">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <a href="{{ path('Informes_Agenda_InformeArchivo_inicio')}}">
+                            <h3><i class="icon-stethoscope"></i>Archivo</h3>
+                        </a>
+                        {# <span>Muestra un Resumen de los pacientes Confirmados por ejecutivos</span> #}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% else %}
+<div class="well">
+    <h3 class="grey lighter smaller">
+        Seleccionar un Informe
+    </h3>
+    <hr>
+    <div class="row-fluid">
+        {% if app.user.tienePerfil('INFORMES_AGENDA_PACIENTES_AGENDADOS') %}
+            <div class="span4 well well-small well-moduloRebsol">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <a href="{{ path('Informes_Agenda_Agendamientos_inicio') }}">
+                            <h3><i class="icon-calendar"></i> Pacientes Agendados</h3>
+                        </a>
+                        <span>
+                            Listado de Pacientes Agendados entre un rango de fechas especifico,
+                            indicando sucursal, especialidad, financiador etc...
+                        </span>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% if app.user.tienePerfil('INFORMES_AGENDA_TRAZABILIDAD_RESERVA') %}
+            <div class="span4 well well-small well-moduloRebsol">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <a href="{{ path('Informes_Agenda_InformeTrazabilidad_inicio') }}">
+                            <h3><i class="icon-archive"></i> Trazabilidad de la Reserva</h3>
+                        </a>
+                        <span>Listado de Agendamientos por profesional, indicando la traza entre cada uno de los estados. </span>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% if app.user.tienePerfil('INFORMES_AGENDA_ESTADO_BLOQUES') %}
+            <div class="span4 well well-small well-moduloRebsol">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <a href="{{ path('Informes_Agenda_EstadoBloques_inicio') }}">
+                            <h3><i class="icon-th"></i> Estado de Bloques</h3>
+                        </a>
+                        <span>Listado de Bloques por profesional indicando el Total, N° Agendados, Recepcionados, Pagados, Libres y Sobrecupos.</span>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    <hr>
+    <div class="row-fluid">
+        {% if app.user.tienePerfil('INFORMES_AGENDA_|INFORME_PRODUCCION_GENERAL') %}
+            <div class="span4 well well-small well-moduloRebsol">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <a href="{{ path('Informes_Agenda_Produccion_inicio')}}">
+                            <h3><i class="icon-hospital"></i> Informe de Producción General</h3>
+                        </a>
+                        <span>Este informe nos muestra por uno o varios profesionales la cantidad de consultas realizadas y pagadas en un periodo de tiempo.</span>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% if app.user.tienePerfil('INFORMES_AGENDA_ESTADISTICA_POR_MEDICO') %}
+            <div class="span4 well well-small well-moduloRebsol">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <a href="{{ path('Informes_Agenda_EstadisticaMedico_inicio')}}">
+                            <h3><i class="icon-user-md"></i> Estadística por Médico</h3>
+                        </a>
+                        <span>Informe que muestra la cantidad de paciente atendidos por un profesional en un periodo de tiempo.</span>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% if app.user.tienePerfil('INFORMES_AGENDA_PACIENTES_CONFIRMADOS_POR_EJECUTIVO') %}
+            <div class="span4 well well-small well-moduloRebsol">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <a href="{{ path('Informes_Agenda_PacientesConfirmadosPorEjecutivo_inicio')}}">
+                            <h3><i class="icon-stethoscope"></i> Pacientes Confirmados por ejecutivo</h3>
+                        </a>
+                        <span>Muestra un Resumen de los pacientes Confirmados por ejecutivos</span>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    <hr>
+    <div class="row-fluid">
+        {% if app.user.tienePerfil('INFORMES_AGENDA_ESTADISTICA_POR_COMUNA') %}
+            <div class="span4 well well-small well-moduloRebsol">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <a href="{{ path('Informes_Agenda_EstadisticaComuna_inicio') }}">
+                            <h3><i class="icon-ambulance"></i> Estadística por Comuna</h3>
+                        </a>
+                        <span>Informe que muestra la cantidad de pacientes atendidos por comuna.</span>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% if app.user.tienePerfil('INFORMES_AGENDA_ESTADISTICA_POR_ESPECIALIDAD') %}
+            <div class="span4 well well-small well-moduloRebsol">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <a href="{{ path('Informes_Agenda_EstadisticaEspecialidad_inicio')}}">
+                            <h3><i class="icon-stethoscope"></i> Estadística por Especialidad</h3>
+                        </a>
+                        <span>Informe que muestra la cantidad de pacientes atendidos por comuna.</span>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% if app.user.tienePerfil('INFORMES_AGENDA_PACIENTES_AGENDADOS_RECEPCIONADOS_POR_EJECUTIVO') %}
+            <div class="span4 well well-small well-moduloRebsol">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <a href="{{ path('Informes_Agenda_AgendadosRecepcionados_inicio')}}">
+                            <h3><i class="icon-stethoscope"></i> Pacientes Agendados y Recepcionados por ejecutivo </h3>
+                        </a>
+                        <span>Muestra un Resumen de los pacientes agendados</span>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    <hr>
+    <div class="row-fluid">
+        {% if app.user.tienePerfil('INFORMES_AGENDA_LISTADO_PACIENTES_AGENDADOS') %}
+            <div class="span4 well well-small well-moduloRebsol">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <a href="{{ path('Informes_Agenda_PacientesAgendendados_inicio')}}">
+                            <h3><i class="icon-stethoscope"></i> Listado Pacientes Agendados </h3>
+                        </a>
+                        <span>Muestra un listado de los pacientes Agendados en un rango de fechas</span>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% if app.user.tienePerfil('INFORMES_AGENDA_LISTADO_PACIENTES_NO_RECEPCIONADOS') %}
+            <div class="span4 well well-small well-moduloRebsol">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <a href="{{ path('Informes_Agenda_PacientesNoRecepcionados_inicio')}}">
+                            <h3><i class="icon-stethoscope"></i> Listado Pacientes no Recepcionados </h3>
+                        </a>
+                        <span>Muestra un listado de los pacientes Agendados en un rango de fechas</span>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% if app.user.tienePerfil('INFORMES_AGENDA_LISTADO_PACIENTES_CONFIRMADOS') %}
+            <div class="span4 well well-small well-moduloRebsol">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <a href="{{ path('Informes_Agenda_PacientesConfirmados_inicio')}}">
+                            <h3><i class="icon-stethoscope"></i> Listado Pacientes Confirmados </h3>
+                        </a>
+                        <span>Muestra un Resumen de los pacientes Confirmados</span>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,48 @@
+<table id="tblCuentasPendientesDeCerrar" class="table table-condensed table-striped table-bordered" cellspacing="0" width="100%">
+     <thead>
+        <tr> 
+            <th style="display:none;"></th> 
+            <th>N° Ingreso</th>
+            <th>Fecha Admisión</th> 
+            <th>Fecha Alta </th>
+            <th>Rut </th>
+            <th>Nombre Paciente </th> 
+            <th>Tipo Cuenta </th>
+            <th>Financiador/convenio </th> 
+            <th>Plan </th> 
+            <th>Profesional </th> 
+            <th>Especialidad </th> 
+            <th>Ingreso Qx (si o no) </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for CuentasPendientesDeCerrar in arrCuentasPendientesDeCerrar %}
+        <tr>
+            <th style="display:none;"></th> 
+            <th>{{ CuentasPendientesDeCerrar.numeroIngreso }}</th>
+            <th>{{ CuentasPendientesDeCerrar.fechaIngreso | hermes_date_format }}</th> 
+            <th>{{ CuentasPendientesDeCerrar.fechaDeAlta | hermes_date_format }}</th>
+            <td>{{ CuentasPendientesDeCerrar.rut ~ "-" ~ CuentasPendientesDeCerrar.dV | hermes_rut_format }}</td>
+            <td>{{ obtenerNombrePaciente(CuentasPendientesDeCerrar.nombrePaciente,CuentasPendientesDeCerrar.apPaciente,CuentasPendientesDeCerrar.amPaciente)}}</td>
+            <td>{{ CuentasPendientesDeCerrar.nombreTipoCuenta }}</td> 
+            <td>
+                {% if CuentasPendientesDeCerrar.nombreConvenio is not empty %}
+                {{ CuentasPendientesDeCerrar.nombreConvenio}}
+                {% else %}
+                {{ CuentasPendientesDeCerrar.nombreFinanciador}}
+                {% endif %} 
+            </td> 
+            <td>{{ CuentasPendientesDeCerrar.nombrePlanq}} {{ CuentasPendientesDeCerrar.nombrePlanr}}</td>
+            <td>{{ obtenerNombreProfesional (CuentasPendientesDeCerrar.nombreProfesional, CuentasPendientesDeCerrar.apProfesional, CuentasPendientesDeCerrar.amProfesional) }}</td> 
+             <td>{{ CuentasPendientesDeCerrar.especialidad }}</td>  
+             <td>
+                {% if CuentasPendientesDeCerrar.ingresoQuirurgico == 1 %}
+                {{ "Si"}}
+                {% else %}
+                {{ "No"}}
+                {% endif %} 
+             </td>
+        </tr>
+        {% endfor %}        
+    </tbody>
+</table><!-- table -->

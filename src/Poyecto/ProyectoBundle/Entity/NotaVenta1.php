@@ -1,0 +1,279 @@
+<?php
+
+namespace Poyecto\ProyectoBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * NotaVenta1
+ */
+class NotaVenta1
+{
+    /**
+     * @var integer
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     */
+    private $fecha;
+
+    /**
+     * @var string
+     */
+    private $cliente;
+
+    /**
+     * @var string
+     */
+    private $direccion;
+
+    /**
+     * @var string
+     */
+    private $comuna;
+
+    /**
+     * @var string
+     */
+    private $fono;
+
+    /**
+     * @var string
+     */
+    private $vendedor;
+
+    /**
+     * @var string
+     */
+    private $horaini;
+
+    /**
+     * @var string
+     */
+    private $horater;
+
+    /**
+     * @var string
+     */
+    private $totalhoras;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set fecha
+     *
+     * @param \DateTime $fecha
+     * @return NotaVenta1
+     */
+    public function setFecha($fecha)
+    {
+        $this->fecha = $fecha;
+    
+        return $this;
+    }
+
+    /**
+     * Get fecha
+     *
+     * @return \DateTime 
+     */
+    public function getFecha()
+    {
+        return $this->fecha;
+    }
+
+    /**
+     * Set cliente
+     *
+     * @param string $cliente
+     * @return NotaVenta1
+     */
+    public function setCliente($cliente)
+    {
+        $this->cliente = $cliente;
+    
+        return $this;
+    }
+
+    /**
+     * Get cliente
+     *
+     * @return string 
+     */
+    public function getCliente()
+    {
+        return $this->cliente;
+    }
+
+    /**
+     * Set direccion
+     *
+     * @param string $direccion
+     * @return NotaVenta1
+     */
+    public function setDireccion($direccion)
+    {
+        $this->direccion = $direccion;
+    
+        return $this;
+    }
+
+    /**
+     * Get direccion
+     *
+     * @return string 
+     */
+    public function getDireccion()
+    {
+        return $this->direccion;
+    }
+
+    /**
+     * Set comuna
+     *
+     * @param string $comuna
+     * @return NotaVenta1
+     */
+    public function setComuna($comuna)
+    {
+        $this->comuna = $comuna;
+    
+        return $this;
+    }
+
+    /**
+     * Get comuna
+     *
+     * @return string 
+     */
+    public function getComuna()
+    {
+        return $this->comuna;
+    }
+
+    /**
+     * Set fono
+     *
+     * @param string $fono
+     * @return NotaVenta1
+     */
+    public function setFono($fono)
+    {
+        $this->fono = $fono;
+    
+        return $this;
+    }
+
+    /**
+     * Get fono
+     *
+     * @return string 
+     */
+    public function getFono()
+    {
+        return $this->fono;
+    }
+
+    /**
+     * Set vendedor
+     *
+     * @param string $vendedor
+     * @return NotaVenta1
+     */
+    public function setVendedor($vendedor)
+    {
+        $this->vendedor = $vendedor;
+    
+        return $this;
+    }
+
+    /**
+     * Get vendedor
+     *
+     * @return string 
+     */
+    public function getVendedor()
+    {
+        return $this->vendedor;
+    }
+
+    /**
+     * Set horaini
+     *
+     * @param string $horaini
+     * @return NotaVenta1
+     */
+    public function setHoraini($horaini)
+    {
+        $this->horaini = $horaini;
+    
+        return $this;
+    }
+
+    /**
+     * Get horaini
+     *
+     * @return string 
+     */
+    public function getHoraini()
+    {
+        return $this->horaini;
+    }
+
+    /**
+     * Set horater
+     *
+     * @param string $horater
+     * @return NotaVenta1
+     */
+    public function setHorater($horater)
+    {
+        $this->horater = $horater;
+    
+        return $this;
+    }
+
+    /**
+     * Get horater
+     *
+     * @return string 
+     */
+    public function getHorater()
+    {
+        return $this->horater;
+    }
+
+    /**
+     * Set totalhoras
+     *
+     * @param string $totalhoras
+     * @return NotaVenta1
+     */
+    public function setTotalhoras($totalhoras)
+    {
+        $this->totalhoras = $totalhoras;
+    
+        return $this;
+    }
+
+    /**
+     * Get totalhoras
+     *
+     * @return string 
+     */
+    public function getTotalhoras()
+    {
+        return $this->totalhoras;
+    }
+}

@@ -1,0 +1,26 @@
+<table id="tbl" class="table table-bordered table-condensed table-hover">
+	<thead>
+		<tr>
+			<th>Código</th>
+			<th>Nombre</th>
+			<th>Stock</th>
+			<th>Stock Crítico</th>
+			<th>Stock Mínimo</th>
+			<th>Stock Óptimo</th>
+			<th>Es Crítico</th>
+		</tr>
+	</thead>
+	<tbody> 
+		{% for stockActual in arrStockActual %}
+            <tr>
+                <td>{{ stockActual.id }}</td>
+                <td>{{ stockActual.nombre }}</td>
+                <td>{{ stockActual.stock }}</td>
+                <td>{{ stockActual.stockCritico }}</td>
+                <td>{{ stockActual.stockMinimo }}</td>
+                <td>{{ stockActual.stockOptimo }}</td>
+                <td>{{ stockActual.esCritico == 1 ? "Sí" : "No"  }}</td>
+            </tr>
+        {% endfor %}               
+	</tbody>
+</table>

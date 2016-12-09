@@ -1,0 +1,21 @@
+{% extends 'InformesBundle::layout.html.twig' %}
+{% block postcss %}
+<link href="{{ asset('css/uncompressed/hermes-dashboard.css') }}" rel="stylesheet">
+{% endblock %}
+{% block breadcrumbs %}
+<div id="breadcrumbs" class="navbar-fixed-top">
+	<ul class="breadcrumb">
+		<li>
+			<i class="icon-home"></i> <a href="{{path('Dashboard_home')}}">Home</a>
+			<span class="divider"><i class="icon-angle-right"></i></span>
+		</li>
+		<li>
+			<a href="{{path('informesInicio')}}">Informes</a>
+			<span class="divider"><i class="icon-angle-right"></i></span>
+		</li>
+		{% block breadcumbsActivo %}
+		<a href="{{path ('informesPorModulo', { strNombreModulo: 'FichaClinica' } )}}"></a>
+		{% endblock %}
+	</ul>
+</div>
+{% endblock %}

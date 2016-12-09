@@ -1,0 +1,32 @@
+Enfermeria_Emitidos_Inicio:
+ pattern:  /EmitidosInicio
+ defaults: { _controller: InformesBundle:Enfermeria\InformesEnfermeria:index }
+
+Enfermeria_Emitidos_Ver:
+ pattern:  /VerEmitidos
+ defaults: { _controller: InformesBundle:Enfermeria\InformesEnfermeria:verEmitidos }
+
+Informes_Enfermeria_Emitidos:
+ pattern:  /Emitidos
+ defaults: { _controller: InformesBundle:Enfermeria\InformesEnfermeria:verEmitidos }
+
+Informes_Enfermeria_EmitidosResumidos:
+ pattern: /EmitidosResumidos
+ defaults: { _controller: InformesBundle:Enfermeria\InformesEnfermeria:verEmitidosResumidos }
+
+Informes_Enfermeria_PacientesPorServicio:
+ pattern: /UsuariosPorSucursal
+ defaults: { _controller: InformesBundle:Enfermeria\InformesEnfermeria:obtenerPacientesPorServicio }
+
+Informes_Enfermeria_FiltrarEmitidos:
+ pattern: /FiltrarEmitidos
+ defaults: { _controller: InformesBundle:Enfermeria\InformesEnfermeria:filtrarEmitidos }
+
+Informes_Enfermeria_FiltrarEmitidosResumidos:
+ pattern: /FiltrarEmitidosResumidos
+ defaults: { _controller: InformesBundle:Enfermeria\InformesEnfermeria:filtrarEmitidosResumidos }
+
+Informes_Enfermeria_ObtenerPrestacionesPorPresupuesto:
+ pattern: /ObtenerPrestacionesPorPresupuesto
+ defaults: { _controller: InformesBundle:Enfermeria\InformesEnfermeria:obtenerPrestacionesPorPresupuesto }
+

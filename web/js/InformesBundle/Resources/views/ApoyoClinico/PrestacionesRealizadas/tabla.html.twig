@@ -1,0 +1,67 @@
+<table id="tblPrestacionesRealizadas" class="table table-condensed table-striped table-bordered" cellspacing="0" width="100%">
+     <thead>
+        <tr> 
+            <th style="display:none;"></th> 
+            <th>Rut </th> 
+            <th>Nombre Paciente </th> 
+            <th>Código </th>
+            <th>Prestación </th> 
+            <th>Cantidad </th> 
+            <th>Fecha Solicitud </th>
+            <th>Fecha Realización </th> 
+            <th>Financiador/Convenio </th>
+            <th>Tipo (HOSP, AMB, URG)</th> 
+        </tr>
+    </thead>
+    <tbody>
+        {% for prestacionesRealizadas in prestacionesRealizadas %}
+        <tr>
+            <th style="display:none;"></th> 
+            <td>{{ prestacionesRealizadas.rut ~ "-" ~ prestacionesRealizadas.dV | hermes_rut_format }}</td>
+            <td>{{ obtenerNombrePaciente(prestacionesRealizadas.nombrePaciente, prestacionesRealizadas.apPaciente,prestacionesRealizadas.amPaciente) }}</td>
+            <td>{{ prestacionesRealizadas.codigoPrestacion }}</td>
+            <td>{{ prestacionesRealizadas.nombrePrestacion }}</td>
+            <td>{{ prestacionesRealizadas.cantidad }}</td>
+            <td>{{ prestacionesRealizadas.fechaSolicitud | hermes_date_format }}</td>
+            <td>{{ prestacionesRealizadas.fecharRealizacion | hermes_date_format }}</td>
+            <td>
+                {% if prestacionesRealizadas.nombreConvenio is not empty %}
+                {{ prestacionesRealizadas.nombreConvenio}}
+                {% else %}
+                {{ prestacionesRealizadas.nombreFinanciador}}
+                {% endif %} 
+            </td> 
+            <td>{{ prestacionesRealizadas.tipoAtencionFc }}</td>
+
+                {# <td>{{ PacienteAdmitido.numeroAdmision  }}</td>
+                <td>{{ PacienteAdmitido.fechaAdmision | hermes_date_format }}</td>
+                <td>{{ PacienteAdmitido.fechaAdmision | date(" g:ia") }}</td> 
+                <td>{{ PacienteAdmitido.rut ~ "-" ~ PacienteAdmitido.dV | hermes_rut_format }}</td>
+                <td>{{ obtenerNombrePaciente(PacienteAdmitido.nombrePaciente,PacienteAdmitido.apPaciente,PacienteAdmitido.amPaciente)
+                }}</td>
+                <td>{{ PacienteAdmitido.nombreTipoCuenta }}</td> 
+                <td>
+                {% if PacienteAdmitido.nombreConvenio is not empty %}
+                {{ PacienteAdmitido.nombreConvenio}}
+                {% else %}
+                {{ PacienteAdmitido.nombreFinanciador}}
+                {% endif %} 
+                </td> 
+                <td>{{ PacienteAdmitido.nombrePlanq}} {{ PacienteAdmitido.nombrePlanr}}</td>
+                <td>{{ obtenerNombreProfesional (PacienteAdmitido.nombreProfesional, PacienteAdmitido.apProfesional, PacienteAdmitido.amProfesional) }} </td> 
+                <td>{{ PacienteAdmitido.especialidad }}</td> 
+                <td>{{ PacienteAdmitido.nombreOrigen }}</td> 
+                <td>{{ PacienteAdmitido.nombreServicio}}</td> 
+                <td>{{ PacienteAdmitido.numeroPresupuesto }}</td>
+                <td>{{ obtenerNombreUsuario(PacienteAdmitido.nombreUsuario,PacienteAdmitido.apUsuario,PacienteAdmitido.amUsuario) }}</td> 
+                <td>
+                {% if PacienteAdmitido.idEstadoIngreso == 3 %}
+                {{ "Si"}}
+                {% else %}
+                {{ "No"}}
+                {% endif %} 
+                </td>    #}
+        </tr>
+        {% endfor %}        
+    </tbody>
+</table><!-- table -->

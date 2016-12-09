@@ -1,0 +1,105 @@
+<table id="tbl" class="table table-condensed table-striped table-bordered" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>Dia</th>
+            <th>Exist Tot</th>
+            <th>Ing. Ext</th>
+            <th>Trasl.</th>
+            <th>TOTAL Ing.</th>
+            <th>Eg. Hogar</th>
+            <th>Eg. Serv</th>
+            <th>Fallec.</th>
+            <th>TOTAL Eg</th>
+            <th>Exist Dia</th>
+            <th>Total Cama Ocup.</th>   
+            <th>Total Ds. Est.</th>
+        </tr>
+    </thead>
+    <tbody>
+            {% for key, traslados in resultadoFinal %}
+            {% set suma  = 0 %}
+            {% set suma1 = 0 %}
+            {% set suma3 = 0 %}
+            {% set suma4 = 0 %}
+                <tr>
+                    <td> 
+                        {{ key|date('d-m-Y') }}
+                    </td>
+                    <td>
+                        {% if traslados.cantOrigen is defined and traslados.cantDestino is defined%}
+                        {% set enCama  = enCama  + (traslados.cantOrigen - traslados.cantDestino )  %}                   
+                        {{ enCama }}
+                        {% set suma3 = suma3 + enCama %}
+                        {% set suma4 = suma4 + enCama %}
+                        {% endif %}      
+                     </td>
+                     <td> 
+                        {% if traslados.movimientodos is defined %}   
+                        {{ traslados.movimientodos   }}
+                        {% set suma = suma + traslados.movimientodos  %}
+                        {% set suma3 = suma3 + traslados.movimientodos  %}
+                        {% else %}    
+                        {{"-"}}
+                        {% endif %}
+                     </td>
+                     <td>
+                        {% if traslados.traslado is defined %}   
+                        {{ traslados.traslado  }}
+                        {% set suma = suma + traslados.traslado %}
+                        {% else %}    
+                        {{"-"}}                                 
+                        {% endif %}
+                     </td>
+                        <td>{{ suma }}</td>
+                        <td>
+                        {% if traslados.altaNull is defined %}   
+                        {{ traslados.altaNull  }}
+                        {% set suma1 = suma1 + traslados.altaNull  %}
+                        {% else %}    
+                        {{"-"}}
+                        {% endif %}
+                        </td>               
+                    <td>
+                        {% if traslados.altaTrasl is defined %}   
+                        {{ traslados.altaTrasl  }}
+                        {% set suma1 = suma1 + traslados.altaTrasl  %}
+                        {% else %}    
+                        {{"-"}}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if traslados.altaFalle is defined %}   
+                        {{ traslados.altaFalle  }}
+                        {% set suma1 = suma1 + traslados.altaFalle  %}
+                        {% else %}    
+                        {{"-"}}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {{ suma1 }}
+                    </td>
+                    <td>  
+                        {% if traslados.cantOrigen is defined and traslados.cantDestino is defined%}
+                        {% set suma4 = suma4 + (traslados.cantOrigen - traslados.cantDestino)  %}
+                        {{ suma4 }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {{ suma3 }}
+                    </td>
+                    <td>
+                        {#  {% if traslados.diasPorCamaHosp is defined %}   
+                        {{ traslados.diasPorCamaHosp  }}
+                        {% else %}    
+                        {{"-"}}
+                        {% endif %} #}
+                        {% if traslados.cantOrigenHosp is defined and traslados.cantDestinoHosp is defined%}
+                        {{ enCamaHospi }}
+                        {% set enCamaHospi  = enCamaHospi  + (traslados.cantOrigenHosp - traslados.cantDestinoHosp )  %}
+                        
+                        {% endif %}   
+                    </td>
+               </tr>
+            {% endfor %}
+    </tbody>
+</table>

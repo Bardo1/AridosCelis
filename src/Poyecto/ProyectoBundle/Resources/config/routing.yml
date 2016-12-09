@@ -1,0 +1,80 @@
+poyecto_proyecto_homepage:
+    path:     /
+    defaults: { _controller: PoyectoProyectoBundle:Default:index }
+
+poyecto_proyecto_inicio:
+    path:     /inicio
+    defaults: { _controller: PoyectoProyectoBundle:Default:inicio }
+
+_welcome:
+    path:     /welcome
+    defaults: { _controller: PoyectoProyectoBundle:Default:index }
+
+rutaFacturasCompras:
+    path:     /rutaFacturasCompras
+    defaults: { _controller: PoyectoProyectoBundle:Default:facturasCompras }
+
+rutaFacturasVentas:
+    path:     /rutaFacturasVentas
+    defaults: { _controller: PoyectoProyectoBundle:Default:facturasVentas }
+
+rutaCotizaciones:
+    path:     /rutaCotizaciones
+    defaults: { _controller: PoyectoProyectoBundle:Default:cotizaciones }
+
+rutaStockIngresar:
+    path:     /rutaStockIngresar
+    defaults: { _controller: PoyectoProyectoBundle:Default:stockIngresar }
+
+rutaStockVer:
+    path:     /rutaStockVer
+    defaults: { _controller: PoyectoProyectoBundle:Default:stockVer }
+
+rutaPruebapdf:
+    path:     /rutaPruebapdf
+    defaults: { _controller: PoyectoProyectoBundle:Default:pruebapdf }
+
+rutaimprimir:
+    path:     /rutaimprimir
+    defaults: { _controller: PoyectoProyectoBundle:Default:imprimir }
+
+despliegaCantidad:
+    path:     /despliegaCantidad
+    defaults: { _controller: PoyectoProyectoBundle:Default:despliegaCantidad }
+
+ingresaStock:
+    path:     /ingresaStock
+    defaults: { _controller: PoyectoProyectoBundle:Default:ingresaStock }
+
+haciendoPrueba:
+    path:     /haciendoPrueba
+    defaults: { _controller: PoyectoProyectoBundle:Default:haciendoPrueba }
+
+reportes:
+    path:     /reportes
+    defaults: { _controller: PoyectoProyectoBundle:Default:reportes }
+
+ventas:
+    path:     /ventas
+    defaults: { _controller: PoyectoProyectoBundle:Default:ventas }
+
+login:
+    path:     /login
+    defaults: { _controller: PoyectoProyectoBundle:Default:login }
+
+cerrar:
+    path:     /cerrar
+    defaults: { _controller: PoyectoProyectoBundle:Default:cerrar }
+
+ingresarNotaVenta:
+    path:     /ingresarNotaVenta
+    defaults: { _controller: PoyectoProyectoBundle:Default:ingresarNotaVenta }
+
+prueba:
+    path:     /prueba
+    defaults: { _controller: PoyectoProyectoBundle:Default:prueba }
+
+_entradadesple:
+    path:     /entradadesple/{id}
+    defaults: { _controller: PoyectoProyectoBundle:Default:entradadesple }
+

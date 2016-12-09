@@ -1,0 +1,470 @@
+<div width="100%" style:"overflow-x:scroll;" >    
+<table class="table" id="informe">
+    <tr>
+        <td></td>
+    </tr>
+</table>
+</div>
+<div id="pager"></div>
+<script type="text/javascript">
+var $path_base = "/";
+var grid_data =
+        [
+            {% for registro in resultados %}
+            {   fechaReserva:'{{ registro.fechaInicioHorario | date ('d-m-Y') }}',
+                horaReserva:'{{ registro.fechaInicioHorario | date ('H:i') }} - {{ registro.fechaTerminoHorario | date ('H:i') }}',
+                medico:'{{ registro.apellidoPaterno | capitalize }} , {{ registro.nombre | capitalize }}',
+                especialidad:'{{ registro.nombreEspecialidadMedica }}',
+                sucursal:'{{ registro.nombreSucursal }}',
+                rutPaciente:'{% if registro.rutPaciente == null %} Sin RUT{% else %}{{ registro.rutPaciente }} - {{ registro.digitoVerificadorPaciente }} {% endif %}',
+                paciente:'{{ registro.nombrePaciente }} {{ registro.apellidoPaciente }} {{ registro.apellidoMaterno }}',
+                telefonoFijo:'{% if registro.telefonoFijo == null %} {% else %} {{ registro.telefonoFijo }} {% endif %}',
+                telefonoMovil:'{% if registro.telefonoMovil == null %} {% else %} {{ registro.telefonoMovil }} {% endif %}',
+                telefonoContacto:'{% if registro.telefonoContacto == null %} {% else %} {{ registro.telefonoContacto }} {% endif %}',
+                sexo:'{{ registro.sexo }}',
+                fechaNacimientoPaciente:'{{ registro.fechaNacimiento | date ('d-m-Y') }}',
+                direccion:' {% if  registro.direccion == ""  %} {% else %} {{ registro.direccion }} {{ registro.restoDireccion }} N° {{ registro.numero }} {% endif %}',
+                comuna:'{% if registro.nombreComuna == null %} {% else %}{{ registro.nombreComuna }} {% endif %}',
+                region:'{% if registro.nombreRegion  == null %} {% else %} {{ registro.nombreRegion }} {% endif %}',
+                financiador:'{{ registro.nombrePrevision }}',
+                usuarioReserva:'{{ registro.nombreF}} {{ registro.ApellidoPaternoF }} {{ registro.ApellidoMaternoF }}',
+                pagado:'{% if registro.pagoCuenta == null %} No pagado {% else %}{{ registro.pagoCuenta | date ('d-m-Y') }} {% endif %}',
+                ubicacion:'{% if registro.nombreUbicacion == null %} {% else %} {{ registro.nombreUbicacion }} {% endif %}',
+                tipoConsulta:'{{ registro.nombreTipoConsulta }}',
+                formaPago: '{% for pago in arrPagos[registro.idReservaAtencion] %}{{ pago['nombre'] }}\n{% endfor %}',
+                nBoleta: '{% for pago in arrPagos[registro.idReservaAtencion] %}{% if pago['montos'] != '' %}{{ pago['montos'] }}\n{% endif %}{% endfor %}',
+                monto: '$ {{ registro.monto }}'
+            },            
+            {% endfor %}
+        ];
+jQuery(function($) {
+    var grid_selector = "#informe";
+    var pager_selector = "#pager";
+
+    jQuery(grid_selector).jqGrid({
+
+        data: grid_data,
+        datatype: "local",
+        height: 250,
+        colNames:['Fecha','Hora', 'Profesional ', 'Especialidad','Sucursal','Rut','Paciente','Telefono Fijo','Telefono Movil','Telefono Contacto','Sexo','Fecha Nacimiento','Dirección','Comuna','Región','Financiador','Usuario Reserva','Pagado','Ubicación','Tipo de Consulta','Forma Pago','N° Documento', 'Monto'],
+        colModel:
+                [{
+                    name:'fechaReserva'
+                    ,index:'fechaReserva'
+                    ,sortable:true
+                    ,editable:true
+                    ,resizable:true
+                    ,sorttype:'date'
+                    ,editoptions:{size:"20",maxlength:"30"}}
+                    ,
+                    {name:'horaReserva'
+                        ,index:'horaReserva'
+                        ,sortable:true
+                        ,editable:true
+                        ,resizable:true
+                        ,sorttype:'text'
+                        ,editoptions:{size:"20",maxlength:"30"}}
+                    ,
+                    {name:'medico'
+                        ,index:'medico'
+                        ,sortable:true
+                        ,editable:true
+                        ,resizable:true
+                        ,sorttype:'text'
+                        ,editoptions:{size:"20",maxlength:"30"}}
+                    ,
+                    {name:'especialidad'
+                        ,index:'especialidad'
+                        ,sortable:true
+                        ,editable:true
+                        ,resizable:true
+                        ,sorttype:'text'
+                        ,editoptions:{size:"20",maxlength:"30"}}
+                    ,
+                    {name:'sucursal'
+                        ,index:'sucursal'
+                        ,sortable:true
+                        ,editable:true
+                        ,resizable:true
+                        ,sorttype:'text'
+                        ,editoptions:{size:"20",maxlength:"30"}}
+                    ,
+                    {name:'rutPaciente'
+                        ,index:'rutPaciente'
+                        ,sortable:true
+                        ,editable:true
+                        ,resizable:true
+                        ,sorttype:'text'
+                        ,editoptions:{size:"20",maxlength:"30"}}
+                    ,
+                    {name:'paciente'
+                        ,index:'paciente'
+                        ,sortable:true
+                        ,editable:true
+                        ,resizable:true
+                        ,sorttype:'text'
+                        ,editoptions:{size:"20",maxlength:"30"}}
+                    ,
+                    {name:'telefonoFijo'
+                        ,index:'telefonoFijo'
+                        ,sortable:true
+                        ,editable:true
+                        ,resizable:true
+                        ,sorttype:'text'
+                        ,editoptions:{size:"20",maxlength:"30"}}
+                    ,
+                    {name:'telefonoMovil'
+                        ,index:'telefonoMovil'
+                        ,sortable:true
+                        ,editable:true
+                        ,resizable:true
+                        ,sorttype:'text'
+                        ,editoptions:{size:"20",maxlength:"30"}}
+                    ,
+                    {name:'telefonoContacto'
+                        ,index:'telefonoContacto'
+                        ,sortable:true
+                        ,editable:true
+                        ,resizable:true
+                        ,sorttype:'text'
+                        ,editoptions:{size:"20",maxlength:"30"}}
+                    ,
+                    {name:'sexo'
+                        ,index:'sexo'
+                        ,sortable:true
+                        ,editable:true
+                        ,resizable:true
+                        ,sorttype:'text'
+                        ,editoptions:{size:"20",maxlength:"30"}}
+                    ,
+                    {name:'fechaNacimientoPaciente'
+                        ,index:'fechaNacimientoPaciente'
+                        ,sortable:true
+                        ,editable:true
+                        ,resizable:true
+                        ,sorttype:'date'
+                        ,editoptions:{size:"20",maxlength:"30"}}
+                    ,
+                    {name:'direccion'
+                        ,index:'direccion'
+                        ,sortable:true
+                        ,editable:true
+                        ,resizable:true
+                        ,sorttype:'text'
+                        ,editoptions:{size:"20",maxlength:"30"}}
+                    ,
+                    {name:'comuna'
+                        ,index:'comuna'
+                        ,sortable:true
+                        ,editable:true
+                        ,resizable:true
+                        ,sorttype:'text'
+                        ,editoptions:{size:"20",maxlength:"30"}}
+                    ,
+                    {name:'region'
+                        ,index:'region'
+                        ,sortable:true
+                        ,editable:true
+                        ,resizable:true
+                        ,sorttype:'text'
+                        ,editoptions:{size:"20",maxlength:"30"}}
+                    ,
+                    {name:'financiador'
+                        ,index:'financiador'
+                        ,sortable:true
+                        ,editable:true
+                        ,resizable:true
+                        ,sorttype:'text'
+                        ,editoptions:{size:"20",maxlength:"30"}}
+                    ,
+                    {name:'usuarioReserva'
+                        ,index:'usuarioReserva'
+                        ,sortable:true
+                        ,editable:true
+                        ,resizable:true
+                        ,sorttype:'text'
+                        ,editoptions:{size:"20",maxlength:"30"}}
+                    ,
+                    {name:'pagado'
+                        ,index:'pagado'
+                        ,sortable:true
+                        ,editable:true
+                        ,resizable:true
+                        ,sorttype:'date'
+                        ,editoptions:{size:"20",maxlength:"30"}}
+                    ,
+                    {name:'ubicacion'
+                        ,index:'ubicacion'
+                        ,sortable:true
+                        ,editable:true
+                        ,resizable:true
+                        ,sorttype:'text'
+                        ,editoptions:{size:"20",maxlength:"30"}}
+                    ,
+                    {name:'tipoConsulta'
+                        ,index:'tipoConsulta'
+                        ,sortable:true
+                        ,editable:true
+                        ,resizable:true
+                        ,sorttype:'text'
+                        ,editoptions:{size:"20",maxlength:"30"}}
+                    ,
+                    {name:'formaPago'
+                        ,index:'formaPago'
+                        ,sortable:true
+                        ,editable:true
+                        ,resizable:true
+                        ,sorttype:'text'
+                        ,editoptions:{size:"20",maxlength:"30"}}
+                    ,
+                    {name:'nBoleta'
+                        ,index:'nBoleta'
+                        ,sortable:true
+                        ,editable:true
+                        ,resizable:true
+                        ,sorttype:'text'
+                        ,editoptions:{size:"20",maxlength:"30"}}
+                    ,
+                    {name:'monto'
+                        ,index:'monto'
+                        ,sortable:true
+                        ,editable:true
+                        ,resizable:true
+                        ,sorttype:'text'
+                        ,editoptions:{size:"20",maxlength:"30"}}
+                ],
+
+        viewrecords : true,
+        rowNum:10,
+        rowList:[10,20,30,9999999999999],
+        pager : pager_selector,
+        altRows: true,
+
+        multiselect: false,
+
+        multiboxonly: true,
+
+        loadComplete : function() {
+            var table = this;
+            $("option[value=9999999999999]").text('Todos');
+            setTimeout(function(){
+                styleCheckbox(table);
+
+                updateActionIcons(table);
+                updatePagerIcons(table);
+                enableTooltips(table);
+            }, 0);
+        },
+
+        editurl: $path_base+"/dummy.html",//nothing is saved
+        caption: " Informe de Producción desde {{ fdesdeAux }} hasta {{ fhastaAux }}.",
+        shrinkToFit: false,
+        autowidth: true
+
+    });
+
+    function aceSwitch( cellvalue, options, cell ) {
+        setTimeout(function(){
+            $(cell) .find('input[type=checkbox]')
+                    .wrap('<label class="inline" />')
+                    .addClass('ace ace-switch ace-switch-5')
+                    .after('<span class="lbl"></span>');
+        }, 0);
+    }
+    //enable datepicker
+    function pickDate( cellvalue, options, cell ) {
+        setTimeout(function(){
+            $(cell) .find('input[type=text]')
+                    .datepicker({format:'yyyy-mm-dd' , autoclose:true});
+        }, 0);
+    }
+
+    jQuery(grid_selector).jqGrid('navGrid',pager_selector,
+            {   //navbar options
+                edit: false,
+                editicon : 'icon-pencil blue',
+                add: false,
+                addicon : 'icon-plus-sign purple',
+                del: false,
+                delicon : 'icon-trash red',
+                search: true,
+                searchicon : 'icon-search orange',
+                refresh: true,
+                refreshicon : 'icon-refresh green',
+                view: false,
+                viewicon : 'icon-zoom-in grey'
+            },
+            {
+
+                recreateForm: true,
+                beforeShowForm : function(e) {
+                    var form = $(e[0]);
+                    form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+                    style_edit_form(form);
+                }
+            },
+            {
+                //new record form
+                closeAfterAdd: true,
+                recreateForm: true,
+                viewPagerButtons: false,
+                beforeShowForm : function(e) {
+                    var form = $(e[0]);
+                    form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+                    style_edit_form(form);
+                }
+            },
+            {
+                //delete record form
+                recreateForm: true,
+                beforeShowForm : function(e) {
+                    var form = $(e[0]);
+                    if(form.data('styled')) return false;
+
+                    form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+                    style_delete_form(form);
+
+                    form.data('styled', true);
+                },
+                onClick : function(e) {
+                    alert(1);
+                }
+            },
+            {
+                //search form
+                recreateForm: true,
+                afterShowSearch: function(e){
+                    var form = $(e[0]);
+                    form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
+                    style_search_form(form);
+                    $('.ui-jqgrid tr.ui-row-ltr td').css('padding','0');
+
+                },
+                afterRedraw: function(){
+                    style_search_filters($(this));
+                    $('.ui-jqgrid tr.ui-row-ltr td').css('padding','0');
+
+                }
+                ,
+                multipleSearch: true
+
+            },
+            {
+                //view record form
+                recreateForm: true,
+                beforeShowForm: function(e){
+                    var form = $(e[0]);
+                    $('.ui-jqgrid tr.ui-row-ltr td').css('padding','0');
+                    form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
+                }
+            }
+    ).navButtonAdd('#pager',
+            {
+                caption:"",
+                buttonicon:'icon-download-alt btn-download',
+                onClickButton: function(e){
+                    exportarExcel(e);
+                },
+                position:"last"
+            }
+    );
+
+
+    function style_edit_form(form) {
+        //enable datepicker on "sdate" field and switches for "stock" field
+        form.find('input[name=sdate]').datepicker({format:'yyyy-mm-dd' , autoclose:true})
+                .end().find('input[name=stock]')
+                .addClass('ace ace-switch ace-switch-5').wrap('<label class="inline" />').after('<span class="lbl"></span>');
+
+        //update buttons classes
+        var buttons = form.next().find('.EditButton .fm-button');
+        buttons.addClass('btn btn-small').find('[class*="-icon"]').remove();//ui-icon, s-icon
+        buttons.eq(0).addClass('btn-primary').prepend('<i class="icon-ok"></i>');
+        buttons.eq(1).prepend('<i class="icon-remove"></i>')
+
+        buttons = form.next().find('.navButton a');
+        buttons.find('.ui-icon').remove();
+        buttons.eq(0).append('<i class="icon-chevron-left"></i>');
+        buttons.eq(1).append('<i class="icon-chevron-right"></i>');
+    }
+
+    function style_delete_form(form) {
+        var buttons = form.next().find('.EditButton .fm-button');
+        buttons.addClass('btn btn-small').find('[class*="-icon"]').remove();//ui-icon, s-icon
+        buttons.eq(0).addClass('btn-danger').prepend('<i class="icon-trash"></i>');
+        buttons.eq(1).prepend('<i class="icon-remove"></i>')
+    }
+
+    function style_search_filters(form) {
+        form.find('.delete-rule').val('X');
+        form.find('.add-rule').addClass('btn btn-small btn-primary');
+        form.find('.add-group').addClass('btn btn-small btn-success');
+        form.find('.delete-group').addClass('btn btn-small btn-danger');
+        $('.ui-jqgrid tr.ui-row-ltr td').css('padding','0');
+
+
+    }
+    function style_search_form(form) {
+        var dialog = form.closest('.ui-jqdialog');
+        var buttons = dialog.find('.EditTable')
+        buttons.find('.EditButton a[id*="_reset"]').addClass('btn btn-small btn-info').find('.ui-icon').attr('class', 'icon-retweet');
+        buttons.find('.EditButton a[id*="_query"]').addClass('btn btn-small btn-inverse').find('.ui-icon').attr('class', 'icon-comment-alt');
+        buttons.find('.EditButton a[id*="_search"]').addClass('btn btn-small btn-purple').find('.ui-icon').attr('class', 'icon-search');
+        $('.ui-jqgrid tr.ui-row-ltr td').css('padding','0');
+    }
+
+    function beforeDeleteCallback(e) {
+        var form = $(e[0]);
+        if(form.data('styled')) return false;
+
+        form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+        style_delete_form(form);
+
+        form.data('styled', true);
+    }
+
+    function beforeEditCallback(e) {
+        var form = $(e[0]);
+        form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+        style_edit_form(form);
+    }
+
+
+    function styleCheckbox(table) {
+
+    }
+
+
+    function updateActionIcons(table) {
+
+    }
+
+    function updatePagerIcons(table) {
+        var replacement =
+        {
+            'ui-icon-seek-first' : 'icon-double-angle-left bigger-140',
+            'ui-icon-seek-prev' : 'icon-angle-left bigger-140',
+            'ui-icon-seek-next' : 'icon-angle-right bigger-140',
+            'ui-icon-seek-end' : 'icon-double-angle-right bigger-140'
+        };
+        $('.ui-pg-table:not(.navtable) > tbody > tr > .ui-pg-button > .ui-icon').each(function(){
+            var icon = $(this);
+            var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
+
+            if($class in replacement) icon.attr('class', 'ui-icon '+replacement[$class]);
+        })
+    }
+
+    function enableTooltips(table) {
+        $('.navtable .ui-pg-button').tooltip({container:'body'});
+        $(table).find('.ui-pg-div').tooltip({container:'body'});
+    }
+
+    function seleccionarFilasVisibles()
+    {
+        var allRowsOnCurrentPage = $('#grid-table').jqGrid('getDataIDs');
+        return allRowsOnCurrentPage;
+    }
+
+});
+</script>

@@ -1,0 +1,11 @@
+parameters:
+    #########################################
+    # Parametros para identificar el módulo.
+    #########################################
+    informes.idModulo: 17
+    informes.codigoModulo: Informes
+    informes.nombreModulo: Informes
+    #########################################
+    # Parametros del módulo
+    #########################################
+    informes.acme: 'Mi primer parámetro'

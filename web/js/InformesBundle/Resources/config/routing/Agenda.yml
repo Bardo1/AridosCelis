@@ -1,0 +1,208 @@
+# Informe AgendamientoSinRut
+###############################################################################
+Informes_Agenda_AgendamientoSinRut_inicio:
+ pattern:  /AgendamientoSinRut/Inicio
+ defaults: { _controller: InformesBundle:Agenda\AgendamientoSinRut:index }
+
+Informes_Agenda_AgendamientoSinRut:
+ pattern: /AgendamientoSinRut/Resultado
+ defaults: { _controller: InformesBundle:Agenda\AgendamientoSinRut:resultado }
+
+# Informe Anulaciones
+###############################################################################
+Informes_Agenda_Anulaciones_inicio:
+ pattern:  /Anulaciones/Inicio
+ defaults: { _controller: InformesBundle:Agenda\Anulaciones:index }
+
+Informes_Agenda_Anulaciones:
+ pattern: /Anulaciones/Resultado
+ defaults: { _controller: InformesBundle:Agenda\Anulaciones:resultado }
+
+# Agendados Recepcionados
+###############################################################################
+Informes_Agenda_AgendadosRecepcionados_inicio:
+ pattern:  /AgendadosRecepcionados/Inicio
+ defaults: { _controller: InformesBundle:Agenda\AgendadosRecepcionados:index }
+
+Informes_Agenda_AgendadosRecepcionados:
+ pattern: /AgendadosRecepcionados/Resultado
+ defaults: { _controller: InformesBundle:Agenda\AgendadosRecepcionados:resultado }
+
+# Atrasos Medicos
+###############################################################################
+Informes_Agenda_AtrasosMedicos_inicio:
+ pattern:  /AtrasosMedicos/Inicio
+ defaults: { _controller: InformesBundle:Agenda\AtrasosMedicos:index }
+
+Informes_Agenda_AtrasosMedicos:
+ pattern: /AtrasosMedicos/Resultado
+ defaults: { _controller: InformesBundle:Agenda\AtrasosMedicos:resultado }
+
+# Estadisticas Comuna
+###############################################################################
+Informes_Agenda_EstadisticaComuna_inicio:
+ pattern:  /EstadisticaComuna/Inicio
+ defaults: { _controller: InformesBundle:Agenda\EstadisticaComuna:index }
+
+Informes_Agenda_EstadisticaComuna:
+ pattern: /EstadisticaComuna/Resultado
+ defaults: { _controller: InformesBundle:Agenda\EstadisticaComuna:resultado }
+
+# Estadistica Especialidad
+###############################################################################
+Informes_Agenda_EstadisticaEspecialidad_inicio:
+ pattern:  /EstadisticaEspecialidad/Inicio
+ defaults: { _controller: InformesBundle:Agenda\EstadisticaEspecialidad:index }
+
+Informes_Agenda_EstadisticaEspecialidad:
+ pattern: /EstadisticaEspecialidad/Resultado
+ defaults: { _controller: InformesBundle:Agenda\EstadisticaEspecialidad:resultado }
+
+# Estadistica Medico
+###############################################################################
+Informes_Agenda_EstadisticaMedico_inicio:
+ pattern:  /EstadisticaMedico/Inicio
+ defaults: { _controller: InformesBundle:Agenda\EstadisticaMedico:index }
+
+Informes_Agenda_EstadisticaMedico:
+ pattern: /EstadisticaMedico/Resultado
+ defaults: { _controller: InformesBundle:Agenda\EstadisticaMedico:resultado }
+
+# Estadisticas Financiador
+###############################################################################
+Informes_Agenda_EstadisticasFinanciador_inicio:
+ pattern:  /EstadisticasFinanciador/Inicio
+ defaults: { _controller: InformesBundle:Agenda\EstadisticasFinanciador:index }
+
+Informes_Agenda_EstadisticasFinanciador:
+ pattern: /EstadisticasFinanciador/Resultado
+ defaults: { _controller: InformesBundle:Agenda\EstadisticasFinanciador:resultado }
+
+# Estadisticas Medico Financiador
+###############################################################################
+Informes_Agenda_EstadisticasMedicoFinanciador_inicio:
+ pattern:  /EstadisticasMedicoFinanciador/Inicio
+ defaults: { _controller: InformesBundle:Agenda\EstadisticasMedicoFinanciador:index }
+
+Informes_Agenda_EstadisticasMedicoFinanciador:
+ pattern: /EstadisticasMedicoFinanciador/Resultado
+ defaults: { _controller: InformesBundle:Agenda\EstadisticasMedicoFinanciador:resultado }
+
+# Agendamientos
+###############################################################################
+Informes_Agenda_Agendamientos_inicio:
+ pattern:  /Agendamientos/Inicio
+ defaults: { _controller: InformesBundle:Agenda\Agendamientos:index }
+
+Informes_Agenda_Agendamientos:
+ pattern: /Agendamientos/Resultado
+ defaults: { _controller: InformesBundle:Agenda\Agendamientos:resultado }
+
+# Estado Bloques
+###############################################################################
+Informes_Agenda_EstadoBloques_inicio:
+ pattern:  /EstadoBloques/Inicio
+ defaults: { _controller: InformesBundle:Agenda\EstadoBloques:index }
+
+Informes_Agenda_EstadoBloques:
+ pattern: /EstadoBloques/Resultado
+ defaults: { _controller: InformesBundle:Agenda\EstadoBloques:resultado }
+
+# Informe Produccion
+###############################################################################
+Informes_Agenda_Produccion_inicio:
+ pattern:  /Produccion/Inicio
+ defaults: { _controller: InformesBundle:Agenda\Produccion:index }
+
+Informes_Agenda_Produccion:
+ pattern: /Produccion/Resultado
+ defaults: { _controller: InformesBundle:Agenda\Produccion:resultado }
+
+# Listado Pacientes Confirmados
+###############################################################################
+Informes_Agenda_PacientesConfirmados_inicio:
+ pattern:  /PacientesConfirmados/Inicio
+ defaults: { _controller: InformesBundle:Agenda\PacientesConfirmados:index }
+
+Informes_Agenda_PacientesConfirmados:
+ pattern: /PacientesConfirmados/Resultado
+ defaults: { _controller: InformesBundle:Agenda\PacientesConfirmados:resultado }
+
+# Listado Pacientes No Recepcionados
+Informes_Agenda_PacientesNoRecepcionados_inicio:
+ pattern:  /PacientesNoRecepcionados/Inicio
+ defaults: { _controller: InformesBundle:Agenda\PacientesNoRecepcionados:index }
+
+Informes_Agenda_PacientesNoRecepcionados:
+ pattern: /PacientesNoRecepcionados/Resultado
+ defaults: { _controller: InformesBundle:Agenda\PacientesNoRecepcionados:resultado }
+
+# Listado Pacientes Agendados
+###############################################################################
+Informes_Agenda_PacientesAgendendados_inicio:
+ pattern:  /PacientesAgendendados/Inicio
+ defaults: { _controller: InformesBundle:Agenda\PacientesAgendendados:index }
+
+Informes_Agenda_PacientesAgendendados:
+ pattern: /PacientesAgendendados/Resultado
+ defaults: { _controller: InformesBundle:Agenda\PacientesAgendendados:resultado }
+
+# Pacientes Confirmados Por Ejecutivo
+###############################################################################
+Informes_Agenda_PacientesConfirmadosPorEjecutivo_inicio:
+ pattern:  /PacientesConfirmadosPorEjecutivo/Inicio
+ defaults: { _controller: InformesBundle:Agenda\PacientesConfirmadosPorEjecutivo:index }
+
+Informes_Agenda_PacientesConfirmadosPorEjecutivo:
+ pattern: /PacientesConfirmadosPorEjecutivo/Resultado
+ defaults: { _controller: InformesBundle:Agenda\PacientesConfirmadosPorEjecutivo:resultado }
+
+# Pacientes Recepcionado
+###############################################################################
+Informes_Agenda_PacientesRecepcionado_inicio:
+ pattern:  /PacientesRecepcionado/Inicio
+ defaults: { _controller: InformesBundle:Agenda\PacientesRecepcionado:index }
+
+Informes_Agenda_PacientesRecepcionado:
+ pattern: /PacientesRecepcionado/Resultado
+ defaults: { _controller: InformesBundle:Agenda\PacientesRecepcionado:resultado }
+
+ # Informe Estados
+###############################################################################
+Informes_Agenda_InformeEstados_inicio:
+ pattern:  /InformeEstados/Inicio
+ defaults: { _controller: InformesBundle:Agenda\InformeEstados:index }
+
+Informes_Agenda_InformeEstados:
+ pattern:  /InformeEstados/Resultado
+ defaults: { _controller: InformesBundle:Agenda\InformeEstados:resultado }
+
+# Informe Trazabilidad 
+###############################################################################
+Informes_Agenda_InformeTrazabilidad_inicio:
+  pattern:  /InformeTrazabilidad/Inicio
+  defaults: { _controller: InformesBundle:Agenda\InformeTrazabilidad:index }
+
+Informes_Agenda_InformeTrazabilidad:
+  pattern: /InformeTrazabilidad/resultado
+  defaults: { _controller: InformesBundle:Agenda\InformeTrazabilidad:resultado }
+
+# Listado Pacientes Agendados Por Pisos
+###############################################################################
+Informes_Agenda_PacientesAgendadosPorPiso_inicio:
+ pattern:  /PacientesAgendadosPorPiso/Inicio
+ defaults: { _controller: InformesBundle:Agenda\PacientesAgendadosPorPiso:index }
+
+Informes_Agenda_PacientesAgendadosPorPiso:
+ pattern: /PacientesAgendadosPorPiso/Resultado
+ defaults: { _controller: InformesBundle:Agenda\PacientesAgendadosPorPiso:resultado }
+
+# Listado Informe Archivo
+###############################################################################
+Informes_Agenda_InformeArchivo_inicio:
+ pattern:  /InformeArchivo/Inicio
+ defaults: { _controller: InformesBundle:Agenda\InformeArchivo:index }
+
+Informes_Agenda_InformeArchivo:
+ pattern: /InformeArchivo/Resultado
+ defaults: { _controller: InformesBundle:Agenda\InformeArchivo:resultado }

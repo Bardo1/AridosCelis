@@ -1,0 +1,89 @@
+{% extends 'InformesBundle::layout.html.twig' %}
+
+{% block body %}
+
+    <div id="breadcrumbs" class="navbar-fixed-top">
+    	<ul class="breadcrumb">
+    		<li>
+                <i class="icon-home"></i> <a href="{{ path('Dashboard_home') }}">Home</a>
+                <span class="divider"><i class="icon-angle-right"></i></span>
+            </li>
+            <li>
+                <a href="{{ path('informesInicio') }}">Informes</a>
+                <span class="divider"><i class="icon-angle-right"></i></span>
+            </li>
+            <li>{{ nombreModulo }}</li>
+        </ul>
+    </div><!-- breadcrumbs -->
+
+    <div class="well">
+        <h3 class="grey lighter smaller">
+            Seleccionar Informe
+        </h3>
+        <hr>
+        <div class="row-fluid">
+             {% if app.user.tienePerfil('INFORMES_GESTIONSTOCK_CONSUMODEPRODUCTOS') %}
+             <div class="span4 well well-small well-moduloRebsol">
+                <a href="{{ path('GestionStock_ConsumoDeProductos_Inicio') }}">
+                    <h3><i class="icon-list-alt"></i> Consumo de Productos</h3>
+                </a>
+                <span>Listado de Consumo de Productos</span>
+             </div>
+             {% endif %} 
+             {% if app.user.tienePerfil('INFORMES_GESTIONSTOCK_INGRESODEPRODUCTOS') %}
+             <div class="span4 well well-small well-moduloRebsol">
+                <a href="{{ path('GestionStock_IngresoDeProductos_Inicio') }}">
+                    <h3><i class="icon-list-alt"></i> Ingreso de Productos</h3>
+                </a>
+                <span>Listado de Ingreso de Productos</span>
+             </div>
+             {% endif %} 
+             {% if app.user.tienePerfil('INFORMES_GESTIONSTOCK_TRANSFERENCIADESALDOS') %}
+             <div class="span4 well well-small well-moduloRebsol">
+                <a href="{{ path('GestionStock_TransferenciaDeSaldos_Inicio') }}">
+                    <h3><i class="icon-list-alt"></i> Transferencia de Saldos</h3>
+                </a>
+                <span>Listado de Transferencia de Saldos</span>
+             </div>
+             {% endif %} 
+        </div><!-- row-fluid -->
+        <div class="row-fluid">
+            {% if app.user.tienePerfil('INFORMES_GESTIONSTOCK_RECEPCIONDETRANSFERENCIADESALDO') %}
+            <div class="span4 well well-small well-moduloRebsol">
+                <a href="{{ path('GestionStock_RecepcionesDeTransferenciaDeSaldos_Inicio') }}">
+                    <h3><i class="icon-list-alt"></i> Recepciones de Transferencia de Saldos</h3>
+                </a>
+                <span>Listado de Recepciones de Transferencia de Saldos</span>
+            </div>
+            {% endif %}
+            {% if app.user.tienePerfil('INFORMES_GESTIONSTOCK_AJUSTEDEINVENTARIO') %}
+            <div class="span4 well well-small well-moduloRebsol">
+                <a href="{{ path('GestionStock_AjustesDeInventario_Inicio') }}">
+                    <h3><i class="icon-list-alt"></i> Ajustes de Inventario</h3>
+                </a>
+                <span>Listado de Ajustes de Inventario</span>
+            </div>
+            {% endif %}
+            {% if app.user.tienePerfil('INFORMES_GESTIONSTOCK_CARTOLAS') %}
+            <div class="span4 well well-small well-moduloRebsol">
+                <a href="{{ path('GestionStock_Cartolas_Inicio') }}">
+                    <h3><i class="icon-list-alt"></i> Cartolas</h3>
+                </a>
+                <span>Listado de Cartolas</span>
+            </div>
+            {% endif %}
+
+        </div><!-- row-fluid -->
+        <div class="row-fluid">
+            {% if app.user.tienePerfil('INFORMES_GESTIONSTOCK_STOCKACTUAL') %}
+            <div class="span4 well well-small well-moduloRebsol">
+                <a href="{{ path('GestionStock_StockActual_Inicio') }}">
+                    <h3><i class="icon-list-alt"></i> Stock Actual</h3>
+                </a>
+                <span>Listado de Stock Actual</span>
+            </div>
+            {% endif %}
+        </div><!-- row-fluid -->
+    </div> <!-- well -->
+
+{% endblock %}

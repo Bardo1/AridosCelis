@@ -1,0 +1,317 @@
+{% extends 'InformesBundle::layout.html.twig' %}
+{% block body %}
+<div id="breadcrumbs" class="navbar-fixed-top">
+	<ul class="breadcrumb">
+		<li>
+			<i class="icon-home"></i> <a href="{{path('Dashboard_home')}}">Home</a>
+			<span class="divider"><i class="icon-angle-right"></i></span>
+		</li>
+		<li>
+			Informes
+		</li>
+	</ul>
+</div>
+                        
+<div class="well">
+    <h3 class="grey lighter smaller">
+        Seleccionar Módulo
+    </h3>
+    <hr>
+    <table>
+        <tr>
+        {% if app.user.tienePerfil('INFORMES_CONFIGURACIONES') %}
+            <td>
+                <div class="span4 well well-small well-moduloRebsol">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <a href="{{ path('informesPorIdModulo', { 'iIdModulo':obtenerParametro('configuraciones.idModulo') }) }}">
+                                <h3><i class="icon-cogs"></i> Configuraciones</h3> 
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        {% endif %}
+        {% if app.user.tienePerfil('INFORMES_ADMINISTACION_DE_USUARIOS') %}
+            <td>
+                <div class="span4 well well-small well-moduloRebsol">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <a href="{{ path('informesPorIdModulo', {'iIdModulo':obtenerParametro('administradorUsuarios.idModulo')}) }}">
+                                <h3><i class="icon-group"></i> Administración de Usuarios</h3> 
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        {% endif %}
+        {% if app.user.tienePerfil('INFORMES_MANTENEDORES') %}
+            <td>
+                <div class="span4 well well-small well-moduloRebsol">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <a href="{{ path('informesPorIdModulo', {'iIdModulo':obtenerParametro('mantenedores.idModulo')}) }}">
+                                <h3><i class="icon-archive"></i> Mantenedores</h3> 
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        {% endif %}    
+        </tr>
+        <tr>
+        {% if app.user.tienePerfil('INFORMES_REGISTRO_CLINICO_ELECTRONICO') %}     
+            <td>
+                <div class="span4 well well-small well-moduloRebsol">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <a href="{{ path('informesPorIdModulo', {'iIdModulo':obtenerParametro('registroClinicoElectronico.idModulo')}) }}">
+                                <h3><i class="icon-stethoscope"></i> Registro Clínico Electrónico</h3> 
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        {% endif %}
+        {% if app.user.tienePerfil('INFORMES_AGENDAS') %}     
+            <td>
+                <div class="span4 well well-small well-moduloRebsol">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <a href="{{ path('informesPorIdModulo', {'iIdModulo':obtenerParametro('agenda.idModulo')}) }}">
+                                <h3><i class="icon-calendar"></i> Agenda</h3> 
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        {% endif %}
+        {% if app.user.tienePerfil('INFORMES_ARANCELES_Y_CONVENIOS') %}     
+            <td>
+                <div class="span4 well well-small well-moduloRebsol">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <a href="{{ path('informesPorIdModulo', {'iIdModulo':obtenerParametro('Modulo.arancelesConvenios')}) }}">
+                                <h3><i class="icon-money"></i> Aranceles y Convenios</h3> 
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        {% endif %}
+        </tr>
+        <tr>
+        {% if app.user.tienePerfil('INFORMES_DIRECTORIO_DE_PACIENTES') %}     
+            <td>
+                <div class="span4 well well-small well-moduloRebsol">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <a href="{{ path('informesPorIdModulo', {'iIdModulo':obtenerParametro('directorioPacientes.idModulo')}) }}">
+                                <h3><i class="rebsol-icon-pacientes"></i> Directorio de Pacientes</h3> 
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        {% endif %}
+        {% if app.user.tienePerfil('INFORMES_CAJA') %}     
+            <td>
+                <div class="span4 well well-small well-moduloRebsol">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <a href="{{ path('informesPorIdModulo', {'iIdModulo':obtenerParametro('caja.idModulo') }) }}">
+                                <h3><i class="icon-usd"></i> Caja</h3> 
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        {% endif %}
+        {% if app.user.tienePerfil('INFORMES_APOYO_CLINICO') %}     
+            <td>
+                <div class="span4 well well-small well-moduloRebsol">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <a href="{{ path('informesPorIdModulo', {'iIdModulo':obtenerParametro('apoyoClinico.idModulo')}) }}">
+                                <h3><i class="icon-plus-sign-alt"></i> Apoyo Clínico</h3> 
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        {% endif %}
+        </tr>
+        <tr>
+        {% if app.user.tienePerfil('INFORMES_ADMISION') %}
+            <td>
+                <div class="span4 well well-small well-moduloRebsol">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <a href="{{ path('informesPorIdModulo', { 'iIdModulo':obtenerParametro('admision.idModulo') }) }}">
+                                <h3><i class="icon-list-alt"></i> Admisión</h3> 
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        {% endif %}
+        {% if app.user.tienePerfil('INFORMES_FACTURACION') %}
+            <td>
+                <div class="span4 well well-small well-moduloRebsol">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <a href="{{ path('informesPorIdModulo', {'iIdModulo':obtenerParametro('Modulo.facturacion')}) }}">
+                                <h3><i class="icon-file"></i> Facturación</h3> 
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        {% endif %}
+        {% if app.user.tienePerfil('INFORMES_PRESUPUESTO') %}
+            <td>
+                <div class="span4 well well-small well-moduloRebsol">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <a href="{{ path('informesPorIdModulo', {'iIdModulo':obtenerParametro('presupuesto.idModulo')}) }}">
+                                <h3><i class="icon-file"></i> Presupuesto</h3> 
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        {% endif %}
+        </tr>
+        <tr>
+        {% if app.user.tienePerfil('INFORMES_PABELLON') %}
+            <td>
+                <div class="span4 well well-small well-moduloRebsol">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <a href="{{ path('informesPorIdModulo', {'iIdModulo':obtenerParametro('pabellon.idModulo')}) }}">
+                                <h3><i class="icon-file"></i> Pabellón</h3> 
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        {% endif %}
+        {% if app.user.tienePerfil('INFORMES_REGISTRO_CLINICO_HOSPITALARIO') %}
+            <td>
+                <div class="span4 well well-small well-moduloRebsol">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <a href="{{ path('informesPorIdModulo', {'iIdModulo':obtenerParametro('registroClinicoHospitalario.idModulo')}) }}">
+                                <h3><i class="icon-stethoscope"></i> Registro Clínico Hospitalario</h3> 
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        {% endif %}
+        {% if app.user.tienePerfil('INFORMES_ENFERMERIA') %}
+            <td>
+                <div class="span4 well well-small well-moduloRebsol">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <a href="{{ path('informesPorIdModulo', { 'iIdModulo':obtenerParametro('enfermeria.idModulo') }) }}">
+                                <h3><i class="icon-exchange"></i> Enfermería</h3> 
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        {% endif %}
+        </tr>
+        <tr>
+        {% if app.user.tienePerfil('INFORMES_LOGISTICA') %}
+            <td>
+                <div class="span4 well well-small well-moduloRebsol">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <a href="{{ path('informesPorIdModulo', {'iIdModulo':obtenerParametro('logistica.idModulo')}) }}">
+                                <h3><i class="icon-plus-sign-alt"></i> Logística</h3> 
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        {% endif %}
+        {% if app.user.tienePerfil('INFORMES_FARMACIA') %}
+            <td>
+                <div class="span4 well well-small well-moduloRebsol">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <a href="{{ path('informesPorIdModulo', {'iIdModulo':obtenerParametro('farmacia.idModulo')}) }}">
+                                <h3><i class="icon-stethoscope"></i> Farmacia</h3> 
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        {% endif %}
+        {% if app.user.tienePerfil('INFORMES_CUENTAS_PACIENTE') %}
+            <td>
+                <div class="span4 well well-small well-moduloRebsol">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <a href="{{ path('informesPorIdModulo', {'iIdModulo':obtenerParametro('cuentaPaciente.idModulo')}) }}">
+                                <h3><i class="icon-file"></i> Cuentas Paciente</h3> 
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        {% endif %}
+        </tr>
+        <tr>
+        {% if app.user.tienePerfil('INFORMES_GESTION_DE_STOCK') %}
+            <td>
+                <div class="span4 well well-small well-moduloRebsol">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <a href="{{ path('informesPorIdModulo', {'iIdModulo':obtenerParametro('gestionStock.idModulo')}) }}">
+                                <h3><i class="icon-columns"></i> Gestión de Stock</h3> 
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        {% endif %}
+        {% if app.user.tienePerfil('INFORMES_VITAL_IMAGES') %}
+            <td>
+                <div class="span4 well well-small well-moduloRebsol">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <a href="{{ path('informesPorIdModulo', {'iIdModulo':obtenerParametro('vitalImages.idModulo')}) }}">
+                                <h3><i class="icon-archive"></i> Vital Images</h3> 
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        {% endif %}            
+        </tr>           
+    </table>
+</div>
+
+{% endblock %}
+{% block scripts %}
+<script src="{{ asset('js/bootbox.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/uncompressed/bootbox.js') }}"></script>
+
+<script>
+    {% set msg = app.request.get('msg') %}
+    {% if msg != "" %}
+        bootbox.dialog("<div class='alert alert-block alert-fail'>" +
+            "<p> <strong><i class='icon-remove'> </i>" + "{{ msg }}" + "</strong> </p> </div>", [{
+            "label": "Aceptar",
+            "class": "btn btn-mini alert",
+            "callback": function() {
+                window.location = "{{ path('informesInicio') }}";
+            }
+        }]);
+    {% endif %}
+</script>
+
+{% endblock %}

@@ -1,0 +1,366 @@
+<div width="100%" style:"overflow-x:scroll;">
+<table class="table" id="informe">
+    <tr>
+        <td></td>
+    </tr>
+</table>
+</div>
+<div id="pager"></div>
+<script type="text/javascript">
+
+var $path_base = "/";
+var grid_data =
+        [
+            {% for registro in resultados %}
+                {
+                    rut:'{% if registro.rutPaciente is not empty %} {{ registro.rutPaciente }}-{{ registro.dvPaciente }} {% else %} Sin Rut {% endif %}' ,
+                    paciente:'{{ registro.nombrePaciente }} {{ registro.apellidoPaterno }} {{ registro.apellidoMaterno }} ',
+                    fechaReserva: '{{ registro.fechaReserva | date ("d-m-Y") }}',
+                    horaReserva:'{{ registro.fechaReserva | date ("H:i") }}',
+                    tipoReserva:'{{ registro.tipoAgendamiento }}',
+                    especialidad: '{{ registro.EspecialidadMedica }}',
+                    medico: '{{ registro.nombreFuncionario }} {{ registro.apellidoPaternoFuncionario }} {{ registro.apellidoMaternoFuncionario }}',
+                    tipoAnulacion: '{{ registro.nombreAnulacion }}',
+                    motivoAnulacion: '{{ registro.motivoAnulacion }}',
+                    fechaAnulacion: '{{ registro.fechaAnulacion | date ("d-m-Y") }}',
+                    horaAnulacion: '{{ registro.fechaAnulacion | date ("H:i") }}'
+
+                },
+            {% endfor %}
+        ];
+jQuery(function($) {
+    var grid_selector = "#informe";
+    var pager_selector = "#pager";
+
+    jQuery(grid_selector).jqGrid({
+
+        data: grid_data,
+        datatype: "local",
+        height: 250,
+        colNames:['Rut','Paciente','Fechar Reserva', 'Hora Reserva', 'Tipo Reserva', 'Especialidad', 'Médico', 'Tipo Anulación', 'Motivo Anulación','Fecha Anulación', 'Hora Anulación'],
+        colModel:
+                [{
+                    name:'rut'
+                    ,index:'rut'
+                    ,width:25
+                    ,sortable:true
+                    ,editable:false
+                    ,sorttype:'text'
+                    ,editoptions:{size:"20",maxlength:"30"}}
+                    ,
+                    {name:'paciente'
+                        ,index:'paciente'
+                        ,width:25
+                        ,sortable:true
+                        ,editable:false
+                        ,sorttype:'text'
+                        ,editoptions:{size:"20",maxlength:"30"}}
+                    ,
+                    {name:'fechaReserva'
+                        ,index:'fechaReserva'
+                        ,width:25
+                        ,sortable:true
+                        ,editable:false
+                        ,sorttype:'date'
+                        ,editoptions:{size:"20",maxlength:"30"}}
+                    ,
+                    {name:'horaReserva'
+                        ,index:'horaReserva'
+                        ,width:25
+                        ,sortable:true
+                        ,editable:false
+                        ,sorttype:'text'
+                        ,editoptions:{size:"20",maxlength:"30"}}
+                    ,
+                    {name:'tipoReserva'
+                        ,index:'tipoReserva'
+                        ,width:25
+                        ,sortable:true
+                        ,editable:false
+                        ,sorttype:'text'
+                        ,editoptions:{size:"20",maxlength:"30"}}
+                    ,
+                    {name:'especialidad'
+                        ,index:'especialidad'
+                        ,width:25
+                        ,sortable:true
+                        ,editable:false
+                        ,sorttype:'text'
+                        ,editoptions:{size:"20",maxlength:"30"}}
+                    ,
+                    {name:'medico'
+                        ,index:'medico'
+                        ,width:25
+                        ,sortable:true
+                        ,editable:false
+                        ,sorttype:'text'
+                        ,editoptions:{size:"20",maxlength:"30"}}
+                    ,
+                    {name:'tipoAnulacion'
+                        ,index:'tipoAnulacion'
+                        ,width:25
+                        ,sortable:true
+                        ,editable:false
+                        ,sorttype:'text'
+                        ,editoptions:{size:"20",maxlength:"30"}}
+                    ,
+                    {name:'motivoAnulacion'
+                        ,index:'motivoAnulacion'
+                        ,width:25
+                        ,sortable:true
+                        ,editable:false
+                        ,sorttype:'text'
+                        ,editoptions:{size:"20",maxlength:"30"}}
+                    ,
+                    {name:'fechaAnulacion'
+                        ,index:'fechaAnulacion'
+                        ,width:25
+                        ,sortable:true
+                        ,editable:false
+                        ,sorttype:'date'
+                        ,editoptions:{size:"20",maxlength:"30"}}
+                    ,
+                    {name:'horaAnulacion'
+                        ,index:'horaAnulacion'
+                        ,width:25
+                        ,sortable:true
+                        ,editable:false
+                        ,sorttype:'text'
+                        ,editoptions:{size:"20",maxlength:"30"}}
+
+                ],
+
+        viewrecords : true,
+        rowNum:10,
+        rowList:[10,20,30,9999999999999],
+        pager : pager_selector,
+        altRows: true,
+
+        multiselect: false,
+
+        multiboxonly: true,
+
+        loadComplete : function() {
+            var table = this;
+            $("option[value=9999999999999]").text('Todos');
+            setTimeout(function(){
+                styleCheckbox(table);
+
+                updateActionIcons(table);
+                updatePagerIcons(table);
+                enableTooltips(table);
+            }, 0);
+        },
+
+        editurl: $path_base+"/dummy.html",//nothing is saved
+        caption: " Listado de Anulaciones desde {{ fdesdeAux }} hasta {{ fhastaAux }}.",
+
+        autowidth: true
+
+    });
+
+    function aceSwitch( cellvalue, options, cell ) {
+        setTimeout(function(){
+            $(cell) .find('input[type=checkbox]')
+                    .wrap('<label class="inline" />')
+                    .addClass('ace ace-switch ace-switch-5')
+                    .after('<span class="lbl"></span>');
+        }, 0);
+    }
+    //enable datepicker
+    function pickDate( cellvalue, options, cell ) {
+        setTimeout(function(){
+            $(cell) .find('input[type=text]')
+                    .datepicker({format:'yyyy-mm-dd' , autoclose:true});
+        }, 0);
+    }
+
+    jQuery(grid_selector).jqGrid('navGrid',pager_selector,
+            {   //navbar options
+                edit: false,
+                editicon : 'icon-pencil blue',
+                add: false,
+                addicon : 'icon-plus-sign purple',
+                del: false,
+                delicon : 'icon-trash red',
+                search: true,
+                searchicon : 'icon-search orange',
+                refresh: true,
+                refreshicon : 'icon-refresh green',
+                view: false,
+                viewicon : 'icon-zoom-in grey'
+            },
+            {
+
+                recreateForm: true,
+                beforeShowForm : function(e) {
+                    var form = $(e[0]);
+                    form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+                    style_edit_form(form);
+                }
+            },
+            {
+                //new record form
+                closeAfterAdd: true,
+                recreateForm: true,
+                viewPagerButtons: false,
+                beforeShowForm : function(e) {
+                    var form = $(e[0]);
+                    form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+                    style_edit_form(form);
+                }
+            },
+            {
+                //delete record form
+                recreateForm: true,
+                beforeShowForm : function(e) {
+                    var form = $(e[0]);
+                    if(form.data('styled')) return false;
+
+                    form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+                    style_delete_form(form);
+
+                    form.data('styled', true);
+                },
+                onClick : function(e) {
+                    alert(1);
+                }
+            },
+            {
+                //search form
+                recreateForm: true,
+                afterShowSearch: function(e){
+                    var form = $(e[0]);
+                    form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
+                    style_search_form(form);
+                    $('.ui-jqgrid tr.ui-row-ltr td').css('padding','0');
+
+                },
+                afterRedraw: function(){
+                    style_search_filters($(this));
+                    $('.ui-jqgrid tr.ui-row-ltr td').css('padding','0');
+
+                }
+                ,
+                multipleSearch: true
+
+            },
+            {
+                //view record form
+                recreateForm: true,
+                beforeShowForm: function(e){
+                    var form = $(e[0]);
+                    $('.ui-jqgrid tr.ui-row-ltr td').css('padding','0');
+                    form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
+                }
+            }
+    ).navButtonAdd('#pager',
+            {
+                caption:"",
+                buttonicon:'icon-download-alt btn-download',
+                onClickButton: function(e){
+                    exportarExcel(e);
+                },
+                position:"last"
+            }
+    );
+
+
+    function style_edit_form(form) {
+        //enable datepicker on "sdate" field and switches for "stock" field
+        form.find('input[name=sdate]').datepicker({format:'yyyy-mm-dd' , autoclose:true})
+                .end().find('input[name=stock]')
+                .addClass('ace ace-switch ace-switch-5').wrap('<label class="inline" />').after('<span class="lbl"></span>');
+
+        //update buttons classes
+        var buttons = form.next().find('.EditButton .fm-button');
+        buttons.addClass('btn btn-small').find('[class*="-icon"]').remove();//ui-icon, s-icon
+        buttons.eq(0).addClass('btn-primary').prepend('<i class="icon-ok"></i>');
+        buttons.eq(1).prepend('<i class="icon-remove"></i>')
+
+        buttons = form.next().find('.navButton a');
+        buttons.find('.ui-icon').remove();
+        buttons.eq(0).append('<i class="icon-chevron-left"></i>');
+        buttons.eq(1).append('<i class="icon-chevron-right"></i>');
+    }
+
+    function style_delete_form(form) {
+        var buttons = form.next().find('.EditButton .fm-button');
+        buttons.addClass('btn btn-small').find('[class*="-icon"]').remove();//ui-icon, s-icon
+        buttons.eq(0).addClass('btn-danger').prepend('<i class="icon-trash"></i>');
+        buttons.eq(1).prepend('<i class="icon-remove"></i>')
+    }
+
+    function style_search_filters(form) {
+        form.find('.delete-rule').val('X');
+        form.find('.add-rule').addClass('btn btn-small btn-primary');
+        form.find('.add-group').addClass('btn btn-small btn-success');
+        form.find('.delete-group').addClass('btn btn-small btn-danger');
+        $('.ui-jqgrid tr.ui-row-ltr td').css('padding','0');
+
+
+    }
+    function style_search_form(form) {
+        var dialog = form.closest('.ui-jqdialog');
+        var buttons = dialog.find('.EditTable')
+        buttons.find('.EditButton a[id*="_reset"]').addClass('btn btn-small btn-info').find('.ui-icon').attr('class', 'icon-retweet');
+        buttons.find('.EditButton a[id*="_query"]').addClass('btn btn-small btn-inverse').find('.ui-icon').attr('class', 'icon-comment-alt');
+        buttons.find('.EditButton a[id*="_search"]').addClass('btn btn-small btn-purple').find('.ui-icon').attr('class', 'icon-search');
+        $('.ui-jqgrid tr.ui-row-ltr td').css('padding','0');
+    }
+
+    function beforeDeleteCallback(e) {
+        var form = $(e[0]);
+        if(form.data('styled')) return false;
+
+        form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+        style_delete_form(form);
+
+        form.data('styled', true);
+    }
+
+    function beforeEditCallback(e) {
+        var form = $(e[0]);
+        form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+        style_edit_form(form);
+    }
+
+
+    function styleCheckbox(table) {
+
+    }
+
+
+    function updateActionIcons(table) {
+
+    }
+
+    function updatePagerIcons(table) {
+        var replacement =
+        {
+            'ui-icon-seek-first' : 'icon-double-angle-left bigger-140',
+            'ui-icon-seek-prev' : 'icon-angle-left bigger-140',
+            'ui-icon-seek-next' : 'icon-angle-right bigger-140',
+            'ui-icon-seek-end' : 'icon-double-angle-right bigger-140'
+        };
+        $('.ui-pg-table:not(.navtable) > tbody > tr > .ui-pg-button > .ui-icon').each(function(){
+            var icon = $(this);
+            var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
+
+            if($class in replacement) icon.attr('class', 'ui-icon '+replacement[$class]);
+        })
+    }
+
+    function enableTooltips(table) {
+        $('.navtable .ui-pg-button').tooltip({container:'body'});
+        $(table).find('.ui-pg-div').tooltip({container:'body'});
+    }
+
+    function seleccionarFilasVisibles()
+    {
+        var allRowsOnCurrentPage = $('#grid-table').jqGrid('getDataIDs');
+        return allRowsOnCurrentPage;
+    }
+
+});
+</script>

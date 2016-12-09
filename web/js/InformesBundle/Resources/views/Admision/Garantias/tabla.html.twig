@@ -1,0 +1,41 @@
+<table id="tblGarantias" class="table table-bordered table-condensed table-hover zoom-pagos">
+	<thead>
+		<tr>
+			<th style="display:none;"></th> 
+			<th>N° Ingreso </th>
+			<th>Rut </th>
+			<th>Nombre del Paciente </th>
+			<th>Teléfonos</th>
+			<th>Tipo Cuenta </th>
+			<th>Financiador/Convenio</th>
+			<th>Medio de Pago</th>
+			<th>N° Documento </th>
+			<th>Monto</th>
+			<th>Fecha</th>
+			<th>Hora</th>
+			{# <th>Cajero</th> #}
+		</tr>
+	</thead>
+	<tbody> 
+		{% for garantia in arrGarantias %}
+			<tr>
+			<th style="display:none;"></th> 
+			<td> {{ garantia.numeroIngreso }} </td>
+			<td>{{ garantia.rutPersona }}-{{ garantia.digitoVerificador }}</td>
+			<td> {{ garantia.nombrePaciente }}</td>
+			<td> {{ garantia.telefonoMovil }}{% if garantia.telefonoMovil or garantia.telefonoTrabajo or garantia.telefonoFijo %}/ {% endif %} {{ garantia.telefonoTrabajo }}{% if garantia.telefonoTrabajo and garantia.telefonoFijo %}/ {% endif %} {{ garantia.telefonoFijo }}</td>
+			<td>{{ garantia.nombreTipoCuenta }} </td>
+			<td> {{ garantia.nombrePrevision }}  {% if garantia.nombreConvenio %} &nbsp/&nbsp{{ garantia.nombreConvenio }} {% endif %} </td>
+			<td>
+				{% for medio in garantia.mediosPago %}
+					- {{ medio.medioPago }}</br>
+				{% endfor %}
+			</td>
+		    <td>{{ garantia.numeroDocumento }}</td>
+			<td>{{ garantia.monto | hermes_obtener_monto }}</td>
+			<td>{{ garantia.fechaPago | date("d-m-Y") }}</td>
+			<td>{{ garantia.fechaPago | date("H:i") }}</td>
+			</tr>
+		{% endfor %}                    
+	</tbody>
+</table>

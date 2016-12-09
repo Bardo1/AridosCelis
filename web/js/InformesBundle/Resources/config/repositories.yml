@@ -1,0 +1,50 @@
+services:
+    informes.ReservaAtencion:
+        public: true
+        class: Rebsol\InformesBundle\Repository\ReservaAtencionRepository
+        arguments: { entityManager: "@doctrine.orm.entity_manager", serviceContainer: "@service_container" }
+
+    informes.Paciente:
+        public: true
+        class: Rebsol\InformesBundle\Repository\PacienteRepository
+        arguments: { entityManager: "@doctrine.orm.entity_manager", serviceContainer: "@service_container" }
+
+    informes.Presupuesto:
+        public: true
+        class: Rebsol\InformesBundle\Repository\PresupuestoRepository
+        arguments: { entityManager: "@doctrine.orm.entity_manager", serviceContainer: "@service_container" }
+
+    informes.Admision:
+        public: true
+        class: Rebsol\InformesBundle\Repository\AdmisionRepository
+        arguments: { entityManager: "@doctrine.orm.entity_manager", serviceContainer: "@service_container" }
+
+    informes.Pabellon:
+        public: true
+        class: Rebsol\InformesBundle\Repository\PabellonRepository
+        arguments: { entityManager: "@doctrine.orm.entity_manager", serviceContainer: "@service_container" }
+
+    informes.GestionStock:
+        public: true
+        class: Rebsol\InformesBundle\Repository\GestionStockRepository
+        arguments: { entityManager: "@doctrine.orm.entity_manager", serviceContainer: "@service_container" }
+    
+    informes.Traslado:
+        public: true
+        class: Rebsol\InformesBundle\Repository\TrasladoRepository
+        arguments: { entityManager: "@doctrine.orm.entity_manager", serviceContainer: "@service_container" }
+
+    informes.Prueba:
+        public: true
+        class: Rebsol\InformesBundle\Repository\PruebaRepository
+        arguments: { entityManager: "@doctrine.orm.entity_manager", serviceContainer: "@service_container" }
+
+    informes.ApoyoClinico:
+        public: true
+        class: Rebsol\InformesBundle\Repository\ApoyoClinicoRepository
+        arguments: { entityManager: "@doctrine.orm.entity_manager", serviceContainer: "@service_container" }
+    
+    informes.CuentaPaciente:
+        public: true
+        class: Rebsol\InformesBundle\Repository\CuentaPacienteRepository
+        arguments: { entityManager: "@doctrine.orm.entity_manager", serviceContainer: "@service_container" }

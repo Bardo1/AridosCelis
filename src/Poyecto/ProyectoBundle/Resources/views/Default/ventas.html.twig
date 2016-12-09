@@ -1,0 +1,507 @@
+
+{% if app.session.get('user') is null %}
+								<div class="intro-heading"><font size="8" color="black">Debe iniciar sesión</font></div>                        
+{% else %}
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+				<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title></title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- Latest compiled and minified CSS -->
+		<script src="http://www.bardo1.com/web1/cotiDocs/assets/js/jquery-1.12.0.js"></script>
+		<script src="http://www.bardo1.com/web1/cotiDocs/assets/js/jquery-1.12.0.min.js"></script>
+		<script src="{{ app.request.basepath }}/cotiDocs/assets/js/index1.default.load.js"> </script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<link rel="stylesheet" href="http://www.bardo1.com/web1/cotiDocs/vendor/css/sweetalert.css">
+		<link rel="stylesheet" href="http://www.bardo1.com/web1/cotiDocs/vendor/css/uikit.min.css">
+		<!-- <link rel="stylesheet" href="vendor/css/dataTables.uikit.min.css"> -->
+		<link rel="stylesheet" href="http://www.bardo1.com/web1/cotiDocs/assets/css/index.default.css">
+    <!-- archivos de la fecha -->
+  <link href="{{ app.request.basepath }}/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+  <link href="{{ app.request.basepath }}/css/bootstrap.min.css" rel="stylesheet"> 
+		<style>
+		</style>
+		<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+</head>
+<body>
+		<div class="container-fluid">
+<body>  
+<br>
+
+<img src="{{ app.request.basepath }}/imagenes/logo.png" style="text-align: center;" width="450" height="150" />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="btn btn-primary"><a href="{{ path('poyecto_proyecto_homepage') }}"><font color="white">Volver</font></a></button>
+<div class="row">
+ <div class="col-xs-6" >
+<div style="width:500px; height:150px;">
+	<table >
+	CRISTIAN ANDRES CELIS SANDOVAL
+	<br>
+	COMPRA Y VENTA DE ARIDOS 
+	<br>
+	ARRIENDO DE MAQUINARIAS
+	<br>
+	RUT: 15.398.529-4
+	<br>
+	AV. AMERICO VESPUCIO NORTE
+	<br>
+	PARCELA N° 51 - MAIPÚ
+	<br>
+	CEL: 9 9030 8359
+	<br>
+	contacto@aridoscelis.cl // www.aridoscelis.cl
+	<br>
+	<br>
+	<br>
+	<br>
+	</table>
+		<br>
+		<br>
+		<br>
+		<br>
+		</div>
+		<br>
+		</div>
+ <div class="col-xs-6" >
+<div style="width:500px; height:150px;" align="center">
+<table >
+NOTA DE TRABAJO DIARIO 
+<br>
+<div align="center">N°{{ numeroNotaVenta }}</div>
+<div align="center">{{ fechaEmision }}</div>
+<br>
+</table>
+<br>
+</div>
+<br>
+	</div>
+</div>
+<br>
+<br>
+
+ <div>
+<div>
+
+<form action="{{ path('ingresarNotaVenta') }}" method="POST" id="form1">
+<div>
+<div class="form-inline">
+   <div class="form-group">
+			 <label for="fechaMax">Fecha &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+			 <div style="width:200px;" class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+				<input class="form-control fechaMax" name="fechamax"  id="fechaMax" type="text" value='{{ fechaMax | date("d/m/Y") }}' readonly>
+				<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+				<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+				</div>
+    </div>
+</div>
+</div>
+<br>
+<br>
+<div class="form-inline">
+	 <div class="form-group">
+			<label for="cliente">Cliente: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+			<input type="text" class="form-control" id="cliente" name="cliente" placeholder="Ingrese cliente">
+	 </div>
+</div>
+<br>
+<div class="form-inline">
+		<div class="form-group">
+			<label for="direccion">Direccion:&nbsp;&nbsp;&nbsp;</label>
+			<input type="text" class="form-control"  name="direccion" id="direccion" placeholder="Ingrese direccion">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</div>
+		 <div class="form-group">
+				<div></div>
+		</div>
+		<div class="form-group">
+			<label for="comuna">Comuna:&nbsp;&nbsp;&nbsp;</label>
+			<input type="text" class="form-control" id="comuna" name="comuna" placeholder="Ingrese comuna">
+		</div>
+</div>
+<br>
+<div class="form-inline">
+		<div class="form-group">
+			<label for="fono">Fono: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+			<input type="text" class="form-control" id="fono" name="fono" placeholder="Ingrese fono">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</div>
+		<div class="form-group">
+				<div></div>
+		</div>
+		<div class="form-group">
+			<label for="vendedor">Vendedor:&nbsp;</label>
+			<input type="text" class="form-control" id="vendedor" name="vendedor" placeholder="Ingrese vendedor">
+		</div>
+</div>
+<br>
+</div>
+<hr>
+
+<div class="container">
+<div class="form-inline">
+
+		<div class="form-group">
+		<label for="horamaquinaria">Hora Maquinaria &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+		</div>
+
+		<div class="form-group">
+			<label for="horainicio">Hora inicio:</label>
+			<input type="text" class="form-control" id="horainicio" name="horainicio" placeholder="Ingrese hora inicio">
+			<label for="horainicio">Hrs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+		</div>
+
+		<div class="form-group">
+			<label for="horatermino">Hora termino:</label>
+			<input type="text" class="form-control" id="horatermino" name="horatermino" placeholder="Ingrese hora termino">
+			<label for="horatermino">Hrs</label>
+		</div>
+
+</div>
+<br>
+<div class="form-inline">
+	 <div class="form-group">
+			<label for="totalhoras">Total horas: </label>
+			<input type="text" class="form-control" id="totalhoras" name="totalhoras" placeholder="Total horas">     
+	 </div>
+</div>
+</div>
+</div>
+<br>
+</form>
+<br>
+<br>
+<div align="center">A continuación el detalle del producto solicitado</div>
+</div>
+</div>
+<h1 class="text-center text-uppercase text-primary small"> Registro de Productos </h1> 
+		<div class="container-fluid">
+				<hr>
+				<div class="container-fluid">
+						<div class="row">
+								<div >
+										<form id="form-registro-estudiante">
+<table id="prueba" class="" class="table table-bordered table-condensed table-hover">
+		<thead>
+					<tr>        
+							<th>Cantidad</th>
+							<th>Detalle</th>
+							<th>Valor Unitario</th>
+					</tr>
+		</thead>
+		<tbody>
+		<tr>     
+			<td>
+					<div class="form-group-sm col-lg-10">
+						<input name="cantidad" type="number" class="form-control" id="cantidad" placeholder="ingrese cantidad" />
+					</div>
+					<div id="mensage-3" class="text-danger hide" role="alert">
+			<small>Este campo no puede estar en blanco</small>
+			</div>
+			</td>
+			<td>
+				   <div class="form-group-sm col-lg-10">
+                <div class="col-md-2">
+                <select class="form-control selectpro" id="detalle" name="detalle" class="detalle" data-style="btn-success" style="width:300px; text-align: center;">
+                <option value="Arena gruesa">Arena gruesa </option>
+                <option value="Arena fina" >Arena fina </option>
+                <option value="Arena rubia">Arena rubia </option>
+                <option value="Gravilla chancada">Gravilla chancada </option>
+                <option value="Gravilla rodada">Gravilla rodada </option>
+                <option value="Ripio chancado">Ripio chancado </option>
+                <option value="Ripio rodado">Ripio rodado </option>
+                <option value="Estabilizado base">Estabilizado base </option>
+                <option value="Estabilizado integral">Estabilizado integral </option>
+                <option value="Bolón">Bolón </option>
+                <option value="Tierra vegetal areneada">Tierra vegetal areneada </option>
+                <option value="Tierra vegetal sin arnear">Tierra vegetal sin arnear </option>
+                <option value="Maicillo blanco">Maicillo blanco </option>
+                <option value="Maicillo amarillo">Maicillo amarillo </option>
+                <option value="Ladrillos">Ladrillos </option>
+                <option value="Pilares">Pilares </option>
+                <option value="Cadenas">Cadenas </option>
+                <option value="Cemento">Cemento </option>
+                <option value="Pastelones">Pastelones </option>
+                <option value="Pomasita ">Pomasita </option>
+                <option value="Retiro de escombros">Retiro de escombros </option>
+                <option value="Arriendo de maquinaria">Arriendo de maquinaria </option>
+                </select>
+           </div>
+					<div id="mensage-4" class="text-danger hide" role="alert">
+			<small>Este campo no puede estar en blanco</small>
+			</div>
+			</td>
+			<td>
+					<div class="form-group-sm col-lg-10">
+						<input name="valorunitario" type="number" class="form-control" id="valorunitario" placeholder="Ingrese valor unitario" />
+					</div>
+					<div id="mensage-5" class="text-danger hide" role="alert">
+				<small>Este campo no puede estar en blanco</small>
+			</div>
+			</td>
+		</tr> 
+		</tbody>
+
+		<div class="container-fluid" >
+			<div class="row">
+				<div class="col-lg-6">
+					<form id="form-registro-estudiante">
+						<table nam="comomandoestavola" class="table table-bordered table-striped table-hover uk-table uk-table-hover uk-table-striped">   
+						</table>
+						</form><!-- FIN REGISTRO DE ESTUADIANTE -->
+				</div>
+			</div>
+
+			<div class="col-lg-6">
+				<table id="data-table-lista-estudiantes" class="table table-bordered table-striped table-hover uk-table uk-table-hover uk-table-striped" align="right">
+					<caption> Acciones de botones </caption>
+					<thead>
+						<tr>
+							<th>
+								<small> Registrar Producto </small>
+							</th>
+							<th>
+								<button id="btn-registrar-estudiante" class="btn  btn-success btn-xs small">
+									<span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> Guardar
+								</button>
+							</th>
+						</tr>
+						<tr>
+							<th>
+								<small> Mostrar Total a pagar </small>
+							</th>
+							<th>
+								<button id="btn-mostrar-total-pago" class="btn  btn-warning btn-xs small">
+									<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Ver
+								</button>
+							</th>
+						</tr>
+						<tr>
+							<th>
+								<small> Remover lista de productos </small>
+							</th>
+							<th>
+								<button id="btn-remover-lista" class="btn  btn-danger btn-xs small">
+									<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Ver
+								</button>
+							</th>
+						</tr>
+					</thead>
+				</table> <!-- FIN LISTADO DE ESTUDIANTES -->
+			</div>
+			</div>
+			<hr>
+			<div class="col-lg-12">
+				<table id="data-table-lista-estudiantes" class="table table-bordered table-striped table-responsive table-hover uk-table uk-table-hover uk-table-striped">
+					<caption> Listado de Productos </caption>
+					<thead>
+						<tr id="insertar-th"> </tr>
+					</thead>
+					<tbody id="insertar-datos-estudiantes"> </tbody>
+				</table> <!-- FIN LISTADO DE ESTUDIANTES -->
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-xs-6" >
+<div style="width:500px; height:150px;">
+
+	</div>
+	</div>
+	<div class="col-xs-6" >
+	<div style="width:500px; height:150px;" align="center">
+	<table >
+ 
+	<div class="col-lg-12">
+				<table id="data-table-lista-estudiantes" class="table table-bordered table-striped table-responsive table-hover uk-table uk-table-hover uk-table-striped">
+					<caption> Listado de Productos </caption>
+					<thead>
+						<tr id="insertar-th1"> </tr>
+					</thead>
+					<tbody id="insertar-datos-productoconteo"> </tbody>
+				</table> <!-- FIN LISTADO DE ESTUDIANTES -->
+ </div>
+			<div>
+			<button id="exito" class="btn  btn-primary btn-xs small"  >
+			<span class="glyphicon glyphicon-file" ></span> Ingresar Nota Venta
+			</button>   
+			</div>
+ <br>
+ </table>
+ </div>
+ </div>
+</div>
+<br>
+<br>
+<br>
+<div>
+<div>
+<hr>
+Av. Americo Vespucio Norte Parcela 51, Maipú, Santiago/ Fono: (569): 9030 8359
+<br>
+caceliss@hotmail.com
+<br>
+
+
+<script src="https://code.jquery.com/jquery-2.2.4.js"   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="   crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="http://www.bardo1.com/web1/cotiDocs/vendor/js/jquery-2.2.4.js"><\/script>')</script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<!-- <script src="vendor/js/jquery.dataTables.min.js"></script> -->
+<!-- <script src="vendor/js/dataTables.uikit.min.js"></script> -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<!-- <script src="vendor/js/jquery.dataTables.min.js"></script> -->
+<!-- <script src="vendor/js/dataTables.uikit.min.js"></script> -->
+<script src="http://www.bardo1.com/web1/cotiDocs/vendor/js/sweetalert.min.js"></script>
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<script type="text/javascript" src="{{ app.request.basepath }}/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="{{ app.request.basepath }}/js/locales/bootstrap-datetimepicker.es.js" charset="UTF-8"></script>
+<script type="text/javascript">
+    $('.form_date').datetimepicker({
+        format: 'dd/mm/yyyy',
+        language:  'es',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0
+    });
+</script>
+<script>
+	(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+		function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+	e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+	e.src='https://www.google-analytics.com/analytics.js';
+	r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+	ga('create','UA-XXXXX-X');ga('send','pageview');
+</script>
+
+<script>
+
+	$("#exito").click(function(){
+		
+    	var fechamax       = $('#fechaMax').val();
+			var cliente        = $('#cliente').val();
+			var direccion      = $('#direccion').val();
+			var comuna         = $('#comuna').val();
+			var fono           = $('#fono').val();
+			var vendedor       = $('#vendedor').val();
+			var horainicio     = $('#horainicio').val();
+			var horatermino    = $('#horatermino').val();
+			var totalhoras     = $('#totalhoras').val();
+			var arregloDetalle = llamararreglo();
+      
+      // console.log(arregloDetalle);
+			if(cliente!=""){     
+											 var data = {
+											 horainicio:horainicio,
+			                 fechamax:fechamax,
+		                   cliente:cliente,
+			                 direccion:direccion,
+			                 comuna:comuna,
+			                 fono:fono,
+			                 vendedor:vendedor, 
+			                 horainicio:horainicio,
+			                 horatermino:horatermino,
+			                 totalhoras:totalhoras,
+			                 arregloDetalle:arregloDetalle,
+											 };
+											 $.ajax({
+											 type: 'POST',
+											 url: "{{ path('ingresarNotaVenta') }}",
+											 data:data,
+											 success: function(resultado){
+												console.log(resultado);
+                         var response = $.parseJSON(resultado);
+												if(response==true){
+													cargaMensajesAlert();
+												}else{
+                          var mensaje0 = "No se ha podido ingresar la nota de venta ya que el Producto : ";
+                          var mensaje1 = response.Detalle;
+                          var mensaje2 = ". Excede la cantidad registrada en el stock, por un total de : ";
+                          var mensaje3 = response.Valor;
+                          var mensaje  = mensaje0 + mensaje1 +mensaje2 + mensaje3; 
+                          cargaMensajesAlertMalo(mensaje);
+												}											 
+											 }
+
+											 });           
+				}else{
+				console.log("22222222");
+				console.log("33333333");
+			 }
+  });
+
+     function cargaMensajesAlert() { // genera mensajes de alerta
+      swal({
+        title: 'Agregar',
+        text: 'la nota de venta ha sigo agregada con exito',
+        type: 'success',
+        confirmButtonColor: '#b0e195',
+        confirmButtonText: 'Aceptar',
+        closeOnConfirm: true
+      }, function() {
+         localStorage.removeItem('data.estudiante.session');
+         location.reload();
+      });
+    }
+
+    function cargaMensajesAlertMalo($texto) { // genera mensajes de alerta
+      swal({
+        title: 'Error',
+        text: $texto,
+        type: 'error',
+        confirmButtonColor: '#d9534f',
+        confirmButtonText: 'Aceptar',
+        closeOnConfirm: true
+      }, function() {
+       // document.addEventListener('click', self.cargaListaDeEstudiantes);
+      });
+    }
+
+
+		function llamararreglo () { // genera listado de estudiantes
+
+			var JsonParseParametrosDatos = JSON.parse(localStorage.getItem('data.estudiante.session')),
+
+			arregloDetalle = new Array("4","4");
+		  var cont=0;
+			if (JsonParseParametrosDatos !== null) {
+
+				$.each(JsonParseParametrosDatos.datosEstudiante, function(key, field) {
+
+					arregloDetalle[cont++] =  field.cantidad;
+					arregloDetalle[cont++] =  field.detalle; 
+					arregloDetalle[cont++] =  field.valorUnitario; 
+					arregloDetalle[cont++] =  field.valorTotal;
+
+				});
+
+			} else {
+
+				arregloDetalle += null;
+			}
+	
+	  	return arregloDetalle;
+          
+		}
+
+</script>
+
+</body>
+</html>
+
+	{% endif %}

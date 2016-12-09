@@ -1,0 +1,194 @@
+{% import 'RebsolHermesBundle:UI/Macros:dependencias.html.twig' as macroDependencias %}
+{% block body -%}
+<br>
+<div class="alert alert-info" style="margin-bottom:0">
+    <strong>Informe de Producción: </strong> Realice los filtros correspondientes y presione "Listar"
+    <span style="float:right;" class="btn btn-info btn-mini tooltip-info" data-rel="popover" data-placement="left" title="" data-content="Este informe nos muestra por uno o varios profesionales la cantidad de consultas realizadas y pagadas en un periodo de tiempo." data-original-title="&lt;i class='icon-ok blue'&gt;&lt;/i&gt; Informe de Producción"><i class="icon-question-sign"></i>Ayuda</span>
+</div>
+<div class="well well-small" style="margin-bottom:0">
+    <select  id="sucursal" style="margin-bottom:0">
+        <option value="">Selecc. una sucursal</option>
+        <option value="todas">Todas</option>
+        {% for sucursal in sucursales %}
+        <option value="{{sucursal.id}}" {% if idSucursal == sucursal.id %} selected="selected" {% endif %} >{{sucursal.nombreSucursal}}</option>
+        {% endfor %}
+    </select>
+    <select   id="especialidad" style="margin-bottom:0">
+        <option value="">Selecc. una especialidad</option>
+        <option value="todas">Todas</option>
+        {% for especialidad in especilidades %}
+        <option value="{{especialidad.idEspecialidad}}"  >{{especialidad.nombre}}</option>
+        {% endfor %}
+    </select>
+
+    <select    id="profesional" style="margin-bottom:0">
+        <option value="">Selecc. un profesional</option>
+            <option value="{{profesionales.id}}"  selected="selected">{{profesionales.nombre}}</option>
+    </select>
+
+    <div class="input-append" style="margin-bottom:0">
+        <input class="date-picker" id="fdesde" type="text" data-date-format="dd-mm-yyyy">
+        <span class="add-on">
+            <i class="icon-calendar"></i>
+        </span>
+    </div>
+    <div class="input-append" style="margin-bottom:0">
+        <input class="date-picker" id="fhasta" type="text" data-date-format="dd-mm-yyyy">
+        <span class="add-on">
+            <i class="icon-calendar"></i>
+        </span>
+    </div>
+    <button id="btnListar" class="btn btn-primary btn-small"><i class="icon-bar-chart"></i> Listar</button>
+</div>
+<div class="divinforme"></div>
+<form class="hidden" name="formImprimirProduccion" id="formImprimirProduccion" method="POST" action="{{path('Informes_FichaClinica_Produccion_Imprimir')}}" target="_blank">
+    <input  name ="fechaDesde" value="" id="fechaDesde" /> 
+    <input  name ="fechaHasta" value="" id="fechaHasta" /> 
+    <input  name ="idEspecialidad" value="" id="idEspecialidad" /> 
+    <input  name ="idProfesional" value="" id="idProfesional" /> 
+    <input  name ="idSucursal" value="" id="idSucursal" /> 
+</form>
+
+{% endblock %}
+{% block postcss %}
+<link rel="stylesheet" type="text/css" media="screen" href="{{asset('bundles/hermes/acev12/css/jquery-ui-1.10.3.full.min.css')}}" />
+<link rel="stylesheet" href="{{asset('bundles/hermes/acev12/css/ui.jqgrid.css')}}" />
+<link href="{{ asset('css/bootstrap-timepicker.css') }}" rel="stylesheet" media="screen">
+<link href="{{ asset('css/datepicker.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="{{asset('bundles/hermes/acev12/css/uncompressed/jqgrid-informes.css')}}" />
+<style>
+.jqgrow td {
+    vertical-align: middle;
+}
+</style>
+{% endblock %}
+{% block scripts %}
+<script src="{{asset('bundles/hermes/acev12/js/jqGrid/i18n/grid.locale-es.js')}}" type="text/javascript"></script>
+<script src="{{asset('bundles/hermes/acev12/js/jqGrid/jquery.jqGrid.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('bundles/hermes/acev12/js/ace-extra.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/bootstrap-timepicker.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
+<script src="{{ asset('js/date-time/locales/bootstrap-datepicker.es.js') }}" charset="UTF-8"></script>
+<script src="{{ asset('js/jquery.maskedinput.min.js') }}"></script>
+{{ macroDependencias.datetime() }}
+<script type="text/javascript">
+
+$('#sucursal').on('change',function(){
+    if ($(this).val() == '') {
+        $('#especialidad').html("");
+        $('#especialidad').attr('disabled',true);
+        $('#profesional').html("");
+        $('#profesional').attr('disabled',true);
+    } else {
+        cargarEspecialidades(this);
+    };
+});
+
+
+
+
+function cargarEspecialidades(obj){
+    var ruta = '{{path('informesEspecialidadesPorSucursal')}}';
+    $.post(ruta, {idSucursal:$(obj).val()}, function(resultado){
+        result = $.parseJSON(resultado);
+        var options = '<option value=""> Selecc. una especialidad </option>';
+        options+='<option value="todas"> Todas</option>';
+        for(var i=0;i<result.length;i++)
+        {
+            options += "<option value="+result[i].id+">"+result[i].nombre+"</option>";
+        };
+        $('#profesional').html("");
+        $('#profesional').attr('disabled',true);
+        $('#especialidad').html(options);
+        $('#especialidad').show();
+        $('#especialidad').attr('disabled',false);
+    }).error(function(xhr, textStatus, errorThrow){
+        bootbox.dialog(xhr.responseText,[{
+            "label" : "<i class='icon-check-sign'></i> Aceptar",
+            "class" : "btn-info btn-mini",
+            "callback": function(){
+            }
+        }]);
+    });
+}
+
+
+function listarInforme(){
+
+    var data        = {
+        varSucursal     : $('#sucursal').val(),
+        varEspecialidad : $('#especialidad').val(),
+        varProfesional  : $('#profesional').val(),
+        varDesde        : $('#fdesde').val(),
+        varHasta        : $('#fhasta').val()
+    };
+
+    var ruta  = "{{ path('Informes_FichaClinica_Produccion_resultado') }}";
+
+
+    $.post(ruta,data,function(results){
+        $('.divinforme').html('');
+        $('.divinforme').html(results);
+
+    });
+
+}
+
+$(document).ready( function(){
+
+    $('.ui-jqgrid tr.ui-row-ltr td').css('padding','0');
+
+    listarInforme();
+
+    $('#btnListar').on('click',function(){
+        listarInforme();
+    });
+});
+
+</script>
+
+<script>
+function exportarExcel(e) {
+    var rowNumSelect = $("option[value=9999999999999]").closest('select').val();
+
+    $("#informe").jqGrid('setGridParam', { rowNum:9999999999999 }).trigger('reloadGrid');
+
+    var a = document.createElement('a');
+    var data_type = 'data:application/vnd.ms-excel';
+
+    var table_title = $('.ui-jqgrid-title');
+    var newtable  = table_title.html();
+
+    var table_header = $('.ui-jqgrid-hdiv');
+    var newtable  = newtable + '' + table_header.html();
+
+    var table_body = $('.ui-jqgrid-bdiv');
+    var newtable  = newtable + '' + table_body.html();
+
+    var table_div = newtable;
+    var table_html  = table_div.replace(/ /g, '%20');
+
+    a.href = data_type + ', ' + table_html;
+    a.download = 'exported_table_.xls';
+    a.click();
+    e.preventDefault();
+    $("#informe").jqGrid('setGridParam', { rowNum:rowNumSelect }).trigger('reloadGrid');
+    $('.ui-jqgrid tr.ui-row-ltr td').css('padding','0');
+}
+
+
+
+    function exportarPDF(e) {
+        $('#fechaDesde').val($('#fdesde').val());
+        $('#fechaHasta').val($('#fhasta').val());
+
+        $('#idSucursal').val($('#sucursal').val());
+        $('#idEspecialidad').val($('#especialidad').val());
+        $('#idProfesional').val($('#profesional').val());
+
+        $('#formImprimirProduccion').submit();
+    }
+
+</script>
+
+{% endblock %}

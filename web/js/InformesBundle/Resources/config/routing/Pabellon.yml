@@ -1,0 +1,67 @@
+Pabellon_SolicitudesGeneradas_Inicio:
+ pattern: /SolicitudesGeneradas
+ defaults: { _controller: InformesBundle:Pabellon\InformesSolicitudesGeneradas:index }
+
+Pabellon_SolicitudesGeneradas_Ver:
+ pattern: /verSolicitudesGeneradas
+ defaults: { _controller: InformesBundle:Pabellon\InformesSolicitudesGeneradas:verSolicitudesGeneradas }
+
+Pabellon_CirugiasRealizadasProfesional_Ver:
+ pattern: /verCirugiasRealizadasProfesional
+ defaults: { _controller: InformesBundle:Pabellon\InformesCirugiasRealizadasPorProfesional:verCirugiasRealizadasProfesional }
+
+Pabellon_CirugiasRealizadasEspecialidad_Ver:
+ pattern: /verCirugiasRealizadasEspecialidad
+ defaults: { _controller: InformesBundle:Pabellon\InformesCirugiasRealizadasPorEspecialidad:verCirugiasRealizadasEspecialidad }
+
+Pabellon_SolicitudesGeneradas_FiltrarEmitidos:
+ pattern:  /FiltrarEmitidos
+ defaults: { _controller: InformesBundle:Pabellon\InformesSolicitudesGeneradas:filtrarEmitidos }
+
+Pabellon_FiltrarCirugiasPorEspecialidad:
+ pattern:  /FiltrarCirugiasEspecialidad
+ defaults: { _controller: InformesBundle:Pabellon\InformesCirugiasRealizadasPorEspecialidad:filtrarCirugias }
+
+Pabellon_CirugiasProfesionales_Filtrar:
+ pattern:  /FiltrarCirugiasProfesionales 
+ defaults: { _controller: InformesBundle:Pabellon\InformesCirugiasRealizadasPorProfesional:filtrar }
+
+Informes_Pabellon_SolicitudesGeneradas:
+ pattern:  /SolicitudesGeneradas
+ defaults: { _controller: InformesBundle:Pabellon\InformesSolicitudesGeneradas:verSolicitudesGeneradas }
+
+Informes_Pabellon_EmitidosResumidos:
+ pattern: /EmitidosResumidos
+ defaults: { _controller: InformesBundle:Pabellon\InformesSolicitudesGeneradas:verEmitidosResumidos }
+
+Informes_Pabellon_UsuariosPorSucursal:
+ pattern: /UsuariosPorSucursal
+ defaults: { _controller: InformesBundle:Pabellon\InformesSolicitudesGeneradas:obtenerUsuariosPorSucursal }
+
+Informes_Pabellon_ProfesionalesPorSucursal:
+ pattern: /ProfesionalesPorSucursal
+ defaults: { _controller: InformesBundle:Pabellon\InformesCirugiasRealizadasPorProfesional:obtenerProfesionalesPorSucursal }
+
+Informes_Pabellon_Especialidad_Por_Sucursal:
+ pattern: /EspecialidadPorSucursal
+ defaults: { _controller: InformesBundle:Pabellon\InformesCirugiasRealizadasPorEspecialidad:obtenerEspecialidadesPorSucursal }
+
+Informes_Pabellon_FiltrarEmitidosResumidos:
+ pattern: /FiltrarEmitidosResumidos
+ defaults: { _controller: InformesBundle:Pabellon\InformesSolicitudesGeneradas:filtrarEmitidosResumidos }
+
+Informes_Pabellon_ObtenerPrestacionesPorSolicitudesGeneradas:
+ pattern: /ObtenerPrestacionesPorSolicitudesGeneradas
+ defaults: { _controller: InformesBundle:Pabellon\InformesSolicitudesGeneradas:obtenerPrestacionesPorSolicitudesGeneradas }
+
+Informe_Pabellon_Cirugias_Por_Especialidad:
+ pattern: /CirugiasPorEspecialidad
+ defaults: { _controller: InformesBundle:Pabellon\InformesCirugiasRealizadasPorEspecialidad:index }
+
+Informe_Pabellon_Cirugias_Por_Profesional:
+ pattern: /CirugiasPorProfesional
+ defaults: { _controller: InformesBundle:Pabellon\InformesCirugiasRealizadasPorProfesional:index }
+
+
+
+

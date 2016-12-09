@@ -1,0 +1,44 @@
+<table id="tblPacientesAdmsionesAnuladas" class="table table-condensed table-striped table-bordered" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th style="display:none;"></th> 
+            <th>N° Admisión </th> 
+            <th>Fecha Admisión </th> 
+            <th>Hora Adm </th> 
+            <th>Rut </th> 
+            <th>Nombre Paciente </th> 
+            <th>Tipo Cuenta </th>
+            <th>Plan </th> 
+            <th>Convenio </th> 
+            <th>Usuario Admisión </th>                          
+            <th>Usuario Admisión </th> 
+            <th>Fecha Anulación </th>  
+            <th>Usuario Anulación </th>  
+            <th>Motivo Anulación </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for PacienteAdmitido in arrPacientesAdmitidos %}
+        <tr>
+            <th style="display:none;"></th>
+                <td>{{ PacienteAdmitido.numeroAdmision  }}</td>
+                <td>{{ PacienteAdmitido.fechaAdmision | hermes_date_format }}</td>
+                <th>Hora Adm</th> 
+                <td>{{ PacienteAdmitido.rut ~ "-" ~ PacienteAdmitido.dV | hermes_rut_format }}</td>
+                <td>{{ obtenerNombrePaciente(PacienteAdmitido.nombrePaciente,PacienteAdmitido.apPaciente,PacienteAdmitido.amPaciente)}}</td>
+                <td>{{ PacienteAdmitido.nombreTipoCuenta }}</td>
+                <td>{{ PacienteAdmitido.nombrePlanq}} {{ PacienteAdmitido.nombrePlanr}}</td>
+                <td>{% if PacienteAdmitido.nombreConvenio is not empty %}
+                {{ PacienteAdmitido.nombreConvenio}}
+                {% else %}
+                {{ PacienteAdmitido.nombreFinanciador}}
+                {% endif %} 
+                </td> 
+                <td>{{ obtenerNombreUsuario(PacienteAdmitido.nombreUsuario,PacienteAdmitido.apUsuario,PacienteAdmitido.amUsuario) }}</td> 
+                <th>Fecha Anulación </th>  
+                <th>Usuario Anulación </th>  
+                <th>Motivo Anulación </th>
+        </tr>
+        {% endfor %}        
+    </tbody>
+</table><!-- table -->

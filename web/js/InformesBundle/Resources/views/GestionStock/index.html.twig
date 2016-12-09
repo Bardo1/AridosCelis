@@ -1,0 +1,52 @@
+{% extends 'InformesBundle::layout.html.twig' %}
+
+{% block body %}
+	<div id="breadcrumbs" class="navbar-fixed-top">
+		<ul class="breadcrumb">
+			<li>
+				<i class="icon-home"></i> <a href="{{ path('Dashboard_home') }}">Home</a>
+				<span class="divider"><i class="icon-angle-right"></i></span>
+			</li>
+			<li>
+				<a href="{{ path('informesInicio') }}">Informes</a>
+				<span class="divider"><i class="icon-angle-right"></i></span>
+			</li>
+			<li>
+				<a href="{{path ('informesPorModulo', { strNombreModulo: 'GestionStock' } )}}">Gestión Stock</a>
+				<span class="divider"><i class="icon-angle-right"></i></span>
+			</li>
+			<li>{{ titulo }}</li>
+		</ul>
+	</div><!-- breadcrumbs -->
+
+    <div id="main"></div>
+{% endblock %}
+
+{% block postcss %}
+	<link href="{{ asset('css/tipped/tipped.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/chosen.css') }}" rel="stylesheet"> 
+    <link href="{{ asset('css/datepicker.css') }}" rel="stylesheet">
+    {% stylesheets '@InformesBundle/Resources/public/css/TableTools.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+
+    <style>
+    	.dropdown-menu li, .dropdown-menu li:hover, .chzn-container-single .chzn-single:hover, .chzn-container-single .chzn-single span:hover{ color:#000; }
+    	.dropdown-menu li{ margin-top:10px; }	
+    </style>
+{% endblock %}
+
+{% block scripts %}
+	<script>
+        $('#main').addClass('text-center').css({'font-size': '50px', 'color': '#4c8fbd'}).html('<i class="icon-spinner icon-spin"></i>');
+		$.ajax({
+            type: "POST",
+            url: "{{ path(url) }}",
+            success: function(data)
+            {
+                $('#main').removeClass('text-center').removeAttr('style');
+                $('#main').html(data);
+            }
+        });
+	</script>
+{% endblock %}

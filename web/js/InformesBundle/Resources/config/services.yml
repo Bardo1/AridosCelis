@@ -1,0 +1,4 @@
+services:
+    # informes.acme:
+    #     public: true
+    #     class: Rebsol\InformesBundle\Services\AcmeRepositoryasds

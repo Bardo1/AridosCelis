@@ -1,0 +1,155 @@
+<div class="table-header">
+    Realice los filtros correspondientes y presione "Filtrar"
+</div><!-- table-header -->
+
+<div class="well well-small form-inline" style="margin-bottom:0px;">
+
+    <select id="serviciosSelect" class="chosen">
+        <option value="">Seleccionar Servicios</option>
+        {% for arrServicios in arrServicios %}
+        <option value="{{ arrServicios.idServicio }}">{{ arrServicios.nombreServicio }}</option>
+        {% endfor %}
+        </select>
+
+        <select id="mesesSelect" class="chosen">
+        <option value="">Seleccionar Mes</option>
+        <option value="01">Enero</option>
+        <option value="02">Febrero</option>
+        <option value="03">Marzo</option>
+        <option value="04">Abril</option>
+        <option value="05">Mayo</option>
+        <option value="06">Junio</option>
+        <option value="07">Julio</option>
+        <option value="08">Agosto</option>
+        <option value="09">Septiembre</option>
+        <option value="10">Octubre</option>
+        <option value="11">Noviembre</option>
+        <option value="12">Diciembre</option>
+        </select>
+
+        <select id="aniosSelect" class="chosen">
+        <option value="">Seleccionar Año</option>
+        <option value="2015">2015</option>
+        <option value="2014">2014</option>
+        <option value="2013">2013</option>
+        <option value="2012">2012</option>
+        <option value="2011">2011</option>
+        <option value="2010">2010</option>
+        <option value="2009">2009</option>
+        <option value="2008">2008</option>
+        </select>
+
+    <button id="btnFiltrar" class="btn btn-primary btn-small"><i class="icon-filter"></i> Filtrar</button>
+
+    <div id="errorFiltrar" class="text-error"></div>
+
+</div><!-- well -->
+<div class="table-header header-color-grey">
+  <i class="icon-list-alt"></i> {{ titulo }}
+</div><!-- table-header -->
+
+<div id="contenedorTabla">{{ include(urlTabla) }}</div>
+<div class="table-footer">
+</div><!-- table-footer -->
+<!-- chosen -->
+<script src="{{ asset('js/chosen.jquery.min.js') }}"></script>
+<!-- dataTables -->
+{% javascripts '@InformesBundle/Resources/public/js/jquery.dataTables.min.js' %}
+<script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+{% javascripts '@InformesBundle/Resources/public/js/TableTools.js' %}
+<script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+<script src="{{asset('js/jquery.dataTables.bootstrap.js') }}"></script>  
+<!-- timepicker - datepicker -->
+<script src="{{ asset('js/bootstrap-timepicker.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
+<script src="{{ asset('js/date-time/locales/bootstrap-datepicker.es.js') }}" charset="UTF-8"></script>
+<script src="{{ asset('js/tipped/spinners.min.js') }}"></script>
+<script src="{{ asset('js/tipped/tipped.js') }}"></script>
+
+<script>
+
+    $('.chosen').chosen();
+    $('.date-picker').datepicker({
+        format: 'dd-mm-yyyy',
+        language: 'es',
+        autoclose: true
+    });
+
+    generarDataTable('tbl');
+
+    $("#sucursalesSelect").change(function(){
+        $.ajax({
+            type: "POST",
+            url: "{{ path('Informes_Presupuesto_UsuariosPorSucursal') }}",
+            data: { idSucursal: $("#sucursalesSelect option:selected").val() }, 
+            dataType: "json",
+            success: function(data)
+            {
+                var option = '<option value="">Seleccionar Usuario</option>';
+                for(i=0; i<data.length; i++){
+                    option += '<option value="' + data[i]["id"] + '">' + data[i]["nombre"] + " " + data[i]["appat"] + '</option>';
+                }
+                $("#usuariosSelect").html(option);
+                $("#usuariosSelect").val('').trigger("liszt:updated");
+            }
+        });
+    }); // #sucursalesSelect
+
+    $("#btnFiltrar").click(function(){
+        if($("#aniosSelect").val() == "" || $("#mesesSelect").val() == ""){
+            $("#errorFiltrar").html('<i class="icon-remove"></i> Debes seleccionar una fecha de inicio y una fecha de término');
+            return false;
+        }
+        $("#errorFiltrar").html('');
+
+        $.ajax({
+            type: "POST",
+            url: "{{ path(urlFiltrar) }}",
+            data: { 
+                idServicio: $("#serviciosSelect option:selected").val(),
+                idAnio: $("#aniosSelect option:selected").val(),
+                idMes: $("#mesesSelect option:selected").val()  }, 
+            beforeSend: function()
+            {
+                $("#btnFiltrar").html('<i class="icon-spinner icon-spin"></i> Filtrando...');
+            },
+            success: function(data)
+            {
+                $("#contenedorTabla").html(data);
+                generarDataTable('tbl');
+                $("#btnFiltrar").html('<i class="icon-filter"></i> Filtrar');
+            }
+        });
+    }); // #btnFiltrar
+
+    function generarDataTable(id){
+        $("#" + id).DataTable({
+            "oLanguage": {
+                "sUrl": "{{ asset('js/datatables/dataTables.es.txt') }}"
+            },
+            "dom": 'Tlfrtip',
+            "tableTools": {
+                "sSwfPath": "{{ asset('js/datatables/TableTools/swf/copy_csv_xls_pdf.swf') }}",
+                "aButtons": [
+                {
+                    "sExtends": "print",
+                    "sButtonText": "<i class='icon-print'></i>",
+                    "sToolTip": "Imprimir"
+                },
+                {
+                    "sExtends": "xls",
+                    "sButtonText": "<i class='icon-file-text'></i>",
+                    "sToolTip": "Exportar a Excel"
+                },
+                {
+                    "sExtends": "pdf",
+                    "sButtonText": "<i class='icon-save'></i>",
+                    "sToolTip": "Exportar a PDF"
+                }
+                ]
+            }
+        });
+    }
+</script>

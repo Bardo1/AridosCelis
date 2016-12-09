@@ -1,0 +1,44 @@
+<table id="tblPacientesAdmsionesAnuladas" class="table table-condensed table-striped table-bordered" cellspacing="0" width="100%">
+     <thead>
+        <tr>
+            <th style="display:none;"></th> 
+            <th>N° Admisión </th> 
+            <th>Fecha Admisión </th> 
+            <th>Hora Adm </th> 
+            <th>Rut </th> 
+            <th>Nombre Paciente </th> 
+            <th>Tipo Cuenta </th>
+            <th>Plan </th> 
+            <th>Financiador/Convenio</th> 
+            <th>Usuario Admisión </th>                          
+            <th>Fecha Anulación </th>  
+            <th>Usuario Anulación </th>  
+            <th>Motivo Anulación </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for AdmisionesAnuladas in arrPacientesAdmisionesAnuladas %}
+        <tr>
+            <th style="display:none;"></th>
+
+                <td>{{ AdmisionesAnuladas.numeroAdmision  }}</td>
+                <td>{{ AdmisionesAnuladas.fechaAdmision | hermes_date_format }}</td>
+                <td>{{ AdmisionesAnuladas.fechaAdmision | date(" g:ia") }}</td> 
+                <td>{{ AdmisionesAnuladas.rut ~ "-" ~ AdmisionesAnuladas.dV | hermes_rut_format }}</td>
+                <td>{{ obtenerNombrePaciente(AdmisionesAnuladas.nombrePaciente, AdmisionesAnuladas.apPaciente, AdmisionesAnuladas.amPaciente)}}</td>
+                <td>{{ AdmisionesAnuladas.nombreTipoCuenta }}</td>
+                <td>{{ AdmisionesAnuladas.nombrePlanq}} {{ AdmisionesAnuladas.nombrePlanr}}</td>
+                <td>{% if AdmisionesAnuladas.nombreConvenio is not empty %}
+                {{ AdmisionesAnuladas.nombreConvenio}}
+                {% else %}
+                {{ AdmisionesAnuladas.nombreFinanciador}}
+                {% endif %} 
+                </td> 
+                <td>{{ obtenerNombreUsuario(AdmisionesAnuladas.nombreUsuario, AdmisionesAnuladas.apUsuario, AdmisionesAnuladas.amUsuario) }}</td> 
+                <td>{{ AdmisionesAnuladas.fechaAnulacion | hermes_date_format  }}</td>
+                <td>{{ obtenerNombreUsuario(AdmisionesAnuladas.nombrePAnulacion, AdmisionesAnuladas.apellidoPaternoAnulacion, AdmisionesAnuladas.apellidoMaternoAnulacion) }}</td>  
+                <td>{{ AdmisionesAnuladas.motivoAnulacion }}</td>
+        </tr>
+        {% endfor %}        
+    </tbody>
+</table><!-- table -->

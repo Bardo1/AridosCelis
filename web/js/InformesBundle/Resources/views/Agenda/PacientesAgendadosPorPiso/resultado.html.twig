@@ -1,0 +1,46 @@
+{% for dato in datosDashboard %}
+
+        <div class="span6 center">
+            <h3 class="header smaller lighter green"> {{ dato.nombreUbicacion}}</h3>
+
+            <div id="reservas-chart_{{dato.numero}}">
+            </div>
+        </div>
+
+{% endfor %}
+
+<script type="text/javascript">
+        {% for dato in datosDashboard %}
+
+            var data = [
+
+               {% for dato2 in auxDatos %}
+                    {% if dato.numero == dato2.idUbicacion %}
+                        ["{{ dato2.piso }} Piso", "{{ dato2.total }}"],
+                    {% endif %}        
+                {% endfor %}
+
+            ];
+            var idCampo = "#reservas-chart_{{dato.numero}}";
+            var sales_charts = $(idCampo).css({'width': '100%', 'height': '220px'});
+            $.plot($(idCampo), [ data ], {
+                series: {
+                    lines: {
+                        show: true
+                    },
+                    points: {
+                        show: true
+                    }
+                },
+                colors: ["#9ABC32"],
+                xaxis: {
+                    mode: "categories",
+                    tickLength: 0
+                },
+                yaxis: {
+                    tickDecimals: 0
+                }
+            });
+        {% endfor %}   
+</script>
+

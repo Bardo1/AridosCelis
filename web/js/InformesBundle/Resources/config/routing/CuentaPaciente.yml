@@ -1,0 +1,12 @@
+
+CuentaPaciente_CuentasPendientesDeCerrar_Inicio:
+ pattern:  /CuentasPendientesDeCerrar 
+ defaults: { _controller: InformesBundle:CuentaPaciente\CuentasPendientesDeCerrar:index }
+
+CuentaPaciente_CuentasPendientesDeCerrar_Ver:
+ pattern:  /VerCuentasPendientesDeCerrar
+ defaults: { _controller: InformesBundle:CuentaPaciente\CuentasPendientesDeCerrar:ver }
+
+CuentaPaciente_CuentasPendientesDeCerrar_Filtrar:
+ pattern:  /FiltrarCuentasPendientesDeCerrar
+ defaults: { _controller: InformesBundle:CuentaPaciente\CuentasPendientesDeCerrar:filtrar }

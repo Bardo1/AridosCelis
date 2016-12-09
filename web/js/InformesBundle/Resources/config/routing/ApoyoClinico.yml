@@ -1,0 +1,23 @@
+ApoyoClinico_UnidadesPorSucursal:
+ pattern:  /UnidadesPorSucursal
+ defaults: { _controller: InformesBundle:ApoyoClinico\PrestacionesRealizadas:obtenerUnidadesPorSucursal }
+
+ApoyoClinico_ServiciosPorUnidad:
+ pattern:  /ServiciosPorUnidad
+ defaults: { _controller: InformesBundle:ApoyoClinico\PrestacionesRealizadas:obtenerServiciosPorUnidad }
+
+ApoyoClinico_BodegasPorServicio:
+ pattern:  /BodegasPorServicio
+ defaults: { _controller: InformesBundle:ApoyoClinico\PrestacionesRealizadas:obtenerBodegasPorServicio }
+
+ApoyoClinico_PrestacionesRealizadas_Inicio:
+ pattern:  /AdmisionesAnuladas 
+ defaults: { _controller: InformesBundle:ApoyoClinico\PrestacionesRealizadas:index }
+
+ApoyoClinico_PrestacionesRealizadas_Ver:
+ pattern:  /VerAdmisionesAnuladas
+ defaults: { _controller: InformesBundle:ApoyoClinico\PrestacionesRealizadas:ver }
+
+ApoyoClinico_PrestacionesRealizadas_Filtrar:
+ pattern:  /FiltrarAdmisionesAnuladas
+ defaults: { _controller: InformesBundle:ApoyoClinico\PrestacionesRealizadas:filtrar }

@@ -1,0 +1,49 @@
+{% extends 'InformesBundle::layout.html.twig' %}
+
+{% block body %}
+    <div id="breadcrumbs" class="navbar-fixed-top">
+        <ul class="breadcrumb">
+            <li>
+                <i class="icon-home"></i> <a href="{{ path('Dashboard_home') }}">Home</a>
+                <span class="divider"><i class="icon-angle-right"></i></span>
+            </li>
+            <li>
+                <a href="{{ path('informesInicio') }}">Informes</a>
+                <span class="divider"><i class="icon-angle-right"></i></span>
+            </li>
+            <li>
+                <a href="{{path ('informesPorModulo', { strNombreModulo: 'Admision' } )}}">Admisión</a>
+                <span class="divider"><i class="icon-angle-right"></i></span>
+            </li>
+            <li>
+                Pacientes Admisiones Anuladas
+            </li>
+        </ul>
+    </div><!-- breadcrumbs -->
+    <div id="pacientes"></div>
+{% endblock %}
+
+{% block postcss %}
+    <link href="{{ asset('css/tipped/tipped.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/chosen.css') }}" rel="stylesheet" /> 
+    <link href="{{ asset('css/bootstrap-timepicker.css') }}" rel="stylesheet" media="screen">
+    <link href="{{ asset('css/datepicker.css') }}" rel="stylesheet">
+    {% stylesheets '@InformesBundle/Resources/public/css/TableTools.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        $('#pacientes').addClass('text-center').css({'font-size': '50px', 'color': '#4c8fbd'}).html('<i class="icon-spinner icon-spin"></i>');
+        $.ajax({
+            type: "POST",
+            url: "{{ path('Admision_PacientesAdmisionesAnuladas_Ver') }}",
+            success: function(data)
+            {
+                $('#pacientes').removeClass('text-center').removeAttr('style');
+                $('#pacientes').html(data);
+            }
+        });
+    </script>
+{% endblock %}

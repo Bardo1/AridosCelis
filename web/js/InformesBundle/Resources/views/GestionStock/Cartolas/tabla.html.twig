@@ -1,0 +1,71 @@
+{% if estadoApi == "core" %}
+<table id="tbl" class="table table-bordered table-condensed table-hover">
+	<thead>
+		<tr>
+			<th style="display:none;"></th>
+			<th>Código</th>
+			<th>Nombre</th>
+			<th>Cantidad</th>
+			<th>Entran</th>
+			<th>Salen</th>
+			<th>Tipo Movimiento</th>
+		</tr>
+	</thead>
+	<tbody> 
+		{% for cartola in arrCartolas %}
+            <tr>
+            	<th style="display:none;"></th>
+                <td>{{ cartola.id }}</td>
+                <td>{{ cartola.nombre }}</td>
+                <td>{{ cartola.cantidad }}</td>
+                <td>{{ cartola.idTipoMovimiento == obtenerParametro('TipoMovimientoAbastecimiento.Entrada') ? cartola.cantidadTipoMovimiento : 0 }}</td>
+                <td>{{ cartola.idTipoMovimiento == obtenerParametro('TipoMovimientoAbastecimiento.Salida') ? cartola.cantidadTipoMovimiento : 0 }}</td>
+                <td>{{ cartola.nombreTipoMovimiento }}</td>
+            </tr>
+        {% endfor %}               
+	</tbody>
+</table>
+
+{% else %}
+
+<table id="tbl" class="table table-bordered table-condensed table-hover">
+	<thead>
+		<tr>
+			<th style="display:none;"></th>
+			<th>Fecha Digitacion</th>
+			<th>Fecha Receta</th>
+			<th>Entran</th>
+			<th>Salen</th>
+			<th>Saldo</th>
+			<th>Tipo Movimiento</th>
+			<th>Numero</th>
+            <th>Nombre Persona</th>
+            <th>Usuario</th>
+		</tr>
+	</thead>
+	<tbody> 
+		{% for cartola in arrCartolas %}
+            <tr>
+            	<th style="display:none;"></th>
+            	<td>{{ cartola.fechaCreacion | hermes_date_format }}</td>
+            	<td>{{ cartola.fechaCreacion | hermes_date_format }}</td>
+            	<td>{{ cartola.idTipoMovimiento == obtenerParametro('TipoMovimientoAbastecimiento.Entrada') ? cartola.cantidadTipoMovimiento : 0 }}</td>
+                <td>{{ cartola.idTipoMovimiento == obtenerParametro('TipoMovimientoAbastecimiento.Salida') ? cartola.cantidadTipoMovimiento : 0 }}</td>
+            	<td> {{ cartola.idTipoMovimiento == obtenerParametro('TipoMovimientoAbastecimiento.Entrada') ? cartola.cantidadTipoMovimiento : 0 - cartola.idTipoMovimiento == obtenerParametro('TipoMovimientoAbastecimiento.Salida') ? cartola.cantidadTipoMovimiento : 0 }}</td>
+            	<td>{{ cartola.nombreTipoMovimiento }}</td>  	
+                <td>{{ cartola.rut ~ "-" ~ cartola.dV | hermes_rut_format }}</td> 
+            	<td>{{ obtenerNombrePaciente(cartola.nombrePaciente,cartola.apPaciente,cartola.amPaciente)
+                }}</td>
+            	<td>{{ obtenerNombreUsuario(cartola.nombreUsuario,cartola.apUsuario,cartola.amUsuario) }}</td> 
+                {# <td>{{ cartola.id }}</td>
+                <td>{{ cartola.nombre }}</td>
+                <td>{{ cartola.cantidad }}</td>
+                <td>{{ cartola.idTipoMovimiento == obtenerParametro('TipoMovimientoAbastecimiento.Entrada') ? cartola.cantidadTipoMovimiento : 0 }}</td>
+                <td>{{ cartola.idTipoMovimiento == obtenerParametro('TipoMovimientoAbastecimiento.Salida') ? cartola.cantidadTipoMovimiento : 0 }}</td>
+                <td>{{ cartola.nombreTipoMovimiento }}</td> #}
+            </tr>
+        {% endfor %}               
+	</tbody>
+</table>
+
+{% endif %}

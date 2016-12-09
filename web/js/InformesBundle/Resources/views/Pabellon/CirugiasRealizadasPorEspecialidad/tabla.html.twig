@@ -1,0 +1,35 @@
+<table id="tbl" class="table table-condensed table-striped table-bordered" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>Fecha de Cirugia</th>
+            <th>Rut</th>
+            <th>Nombre Paciente</th>
+            <th>Tipo Intervención</th>
+            <th>Especialidad</th>
+            <th>Prestaciones</th>
+            <th>Profesional</th>
+            <th>Pabellon</th> 
+            <th>Es Intervencion</th>     
+        </tr>
+    </thead>
+    <tbody>
+        {% for cirugiaPorEspecialidad in arrSolicitudesGeneradasEmitidas %}
+            <tr>
+                <td>{{ cirugiaPorEspecialidad.fechaCirugia | hermes_date_format }}</td>
+                <td>{{ cirugiaPorEspecialidad.rut ~ "-" ~ cirugiaPorEspecialidad.dV | hermes_rut_format }}</td>
+                <td>{{ obtenerNombrePaciente(cirugiaPorEspecialidad.nombrePaciente,cirugiaPorEspecialidad.apPaciente,cirugiaPorEspecialidad.amPaciente) }}</td>          
+                <td>{{ cirugiaPorEspecialidad.tipoIntervencion }}</td>
+                <td>{{ cirugiaPorEspecialidad.especialidad }}</td>
+                
+                <td><button onmouseover="verPrestaciones(this)" onmouseout="ocultarPrestaciones()" value="{{ cirugiaPorEspecialidad.idPabSolicitud }}" class="btn-link" data-toggle="popover" title="Prestaciones" data-content="" data-html="true">Tienes {{ cirugiaPorEspecialidad.prestaciones }} prestación(es)</button></td>
+                <td>{{ obtenerNombreProfesional(cirugiaPorEspecialidad.nombreProfesional, cirugiaPorEspecialidad.apProfesional, cirugiaPorEspecialidad.amProfesional) }}</td>
+                <td>{{ cirugiaPorEspecialidad.pabellon }}</td>
+                {% if cirugiaPorEspecialidad.Esreintervencion == '1' %}
+                <td>si</td>
+                {% else %}
+                <td>no</td>
+            {% endif %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table><!-- table -->

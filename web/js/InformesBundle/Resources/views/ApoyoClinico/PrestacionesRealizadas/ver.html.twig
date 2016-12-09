@@ -1,0 +1,139 @@
+<div class="table-header">
+    Realice los filtros correspondientes y presione "Filtrar"
+</div><!-- table-header -->
+
+<div class="well well-small form-inline" style="margin-bottom:0px;">
+
+    <select id="sucursalesSelectPacientes">
+        <option value="">Seleccionar Sucursal</option>
+        {% for sucursal in arrSucursales %}
+            <option value="{{ sucursal.id }}">{{ sucursal.nombreSucursal }}</option>
+        {% endfor %}
+    </select>
+
+    <select id="usuariosSelectPacientes">
+        <option value="">Seleccionar Usuario</option>
+    </select>
+
+    <div class="input-append">
+        <input class="date-picker" id="fechaMin" type="text" data-date-format="dd-mm-yyyy" value="{{ fechaMin | date("d-m-Y") }}">
+        <span class="add-on">
+            <i class="icon-calendar"></i>
+        </span>
+    </div>
+
+    <div class="input-append">
+        <input class="date-picker" id="fechaMax" type="text" data-date-format="dd-mm-yyyy" value="{{ fechaMax | date("d-m-Y") }}">
+        <span class="add-on">
+            <i class="icon-calendar"></i>
+        </span>
+    </div>
+
+    <button id="btnFiltrar" class="btn btn-primary btn-small"><i class="icon-filter"></i> Filtrar</button>
+    <div id="errorFiltrar" class="text-error"></div>
+</div><!-- well -->
+
+<div class="table-header header-color-grey">
+  <i class="icon-list-alt"></i> Pacientes Admitidos
+</div><!-- table-header -->
+
+<div id="contenedorTabla">{% include 'InformesBundle:Admision/PacientesAdmitidos:filtrarEmitidos.html.twig' %}</div>
+<!-- chosen -->
+<script src="{{ asset('js/chosen.jquery.min.js') }}"></script>
+<!-- dataTables -->
+{% javascripts '@InformesBundle/Resources/public/js/jquery.dataTables.min.js' %}
+<script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+{% javascripts '@InformesBundle/Resources/public/js/TableTools.js' %}
+<script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+<script src="{{asset('js/jquery.dataTables.bootstrap.js') }}"></script>  
+<!-- timepicker - datepicker -->
+<script src="{{ asset('js/bootstrap-timepicker.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
+<script src="{{ asset('js/date-time/locales/bootstrap-datepicker.es.js') }}" charset="UTF-8"></script>
+<script src="{{ asset('js/tipped/spinners.min.js') }}"></script>
+<script src="{{ asset('js/tipped/tipped.js') }}"></script>
+
+<script>
+    $('#sucursalesSelectPacientes, #usuariosSelectPacientes').chosen();
+
+    $("#fechaMin, #fechaMax").datepicker({
+        format: 'dd-mm-yyyy',
+        language: 'es',
+        autoclose: true
+    });
+
+    generarDataTable('tblPacientesAdmitidos');
+
+    $("#sucursalesSelectPacientes").change(function(){
+        $.ajax({
+            type: "POST",
+            url: "{{ path('Informes_Presupuesto_UsuariosPorSucursal') }}",
+            data: { idSucursal: $("#sucursalesSelectPacientes option:selected").val() }, 
+            dataType: "json",
+            success: function(data)
+            {
+                var option = '<option value="">Seleccionar Usuario</option>';
+                for(i=0; i<data.length; i++){
+                    option += '<option value="' + data[i]["id"] + '">' + data[i]["nombre"] + " " + data[i]["appat"] + '</option>';
+                }
+                $("#usuariosSelectPacientes").html(option);
+                $("#usuariosSelectPacientes").val('').trigger("liszt:updated");
+            }
+        });
+        }); // #sucursalesSelect
+
+    $("#btnFiltrar").click(function(){
+        if($("#fechaMin").val() == "" || $("#fechaMax").val() == ""){
+            $("#errorFiltrar").html('<i class="icon-remove"></i> Debes seleccionar una fecha de inicio y una fecha de término');
+            return false;
+        }
+        
+        $("#errorFiltrar").html('');
+        $.ajax({
+            type: "POST",
+            url: "{{ path('ApoyoClinico_PrestacionesRealizadas_Filtrar') }}",
+            data: { idSucursal: $("#sucursalesSelectPacientes option:selected").val(), idUsuario: $("#usuariosSelectPacientes option:selected").val(), fechaMin: $("#fechaMin").val(), fechaMax: $("#fechaMax").val() }, 
+            beforeSend: function()
+            {
+                $("#btnFiltrar").html('<i class="icon-spinner icon-spin"></i> Filtrando...');
+            },
+            success: function(data)
+            {
+                $("#contenedorTabla").html(data);
+                generarDataTable('tblPacientesAdmitidos');
+                $("#btnFiltrar").html('<i class="icon-filter"></i> Filtrar');
+            }
+        });
+    }); // #btnFiltrar
+
+    function generarDataTable(id){
+        $("#" + id).DataTable({
+            "oLanguage": {
+                "sUrl": "{{ asset('js/datatables/dataTables.es.txt') }}"
+            },
+            "dom": 'Tlfrtip',
+            "tableTools": {
+                "sSwfPath": "{{ asset('js/datatables/TableTools/swf/copy_csv_xls_pdf.swf') }}",
+                "aButtons": [
+                {
+                    "sExtends": "print",
+                    "sButtonText": "<i class='icon-print'></i>",
+                    "sToolTip": "Imprimir"
+                },
+                {
+                    "sExtends": "xls",
+                    "sButtonText": "<i class='icon-file-text'></i>",
+                    "sToolTip": "Exportar a Excel"
+                },
+                {
+                    "sExtends": "pdf",
+                    "sButtonText": "<i class='icon-save'></i>",
+                    "sToolTip": "Exportar a PDF"
+                }
+                ]
+            }
+        });
+    }
+</script>

@@ -1,0 +1,236 @@
+{% if app.session.get('user') is null %}
+    <div class="intro-heading"><font size="8" color="black">Debe iniciar sesión</font></div>                        
+{% else %}
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="author" content="Walter Muñoz">
+    <meta name="description" content="Desarrollo de Sistemas, sitios web, consultorias, Tecnologias, php, java, Silex, Symfony, bootstrap, ingenieria de software">
+    <title>Aridos Celis</title>
+    <!-- alertify documentos -->
+    <script type="text/javascript" src="{{ app.request.basepath }}/lib/alertify.js"></script>
+    <link rel="stylesheet" href="{{ app.request.basepath }}/themes/alertify.core.css"/>
+    <link rel="stylesheet" href="{{ app.request.basepath }}/themes/alertify.default.css"/>
+    <!-- Bootstrap Core CSS -->
+    <link href="{{ app.request.basepath }}/css/bootstrap.min.css" rel="stylesheet">        
+    <link href="{{ app.request.basepath }}/css/agency2.css" rel="stylesheet">
+    
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Kaushan+Script" rel='stylesheet' type='text/css'>
+    <link href="http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel='stylesheet' type='text/css'>
+    <link href="http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet" type='text/css'>
+    <link href="http://fonts.googleapis.com/css?family=Akronim" rel="stylesheet" type="text/css">
+    <style type="text/css">
+        body
+        {
+            background-repeat: no-repeat;
+            background-attachment: fixed
+        }
+    </style>
+</head>
+ <!-- con 7,6 -->
+ <!-- Header -->
+
+ <header  style="background-image:url('/AridosCelis/web/imagenes/cajas.jpg')">
+ <div class="row">
+  <div class="col-xs-6">
+   <div class="container" align="left">
+     <br>
+        <br><br>
+        <br><br>
+        <br><br>
+            <div >
+                <font color="yellow" face="impact" style="font: 700% impact;"> Ingresar Stock</font>
+                <br>
+                <font color="yellow" style="font: 200% impact;">Selección de opciones</font>
+                <br>
+                <br>
+                <a href="{{ path('rutaCotizaciones') }}" class="page-scroll btn btn-xl">Cotizaciones</a>
+                <br>
+                <br>
+                 <div class="dropdown">
+                <button class="page-scroll btn btn-xl dropdown-toggle" type="button" data-toggle="dropdown">Stock
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                <li><a href="{{ path('rutaStockIngresar') }}">Ingresar Stock</a></li>
+                <li><a href="{{ path('rutaStockVer') }}">Ver Stock</a></li>
+                </ul>
+                </div>
+                <br>
+                <div class="dropdown">
+                <button class="page-scroll btn btn-xl dropdown-toggle" type="button" data-toggle="dropdown">Ventas
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                <li><a href="{{ path('ventas') }}">Ventas</a></li>
+                <li><a href="{{ path('reportes') }}">Reportes</a></li>
+                </ul>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+            <br>
+        <br><br>
+        <br><br>
+        <br><br>
+        </div>
+  </div>
+  <div class="col-xs-6">
+   <br>
+        <br><br>
+        <br><br>
+        <br><br>
+        <br>
+        <br><br>
+        <br><br>
+        <br><br>
+  <div  align="left">
+      <br>
+<fieldset>
+<!-- Form Name -->
+<legend style="color:white">Datos necesarios del ingreso de stock del producto</legend>
+<!-- Text input-->
+<br>
+<div class="form-group"  class="text-left">
+  <label class="col-md-4 control-label" for="producto">Seleccionar Producto</label>  
+  <div class="col-md-2">
+         <select class="form-control selectpro" id="selectpro" data-style="btn-success"  style="width:300px; text-align: center;">
+         <option value="1">Arena gruesa </option>
+         <option value="2">Arena fina </option>
+         <option value="3">Arena rubia </option>
+         <option value="4">Gravilla chancada </option>
+         <option value="5">Gravilla rodada </option>
+         <option value="6">Ripio chancado </option>
+         <option value="7">Ripio rodado </option>
+         <option value="8">Estabilizado base </option>
+         <option value="9">Estabilizado integral </option>
+         <option value="10">Bolón </option>
+         <option value="11">Tierra vegetal areneada </option>
+         <option value="12">Tierra vegetal sin arnear </option>
+         <option value="13">Maicillo blanco </option>
+         <option value="14">Maicillo amarillo </option>
+         <option value="15">Ladrillos </option>
+         <option value="16">Pilares </option>
+         <option value="17">Cadenas </option>
+         <option value="18">Cemento </option>
+         <option value="19">Pastelones </option>
+         <option value="20">Pomasita </option>
+         <option value="21">Retiro de escombros </option>
+         <option value="22">Arriendo de maquinaria </option>
+        </select>
+  </div>
+</div>
+<br>
+<br>
+<!-- Text input-->
+<div class="form-group"  class="text-left">
+  <label class="col-md-4 control-label" for="Cantidad">Ingrese cantidad</label>  
+  <div class="col-md-2">
+  <input id="Cantidad" name="Cantidad" type="number" placeholder="N°" class="form-control input-md"  required>   
+  </div>
+</div>
+<br>
+<br>
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Precio">Ingrese precio</label>  
+  <div class="col-md-4">
+  <input id="Precio" name="Precio" type="number" placeholder="precio" class="form-control input-md" required>
+  </div>
+</div>
+<br>
+<br>
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="singlebutton"></label>
+  <div class="col-md-4">
+    <button id="botonIngresar" name="singlebutton" class="btn btn-primary">Ingresar Stock</button>
+  </div>
+</div>
+<br>
+<br>
+</fieldset>
+   </div>
+  </div>
+ </div>
+</div>
+
+</header>
+   <footer >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright &copy; Aridos Celis 2016</span>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        <li><a href="#"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+     <!-- Go to www.addthis.com/dashboard to customize your tools -->
+     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+     <!-- jQuery -->
+     <script src="{{ app.request.basepath }}/js/jquery-1.12.0.js"></script>
+     <script src="{{ app.request.basepath }}/js/jquery-1.12.0.min.js"></script>
+     <!-- Bootstrap Core JavaScript -->
+     <script src="{{ app.request.basepath }}/js/bootstrap.min.js"></script>
+     <!-- Plugin JavaScript -->
+     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+     <!-- Custom Theme JavaScript -->
+     <script src="{{ app.request.basepath }}/js/agency.js"></script>
+     <!-- Scrolling Nav JavaScript -->
+  <script>
+    
+    $("#botonIngresar").click(function(){
+
+        var cantidad = $('#Cantidad').val();
+        var precio = $('#Precio').val();
+        var id = $("select.selectpro option:selected").val();
+        
+        if(cantidad!=""&& precio!="" && id!="" ){     
+                       var data = {
+                       id: id,
+                       cantidad:cantidad,
+                       precio:precio
+                       };
+                       $.ajax({
+                       type: 'POST',
+                        url: "{{ path('ingresaStock') }}",
+                       data:data,
+                       success: function(resultado){ 
+                       console.log(resultado);                              
+                        if(resultado){
+                            alertify.success("Registro ingresado con exito");    
+                            $('#Cantidad').val("");
+                            $('#Precio').val("");                       
+                        }else{
+                            alertify.error("Usuario o constraseña incorrecto/a."); 
+                        }
+                       
+                       }
+
+                       });           
+        }else{
+        console.log("paso y no paso na22222");
+        $('.alertMensajePeriodoNoValido').show();
+        $('.alertMensajePeriodoNoValidoText').html("Debe seleccionar el Periodo");
+       }
+});
+</script>
+
+</html>
+
+  {% endif %}

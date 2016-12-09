@@ -1,0 +1,17 @@
+Poyecto\ProyectoBundle\Entity\Producto:
+    type: entity
+    table: null
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        nombre:
+            type: string
+            length: 255
+        cantidad:
+            type: integer
+        precio:
+            type: integer
+    lifecycleCallbacks: {  }

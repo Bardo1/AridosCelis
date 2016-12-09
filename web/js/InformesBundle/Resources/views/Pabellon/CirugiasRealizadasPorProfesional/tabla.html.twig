@@ -1,0 +1,40 @@
+<table id="tbl" class="table table-condensed table-striped table-bordered" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th class="hidden"></th> 
+            <th>Fecha Cirug&iacute;a</th>
+            <th>Rut</th>
+            <th>Nombre Paciente</th>
+            <th>Pabell&oacute;n</th>
+            <th>Tipo de Intervenci&oacute;n</th>
+            <th>Prestaciones</th>
+            <th>Profesional</th>
+            <th>Especialidad</th>
+            <th>Es Reintervenci&oacute;n</th>   
+        </tr>
+    </thead>
+    </thead>
+    <tbody>
+        {% for CirugiaPorProfesional in arrCirugiasRealizadasPorProfesional %}
+        <tr>
+            <td class="hidden"></td> 
+            <td>{{ CirugiaPorProfesional.fechaCirugia | hermes_date_format }}</td>
+            <td>{{ CirugiaPorProfesional.rut ~ "-" ~ CirugiaPorProfesional.dV | hermes_rut_format }}</td>
+            <td>{{ obtenerNombrePaciente(CirugiaPorProfesional.nombrePaciente,CirugiaPorProfesional.apPaciente,CirugiaPorProfesional.amPaciente) }}</td>
+            <td>{{ CirugiaPorProfesional.nombrePabellon }}</td>          
+            <td><button onmouseover="verPrestaciones(this)" onmouseout="ocultarPrestaciones()" value="{{ CirugiaPorProfesional.idPabSolicitud }}" class="btn-link" data-toggle="popover" title="Prestaciones" data-content="" data-html="true">Tienes {{ CirugiaPorProfesional.prestaciones }} prestación(es)</button></td>
+            <td>{{ CirugiaPorProfesional.tipoIntervencion }}</td>
+            <td>{{ obtenerNombreProfesional(CirugiaPorProfesional.nombreProfesional, CirugiaPorProfesional.apProfesional, CirugiaPorProfesional.amProfesional) }}</td>
+            <td>{{ CirugiaPorProfesional.especialidad }}</td>
+            <td>{% if CirugiaPorProfesional.Esreintervencion == '1' %}                
+                  <center>SI</center>   
+                {% else %}
+                  <center>NO</center> 
+                {% endif %}     
+            </td>            
+        </tr>
+        {% endfor %}
+    </tbody>
+
+    
+</table><!-- table -->

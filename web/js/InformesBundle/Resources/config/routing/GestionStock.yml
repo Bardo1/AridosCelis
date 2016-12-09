@@ -1,0 +1,95 @@
+GestionStock_UnidadesPorSucursal:
+ pattern:  /UnidadesPorSucursal
+ defaults: { _controller: InformesBundle:GestionStock\GestionStock:obtenerUnidadesPorSucursal }
+
+GestionStock_ServiciosPorUnidad:
+ pattern:  /ServiciosPorUnidad
+ defaults: { _controller: InformesBundle:GestionStock\GestionStock:obtenerServiciosPorUnidad }
+
+GestionStock_BodegasPorServicio:
+ pattern:  /BodegasPorServicio
+ defaults: { _controller: InformesBundle:GestionStock\GestionStock:obtenerBodegasPorServicio }
+
+GestionStock_ConsumoDeProductos_Inicio:
+ pattern:  /ConsumoDeProductos
+ defaults: { _controller: InformesBundle:GestionStock\ConsumoDeProductos:index }
+
+GestionStock_ConsumoDeProductos_Ver:
+ pattern:  /ConsumoDeProductos/Filtros
+ defaults: { _controller: InformesBundle:GestionStock\ConsumoDeProductos:ver }
+
+GestionStock_ConsumoDeProductos_Filtrar:
+ pattern:  /ConsumoDeProductos/Tabla
+ defaults: { _controller: InformesBundle:GestionStock\ConsumoDeProductos:filtrar }
+
+GestionStock_IngresoDeProductos_Inicio:
+ pattern:  /IngresoDeProductos
+ defaults: { _controller: InformesBundle:GestionStock\IngresoDeProductos:index }
+
+GestionStock_IngresoDeProductos_Ver:
+ pattern:  /IngresoDeProductos/Filtros
+ defaults: { _controller: InformesBundle:GestionStock\IngresoDeProductos:ver }
+
+GestionStock_IngresoDeProductos_Filtrar:
+ pattern:  /IngresoDeProductos/Tabla
+ defaults: { _controller: InformesBundle:GestionStock\IngresoDeProductos:filtrar }
+
+GestionStock_TransferenciaDeSaldos_Inicio:
+ pattern:  /TransferenciaDeSaldos
+ defaults: { _controller: InformesBundle:GestionStock\TransferenciaDeSaldos:index }
+
+GestionStock_TransferenciaDeSaldos_Ver:
+ pattern:  /TransferenciaDeSaldos/Filtros
+ defaults: { _controller: InformesBundle:GestionStock\TransferenciaDeSaldos:ver }
+
+GestionStock_TransferenciaDeSaldos_Filtrar:
+ pattern:  /TransferenciaDeSaldos/Tabla
+ defaults: { _controller: InformesBundle:GestionStock\TransferenciaDeSaldos:filtrar }
+
+GestionStock_RecepcionesDeTransferenciaDeSaldos_Inicio:
+ pattern:  /RecepcionesDeTransferenciaDeSaldos
+ defaults: { _controller: InformesBundle:GestionStock\RecepcionesDeTransferenciaDeSaldos:index }
+
+GestionStock_RecepcionesDeTransferenciaDeSaldos_Ver:
+ pattern:  /RecepcionesDeTransferenciaDeSaldos/Filtros
+ defaults: { _controller: InformesBundle:GestionStock\RecepcionesDeTransferenciaDeSaldos:ver }
+
+GestionStock_RecepcionesDeTransferenciaDeSaldos_Filtrar:
+ pattern:  /RecepcionesDeTransferenciaDeSaldos/Tabla
+ defaults: { _controller: InformesBundle:GestionStock\RecepcionesDeTransferenciaDeSaldos:filtrar }
+
+GestionStock_AjustesDeInventario_Inicio:
+ pattern:  /AjustesDeInventario
+ defaults: { _controller: InformesBundle:GestionStock\AjustesDeInventario:index }
+
+GestionStock_AjustesDeInventario_Ver:
+ pattern:  /AjustesDeInventario/Filtros
+ defaults: { _controller: InformesBundle:GestionStock\AjustesDeInventario:ver }
+
+GestionStock_AjustesDeInventario_Filtrar:
+ pattern:  /AjustesDeInventario/Tabla
+ defaults: { _controller: InformesBundle:GestionStock\AjustesDeInventario:filtrar }
+
+GestionStock_Cartolas_Inicio:
+ pattern:  /Cartolas
+ defaults: { _controller: InformesBundle:GestionStock\Cartolas:index }
+
+GestionStock_Cartolas_Ver:
+ pattern:  /Cartolas/Filtros
+ defaults: { _controller: InformesBundle:GestionStock\Cartolas:ver }
+
+GestionStock_Cartolas_Filtrar:
+ pattern:  /Cartolas/Tabla
+ defaults: { _controller: InformesBundle:GestionStock\Cartolas:filtrar }
+
+GestionStock_StockActual_Inicio:
+ pattern:  /StockActual
+ defaults: { _controller: InformesBundle:GestionStock\StockActual:index }
+
+GestionStock_StockActual_Ver:
+ pattern:  /StockActual/Filtros
+ defaults: { _controller: InformesBundle:GestionStock\StockActual:ver }
+
+GestionStock_StockActual_Filtrar:
+ pattern:  /StockActual/Tabla
+ defaults: { _controller: InformesBundle:GestionStock\StockActual:filtrar }

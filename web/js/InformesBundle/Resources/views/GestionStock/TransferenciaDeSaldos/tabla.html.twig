@@ -1,0 +1,20 @@
+<table id="tbl" class="table table-bordered table-condensed table-hover">
+	<thead>
+		<tr>
+			<th>N° Traspaso</th>
+			<th>Fecha Traspaso</th>
+			<th>Centro De Costo Origen</th>
+			<th>Centro De Costo Destino</th>
+		</tr>
+	</thead>
+	<tbody> 
+		{% for transferenciaDeSaldo in arrTransferenciaDeSaldos %}
+            <tr>
+                <td>{{ transferenciaDeSaldo.id }}</td>
+                <td>{{ transferenciaDeSaldo.fechaConfirmacion }}</td>
+                <td>{{ transferenciaDeSaldo.nombreBodegaOrigen }}</td>
+                <td>{{ transferenciaDeSaldo.nombreBodegaDestino }}</td>
+            </tr>
+        {% endfor %}               
+	</tbody>
+</table>
